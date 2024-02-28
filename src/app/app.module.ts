@@ -14,6 +14,14 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,11 +33,22 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     MachineParkComponent,
     EmployeesComponent,
     ProjectsComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatCheckboxModule,
+    
+
+
+
   ],
   providers: [
     provideAnimationsAsync()
