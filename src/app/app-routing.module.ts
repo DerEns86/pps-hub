@@ -6,9 +6,7 @@ import { MainComponent } from './components/main/main.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { MachineParkComponent } from './components/machine-park/machine-park.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { HeaderComponent } from './components/shared/header/header.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
