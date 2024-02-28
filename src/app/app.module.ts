@@ -21,6 +21,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
+import {MatTableModule} from '@angular/material/table';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +45,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatCheckboxModule,
     MatToolbarModule,
     MatSidenavModule,
-
-
+    MatTableModule,
 
 
   ],
