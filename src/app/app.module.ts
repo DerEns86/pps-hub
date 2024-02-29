@@ -20,7 +20,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
@@ -46,6 +46,7 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     MatSidenavModule,
     MatTableModule,
+    MatExpansionModule
 
 
   ],

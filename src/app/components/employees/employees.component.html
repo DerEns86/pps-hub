@@ -1,1 +1,25 @@
 <p>employees works!</p>
+
+<mat-accordion>
+   
+        @for (employee of allEmployees; track $index) {
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{employee.id}}
+                </mat-panel-title>
+                <mat-panel-title>
+                    {{employee.name}} {{employee.surname}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{employee.skills.join(' | ')}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p><b>Skills: </b> {{employee.skills}}</p>
+            <p><b>E-mail: </b> {{employee.email}}</p>
+            <p><b>E-Passwort: </b> {{employee.password}}</p>
+            <p><b>Current Machine: </b> {{employee.activeMachine}}</p>
+        </mat-expansion-panel>
+        }
+    
+</mat-accordion>
