@@ -1,84 +1,65 @@
 <p>projects works!</p>
 
-<!-- <table mat-table
-       [dataSource]="dataSource" multiTemplateDataRows
-       class="mat-elevation-z8">
-  @for (column of columnsToDisplay; track column) {
-    <ng-container matColumnDef="{{column}}">
-    <th mat-header-cell *matHeaderCellDef> {{column.charAt(0).toUpperCase() + column.slice(1)}} </th>
-      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-    </ng-container>
-  }
-  <ng-container matColumnDef="expand">
-    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-        @if (expandedElement === element) {
-          <mat-icon>keyboard_arrow_up</mat-icon>
-        } @else {
-          <mat-icon>keyboard_arrow_down</mat-icon>
-        }
-      </button>
-    </td>
-  </ng-container> -->
-
-<!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
 
 
-<!-- <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-      <div class="example-element-detail"
-           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-        <div class="example-element-diagram">
-          <div class="example-element-position"> {{element.position}} </div>
-          <div class="example-element-symbol"> {{element.symbol}} </div>
-          <div class="example-element-name"> {{element.name}} </div>
-          <div class="example-element-weight"> {{element.weight}} </div>
-        </div>
-        <div class="example-element-description">
-          {{element.description}}
-          <span class="example-element-description-attribution"> -- Wikipedia </span>
-        </div>
-      </div>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-      class="example-element-row"
-      [class.example-expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element">
-  </tr>
-  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-</table> -->
-
-<mat-card style="padding: 16px;">
-
-<mat-accordion>
-@for (project of dataSource; track $index) {
-<mat-expansion-panel>
-   
-      
-        
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{project.projectId}}
-            </mat-panel-title>
-            <mat-panel-title>
-              {{project.customer}}
-            </mat-panel-title>
-            <mat-panel-description>
-              {{project.deliveryDate}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p><b>Skills: </b> {{project.symbol}}</p>
-          <p><b>E-mail: </b> {{project.description}}</p>
-
-  
-        </mat-expansion-panel>
-      
-}
-
-</mat-accordion>
+<!-- <mat-card style="padding: 16px;"> -->
  
-</mat-card>
+  <mat-accordion>
+
+
+    <mat-expansion-panel disabled="true">
+      <mat-expansion-panel-header >
+        <mat-panel-title class="panelProjectId">
+          Project ID
+        </mat-panel-title>
+        <mat-panel-title class="panelCustomer">
+          Customer
+        </mat-panel-title>
+        <mat-panel-title class="panelArticle">
+          Article No.
+        </mat-panel-title>
+        <mat-panel-title class="panelDeliveryDdate">
+          Delivery Date
+        </mat-panel-title>
+        <mat-panel-title class="panelDeliveryDdate">
+          Used Machines
+        </mat-panel-title>
+
+
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+
+
+    @for (project of dataSource; track $index) {
+    <mat-expansion-panel>
+
+
+
+      <mat-expansion-panel-header>
+        <mat-panel-title class="panelProjectId">
+          {{project.projectId}}
+        </mat-panel-title>
+        <mat-panel-title class="panelCustomer">
+          {{project.customer}}
+        </mat-panel-title>
+        <mat-panel-title class="panelArticle">
+          {{project.article}}
+        </mat-panel-title>
+        <mat-panel-description class="panelDeliveryDdate">
+          {{project.deliveryDate}}
+        </mat-panel-description>
+        <mat-panel-description class="panelUsedMachines">
+          {{project.usedMachines}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p><b>Scheduled Time: </b> {{project.scheduledTime}} h</p>
+      <p><b>E-mail: </b> {{project.description}}</p>
+
+
+    </mat-expansion-panel>
+
+    }
+
+  </mat-accordion>
+
+<!-- </mat-card> -->

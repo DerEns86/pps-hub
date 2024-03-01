@@ -15,33 +15,39 @@ import { Component } from '@angular/core';
 })
 export class ProjectsComponent {
   dataSource = PROJECT_DATA;
-  columnsToDisplay = ['projectId', 'customer', 'deliveryDate'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement: ProjectElement | null | undefined;
+  // columnsToDisplay = ['projectId', 'customer', 'deliveryDate'];
+  // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  // expandedElement: ProjectElement | null | undefined;
 }
 
 export interface ProjectElement {
   projectId: number;
   customer: string;
+  article: string;
   deliveryDate: string | Date;
-  symbol: string;
+  scheduledTime: number;
+  usedMachines: string[];
   description: string;
 }
 
 const PROJECT_DATA: ProjectElement[] = [
   {
     projectId: 1,
+    article: 'Articel1',
     customer: 'Hydrogen',
     deliveryDate: new Date(1709292697711).toLocaleDateString('en-gb').replace(/\//g, '.'),
-    symbol: 'H',
+    scheduledTime: 8,
+    usedMachines: ['Machine1', 'Machine2'],
     description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
         atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`,
   },
   {
     projectId: 2,
+    article: 'Articel2',
     customer: 'Helium',
     deliveryDate: new Date(1709292697711),
-    symbol: 'He',
+    scheduledTime: 33,
+    usedMachines: ['Machine1', 'Machine2'],
     description: `Helium is a chemical element with symbol He and atomic number 2. It is a
         colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
         group in the periodic table. Its boiling point is the lowest among all the elements.`,
