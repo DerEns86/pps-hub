@@ -3,7 +3,7 @@
 
 
 <!-- <mat-card style="padding: 16px;"> -->
- 
+
   <mat-accordion>
 
 
@@ -19,11 +19,10 @@
           Article No.
         </mat-panel-title>
         <mat-panel-title class="panelDeliveryDdate">
-          Delivery Date
+          Delivery Date/ <br>
+          Scheduled Time
         </mat-panel-title>
-        <mat-panel-title class="panelDeliveryDdate">
-          Used Machines
-        </mat-panel-title>
+      
 
 
       </mat-expansion-panel-header>
@@ -36,6 +35,7 @@
 
 
       <mat-expansion-panel-header>
+        
         <mat-panel-title class="panelProjectId">
           {{project.projectId}}
         </mat-panel-title>
@@ -47,13 +47,16 @@
         </mat-panel-title>
         <mat-panel-description class="panelDeliveryDdate">
           {{project.deliveryDate}}
+          <br>
+          {{project.scheduledTime}} h
         </mat-panel-description>
-        <mat-panel-description class="panelUsedMachines">
-          {{project.usedMachines}}
-        </mat-panel-description>
+       
       </mat-expansion-panel-header>
+      <p><b>Status: </b> {{project.status}}</p>
       <p><b>Scheduled Time: </b> {{project.scheduledTime}} h</p>
-      <p><b>E-mail: </b> {{project.description}}</p>
+      <p><b>Used Machines: </b> {{project.usedMachines}}</p>
+
+      <p><b>Notifications: </b> {{project.notification}}</p>
 
 
     </mat-expansion-panel>
@@ -61,5 +64,6 @@
     }
 
   </mat-accordion>
+
 
 <!-- </mat-card> -->

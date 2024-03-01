@@ -27,7 +27,8 @@ export interface ProjectElement {
   deliveryDate: string | Date;
   scheduledTime: number;
   usedMachines: string[];
-  description: string;
+  status: 'active' | 'paused' | 'finished' | 'awaiting';
+  notification: string;
 }
 
 const PROJECT_DATA: ProjectElement[] = [
@@ -38,7 +39,8 @@ const PROJECT_DATA: ProjectElement[] = [
     deliveryDate: new Date(1709292697711).toLocaleDateString('en-gb').replace(/\//g, '.'),
     scheduledTime: 8,
     usedMachines: ['Machine1', 'Machine2'],
-    description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
+    status: 'awaiting',
+    notification: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
         atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`,
   },
   {
@@ -48,7 +50,8 @@ const PROJECT_DATA: ProjectElement[] = [
     deliveryDate: new Date(1709292697711),
     scheduledTime: 33,
     usedMachines: ['Machine1', 'Machine2'],
-    description: `Helium is a chemical element with symbol He and atomic number 2. It is a
+    status: 'awaiting',
+    notification: `Helium is a chemical element with symbol He and atomic number 2. It is a
         colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
         group in the periodic table. Its boiling point is the lowest among all the elements.`,
   }

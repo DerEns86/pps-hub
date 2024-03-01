@@ -1,7 +1,7 @@
 
 
-
 mat-accordion {
+
   mat-expansion-panel:nth-child(2) {
     
       margin-top: 0 !important;
@@ -26,11 +26,29 @@ mat-accordion {
 }
 
 .panelDeliveryDdate{
-  max-width: 100px;
+  max-width: 120px;
 
 }
 
 mat-expansion-panel-header{
   min-height: 56px;
+}
+
+
+// color for project status
+.project-status.active {
+  color: green;
+}
+
+.project-status.paused {
+  color: yellow;
+}
+
+.project-status.finished {
+  color: blue;
+}
+
+.project-status.awaiting {
+  color: grey;
 }
 
