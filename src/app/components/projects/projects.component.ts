@@ -18,6 +18,16 @@ export class ProjectsComponent {
   // columnsToDisplay = ['projectId', 'customer', 'deliveryDate'];
   // columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   // expandedElement: ProjectElement | null | undefined;
+
+
+  openDialog(ProjectElement: ProjectElement) {
+    // this.dialog.open(ProjectDialogComponent, {});
+  }
+
+  deleteProject(projectId : number) {
+    // this.projectService.deleteProject(project.projectId);
+}
+
 }
 
 export interface ProjectElement {

@@ -1,13 +1,13 @@
 <p>projects works!</p>
 
 
-
+<button mat-raised-button class="addProjectBtn">Add Project</button>
 <!-- <mat-card style="padding: 16px;"> -->
 
   <mat-accordion>
 
 
-    <mat-expansion-panel disabled="true">
+    <mat-expansion-panel disabled="true" class="panelHeader">
       <mat-expansion-panel-header >
         <mat-panel-title class="panelProjectId">
           Project ID
@@ -23,7 +23,7 @@
           Scheduled Time
         </mat-panel-title>
       
-
+        
 
       </mat-expansion-panel-header>
     </mat-expansion-panel>
@@ -57,7 +57,10 @@
       <p><b>Used Machines: </b> {{project.usedMachines}}</p>
 
       <p><b>Notifications: </b> {{project.notification}}</p>
-
+      <div class="btnContainer">
+        <button mat-raised-button color="primary" class="btn" (click)="openDialog(project)">Edit</button>
+        <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.projectId)">Delete</button>
+      </div>
 
     </mat-expansion-panel>
 
