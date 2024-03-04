@@ -1,7 +1,8 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../models/projects.class';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -15,14 +16,27 @@ import { Project } from '../../models/projects.class';
     ]),
   ],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   allProjects: Project[] = [];
-  constructor(private projectService: ProjectsService) { }
-
-  ngOnInit(): void {
-    this.allProjects = this.projectService.getProjects();
+  private projectListSubscription: Subscription | undefined;
+  constructor(private projectService: ProjectsService) {
+    
   }
 
+  ngOnInit(): void {
+   this.projectService.projectList$.subscribe((projects) => {
+      this.allProjects = projects;
+    });
+  }
+ngOnDestroy(): void {
+  if (this.projectListSubscription) {
+    this.projectListSubscription.unsubscribe();
+  }
+}
+
+formatDate(date: number) {
+  return new Date(date).toLocaleDateString('de-DE');
+}
 
   openDialog(project: Project) {
     // this.dialog.open(ProjectDialogComponent, {});

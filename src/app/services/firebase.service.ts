@@ -2,20 +2,29 @@ import { Injectable, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firestore';
 import { Project } from '../models/projects.class';
 
+import { ProjectsService } from './projects.service';
+
 @Injectable({
   providedIn: 'root'
 })
+
+
+// employeeList: Employee[] = [];
+// machineList: Machine[] = [];
 export class FirebaseService implements OnDestroy {
 
-  unsubProjectsList: () => void;
+  projectList: Project[] = [];
+
+ 
   firebase: Firestore = inject(Firestore);
+
   constructor() {
-    this.unsubProjectsList = this.snapProjectsList();
+  
   }
 
 
   ngOnDestroy() {
-    this.unsubProjectsList();
+
   }
   getProjects() {
     return collection(this.firebase, 'projects');
@@ -25,12 +34,8 @@ export class FirebaseService implements OnDestroy {
     return collection(this.firebase, 'employees');
   }
 
-  snapProjectsList() {
-    return onSnapshot(this.getProjects(), (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log('snap: ', doc.data());
-      });
-    });
+  getProjectList(): Project[] {
+    return this.projectList;
   }
 
   async addProject(item: Project) {

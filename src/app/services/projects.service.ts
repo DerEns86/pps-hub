@@ -1,6 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Project } from '../models/projects.class';
 import { FirebaseService } from './firebase.service';
+import { onSnapshot } from '@angular/fire/firestore';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -8,19 +10,30 @@ import { FirebaseService } from './firebase.service';
 })
 
 
-export class ProjectsService {
+export class ProjectsService implements OnDestroy {
 
-  projects: Project[] = [];
+  private _projectList = new BehaviorSubject<Project[]>([]);
+  projectList$ = this._projectList.asObservable();
+  unsubProjectsList: () => void;
+  
   constructor(private firebase: FirebaseService) { 
-    this.projects.push(new Project(1, 'Hydrogen', 'Articel1', new Date(1709292697711), 8, ['Machine1', 'Machine2'], 'awaiting', `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`));
-    this.projects.push(new Project(2, 'Helium', 'Articel2', new Date(1709292697711), 8, ['Machine1', 'Machine2'], 'awaiting', `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`));
-    console.log(this.firebase.getProjects()); 
-    // this.firebase.addProject(this.projects[0].toJson() as Project);
+
+    this.unsubProjectsList = this.snapProjectsList();
+
   }
 
-  getProjects(): Project[] {
-    return this.projects;
+  ngOnDestroy() {
+   this.unsubProjectsList();
   }
 
- 
+  snapProjectsList() {
+    return onSnapshot(this.firebase.getProjects(), (querySnapshot) => {
+      const projects: Project[] = [];
+      querySnapshot.forEach((doc) => {
+        projects.push(doc.data() as Project);
+      });
+      this._projectList.next(projects);
+    });
+  }
+
 }

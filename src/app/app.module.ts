@@ -27,6 +27,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { ProjectsService } from './services/projects.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,13 +53,15 @@ import { environment } from '../environments/environment';
     MatSidenavModule,
     MatTableModule,
     MatExpansionModule,
+
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
 
 
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    ProjectsService,
   ],
   bootstrap: [AppComponent]
 })
