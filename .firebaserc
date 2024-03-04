@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pps-hub": {
+      "hosting": {
+        "pps-hub": [
+          "pps-hub"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pps-hub"
+  }
+}

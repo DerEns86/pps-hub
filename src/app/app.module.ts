@@ -23,6 +23,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,9 @@ import {MatTableModule} from '@angular/material/table';
     MatToolbarModule,
     MatSidenavModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore())
 
 
   ],

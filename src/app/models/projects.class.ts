@@ -37,34 +37,17 @@ export class Project implements IProject {
         this.status = status;
         this.notification = notification;
     }
-    getDeliveryDate(): string {
-        return this.deliveryDate.toString();
-    }
-    getUsedMachines(): string {
-        return this.usedMachines.join(', ');
-    }
-    getNotification(): string {
-        return this.notification;
-    }
-    setCustomer(customer: string): void {
-        this.customer = customer;
-    }
-    setArticle(article: string): void {
-        this.article = article;
-    }
-    setDeliveryDate(deliveryDate: string | Date): void {
-        this.deliveryDate = deliveryDate;
-    }
-    setScheduledTime(scheduledTime: number): void {
-        this.scheduledTime = scheduledTime;
-    }
-    setUsedMachines(usedMachines: string[]): void {
-        this.usedMachines = usedMachines;
-    }
-    setStatus(status: 'active' | 'paused' | 'finished' | 'awaiting'): void {
-        this.status = status;
-    }
-    setNotification(notification: string): void {
-        this.notification = notification;
+    
+   public toJson() {
+        return {
+            projectId: this.projectId,
+            customer: this.customer,
+            article: this.article,
+            deliveryDate: this.deliveryDate,
+            scheduledTime: this.scheduledTime,
+            usedMachines: this.usedMachines,
+            status: this.status,
+            notification: this.notification
+        };
     }
 }
