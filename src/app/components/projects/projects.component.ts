@@ -4,6 +4,9 @@ import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../models/projects.class';
 import { Subscription } from 'rxjs';
 
+import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -19,7 +22,7 @@ import { Subscription } from 'rxjs';
 export class ProjectsComponent implements OnInit, OnDestroy {
   allProjects: Project[] = [];
   private projectListSubscription: Subscription | undefined;
-  constructor(private projectService: ProjectsService) {
+  constructor(private projectService: ProjectsService, public dialog: MatDialog) {
     
   }
 
@@ -38,8 +41,14 @@ formatDate(date: number) {
   return new Date(date).toLocaleDateString('de-DE');
 }
 
+  openAddDialog() {
+    this.dialog.open(DialogAddProjectComponent);
+  }
+
   openDialog(project: Project) {
-    // this.dialog.open(ProjectDialogComponent, {});
+    this.dialog.open(DialogAddProjectComponent, {
+      data: project,
+    });
   }
 
   deleteProject(projectId: number) {

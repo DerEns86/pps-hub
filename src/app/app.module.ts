@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,12 +23,18 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 import { ProjectsService } from './services/projects.service';
+import { DialogAddProjectComponent } from './components/projects/dialog-add-project/dialog-add-project.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +45,7 @@ import { ProjectsService } from './services/projects.service';
     MachineParkComponent,
     EmployeesComponent,
     ProjectsComponent,
+    DialogAddProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +61,11 @@ import { ProjectsService } from './services/projects.service';
     MatSidenavModule,
     MatTableModule,
     MatExpansionModule,
+    MatDialogModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
@@ -62,6 +75,7 @@ import { ProjectsService } from './services/projects.service';
   providers: [
     provideAnimationsAsync(),
     ProjectsService,
+    provideNativeDateAdapter(),
   ],
   bootstrap: [AppComponent]
 })

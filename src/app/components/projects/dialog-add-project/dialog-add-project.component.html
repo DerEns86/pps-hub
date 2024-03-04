@@ -1,0 +1,45 @@
+<h2>Add new Project</h2>
+
+<mat-form-field appearance="outline">
+    <mat-label>Project ID</mat-label>
+    <input matInput [(ngModel)]="project.projectId">
+</mat-form-field>
+<mat-form-field appearance="outline">
+    <mat-label>Customer</mat-label>
+    <input matInput [(ngModel)]="project.customer">
+</mat-form-field>
+<mat-form-field appearance="outline">
+    <mat-label>Article</mat-label>
+    <input matInput [(ngModel)]="project.article">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="project.deliveryDate">
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Sheduled Time</mat-label>
+    <input matInput [(ngModel)]="project.scheduledTime">
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Select</mat-label>
+    <mat-select [(ngModel)]="project.usedMachines">
+        <!-- @for for each machine -->
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label >Notifications</mat-label>
+    <textarea matInput [(ngModel)]="project.notification"></textarea>
+  </mat-form-field>
+
+    <button mat-raised-button (click)="addProject()">Add Project</button>
+    <button mat-raised-button (click)="closeDialog()">Close</button>
