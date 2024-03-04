@@ -46,19 +46,19 @@
           {{project.article}}
         </mat-panel-title>
         <mat-panel-description class="panelDeliveryDdate">
-          {{project.deliveryDate}}
+          {{formatDate(project.deliveryDate)}}
           <br>
           {{project.scheduledTime}} h
         </mat-panel-description>
        
       </mat-expansion-panel-header>
       <p><b>Status: </b> {{project.status}}</p>
-      <p><b>Scheduled Time: </b> {{ formatDate(project.scheduledTime) }}</p>
+      <p><b>Scheduled Time: </b> {{ project.scheduledTime }}</p>
       <p><b>Used Machines: </b> {{project.usedMachines}}</p>
 
       <p><b>Notifications: </b> {{project.notification}}</p>
       <div class="btnContainer">
-        <button mat-raised-button color="primary" class="btn" (click)="openDialog(project)">Edit</button>
+        <!-- <button mat-raised-button color="primary" class="btn" (click)="openEditDialog(project)">Edit</button> -->
         <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.projectId)">Delete</button>
       </div>
 

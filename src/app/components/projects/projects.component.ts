@@ -45,14 +45,16 @@ formatDate(date: number) {
     this.dialog.open(DialogAddProjectComponent);
   }
 
-  openDialog(project: Project) {
-    this.dialog.open(DialogAddProjectComponent, {
-      data: project,
-    });
+  openEditDialog(project: Project) {
+    let dialog = this.dialog.open(DialogAddProjectComponent);
+    dialog.componentInstance.project = project;
+    
   }
 
   deleteProject(projectId: number) {
     // this.projectService.deleteProject(project.projectId);
   }
+
+
 
 }

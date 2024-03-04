@@ -2,7 +2,7 @@ export interface IProject {
     projectId: number;
     customer: string;
     article: string;
-    deliveryDate: number | Date;
+    deliveryDate: number;
     scheduledTime: number;
     usedMachines: string[];
     status: 'active' | 'paused' | 'finished' | 'awaiting';
@@ -13,7 +13,7 @@ export class Project implements IProject {
     public projectId: number;
     public customer: string;
     public article: string;
-    public deliveryDate: number | Date;
+    public deliveryDate: number;
     public scheduledTime: number;
     public usedMachines: string[];
     public status: 'active' | 'paused' | 'finished' | 'awaiting';
@@ -22,7 +22,7 @@ export class Project implements IProject {
         projectId: number,
         customer: string,
         article: string,
-        deliveryDate: number | Date,
+        deliveryDate: number,
         scheduledTime: number,
         usedMachines: string[],
         status: 'active' | 'paused' | 'finished' | 'awaiting',
