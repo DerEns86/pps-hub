@@ -16,6 +16,7 @@ export class ProjectsService implements OnDestroy {
   // projectList$ = this._projectList.asObservable();
   unsubProjectsList: () => void;
   projectList: any[] = [];
+  editMode = false;
   
   constructor(private firebase: FirebaseService) { 
 
@@ -60,6 +61,15 @@ export class ProjectsService implements OnDestroy {
    */
   deleteProject(projectId: string) {
     this.firebase.deleteProject(projectId);
+  }
+
+  /**
+   * update a project in the firebase
+   * @param projectId // the id of the project to be updated
+   * @param project // the updated project
+   */
+  updateProject(projectId: string, project: Project) {
+    this.firebase.updateProject(projectId, project.toJson());
   }
 
 }

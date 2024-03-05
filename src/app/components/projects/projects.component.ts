@@ -22,6 +22,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProjectsComponent implements OnInit, OnDestroy {
   // allProjects: Project[] = [];
   private projectListSubscription: Subscription | undefined;
+
+  
+
   constructor(private projectService: ProjectsService, public dialog: MatDialog) {
     // this.allProjects = this.projectService.projectList;
   }
@@ -49,7 +52,8 @@ formatDate(date: number) {
     this.dialog.open(DialogAddProjectComponent);
   }
 
-  openEditDialog(project: Project) {
+  openEditDialog( project: Project) {
+    this.projectService.editMode = true;
     let dialog = this.dialog.open(DialogAddProjectComponent);
     dialog.componentInstance.project = project;
     
