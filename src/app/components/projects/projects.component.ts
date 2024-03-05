@@ -20,21 +20,28 @@ import { MatDialog } from '@angular/material/dialog';
   ],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
-  allProjects: Project[] = [];
+  // allProjects: Project[] = [];
   private projectListSubscription: Subscription | undefined;
+
+  
+
   constructor(private projectService: ProjectsService, public dialog: MatDialog) {
-    
+    // this.allProjects = this.projectService.projectList;
   }
 
   ngOnInit(): void {
-   this.projectService.projectList$.subscribe((projects) => {
-      this.allProjects = projects;
-    });
+  //  this.projectService.projectList$.subscribe((projects) => {
+  //     this.allProjects = projects;
+  //   });
   }
 ngOnDestroy(): void {
-  if (this.projectListSubscription) {
-    this.projectListSubscription.unsubscribe();
-  }
+  // if (this.projectListSubscription) {
+  //   this.projectListSubscription.unsubscribe();
+  // }
+}
+
+getProjectList() {
+  return this.projectService.projectList;
 }
 
 formatDate(date: number) {
@@ -45,14 +52,18 @@ formatDate(date: number) {
     this.dialog.open(DialogAddProjectComponent);
   }
 
-  openEditDialog(project: Project) {
+  openEditDialog( project: Project) {
+    this.projectService.editMode = true;
     let dialog = this.dialog.open(DialogAddProjectComponent);
     dialog.componentInstance.project = project;
     
   }
 
-  deleteProject(projectId: number) {
-    // this.projectService.deleteProject(project.projectId);
+  deleteProject(Id: string) {
+    this.projectService.deleteProject(Id);
+    // let docId = this.projectService.projectList[projectId].id;
+    // console.log('delete project with id: ' + projectId);
+    console.log('delete project with docId: ' + Id);
   }
 
 

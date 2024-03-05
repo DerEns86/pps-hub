@@ -41,5 +41,12 @@
     <textarea matInput [(ngModel)]="project.notification"></textarea>
   </mat-form-field>
 
-    <button mat-raised-button (click)="addProject()">Add Project</button>
+  
+    <!-- <button mat-raised-button (click)="updateProject(project.projectId, project)">Update Project</button> -->
+    @if (this.projectService.editMode) {
+      <button mat-raised-button (click)="test()">test</button>
+    } @else {
+      <button mat-raised-button (click)="addProject()">Add Project</button>
+    }
+  
     <button mat-raised-button (click)="closeDialog()">Close</button>

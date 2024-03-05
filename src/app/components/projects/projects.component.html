@@ -29,7 +29,7 @@
     </mat-expansion-panel>
 
 
-    @for (project of allProjects; track $index) {
+    @for (project of getProjectList(); track $index) {
     <mat-expansion-panel>
 
 
@@ -58,8 +58,8 @@
 
       <p><b>Notifications: </b> {{project.notification}}</p>
       <div class="btnContainer">
-        <!-- <button mat-raised-button color="primary" class="btn" (click)="openEditDialog(project)">Edit</button> -->
-        <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.projectId)">Delete</button>
+        <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+        <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
       </div>
 
     </mat-expansion-panel>
