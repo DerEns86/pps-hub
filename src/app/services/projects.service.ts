@@ -16,6 +16,7 @@ export class ProjectsService implements OnDestroy {
   // projectList$ = this._projectList.asObservable();
   unsubProjectsList: () => void;
   projectList: any[] = [];
+  
   constructor(private firebase: FirebaseService) { 
 
     this.unsubProjectsList = this.snapShotProjectsList();
@@ -26,6 +27,10 @@ export class ProjectsService implements OnDestroy {
    this.unsubProjectsList();
   }
 
+   /**
+   * Listens for changes in the projects collection and updates the project list accordingly.
+   * @returns A function to unsubscribe from the projects list.
+   */
   snapShotProjectsList() {
     return onSnapshot(this.firebase.getProjectsRef(), (querySnapshot) => {
       this.projectList = [];
@@ -35,12 +40,26 @@ export class ProjectsService implements OnDestroy {
            ...doc.data()
          });
          console.log(doc.id, " => ", doc.data());
+         console.log(this.projectList);
        });
      });
    }
 
+
+   /**
+    * add a project to the firebase, parsed as a json object
+    * @param project // the project to be added
+    */
   addProject(project: Project) {
     this.firebase.addProject(project.toJson());
+  }
+
+  /**
+   * delete a project from the firebase
+   * @param projectId // the id of the project to be deleted
+   */
+  deleteProject(projectId: string) {
+    this.firebase.deleteProject(projectId);
   }
 
 }

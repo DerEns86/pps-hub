@@ -55,8 +55,11 @@ formatDate(date: number) {
     
   }
 
-  deleteProject(projectId: number) {
-    // this.projectService.deleteProject(project.projectId);
+  deleteProject(Id: string) {
+    this.projectService.deleteProject(Id);
+    // let docId = this.projectService.projectList[projectId].id;
+    // console.log('delete project with id: ' + projectId);
+    console.log('delete project with docId: ' + Id);
   }
 
 

@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy, OnInit, inject } from '@angular/core';
-import { Firestore, addDoc, collection, doc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot } from '@angular/fire/firestore';
 import { Project } from '../models/projects.class';
 
 
@@ -42,5 +42,9 @@ export class FirebaseService implements OnDestroy {
 
   async addProject(item: {}) {
     await addDoc(this.getProjectsRef(), item);
+  }
+
+  async deleteProject(docId: string) {
+    await deleteDoc(this.getSingleDocRef('projects', docId));
   }
 }
