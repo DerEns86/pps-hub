@@ -17,7 +17,7 @@ export class DialogAddProjectComponent {
 
 
   addProject() {
-    // this.projectService.addProject(this.project);
+    this.projectService.addProject(this.project);
     this.project.deliveryDate = new Date(this.project.deliveryDate).getTime();
     console.log(this.project);
   }

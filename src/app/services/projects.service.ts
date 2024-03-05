@@ -12,13 +12,13 @@ import { BehaviorSubject } from 'rxjs';
 
 export class ProjectsService implements OnDestroy {
 
-  private _projectList = new BehaviorSubject<Project[]>([]);
-  projectList$ = this._projectList.asObservable();
+  // private _projectList = new BehaviorSubject<Project[]>([]);
+  // projectList$ = this._projectList.asObservable();
   unsubProjectsList: () => void;
-  
+  projectList: any[] = [];
   constructor(private firebase: FirebaseService) { 
 
-    this.unsubProjectsList = this.snapProjectsList();
+    this.unsubProjectsList = this.snapShotProjectsList();
 
   }
 
@@ -26,14 +26,21 @@ export class ProjectsService implements OnDestroy {
    this.unsubProjectsList();
   }
 
-  snapProjectsList() {
-    return onSnapshot(this.firebase.getProjects(), (querySnapshot) => {
-      const projects: Project[] = [];
-      querySnapshot.forEach((doc) => {
-        projects.push(doc.data() as Project);
-      });
-      this._projectList.next(projects);
-    });
+  snapShotProjectsList() {
+    return onSnapshot(this.firebase.getProjectsRef(), (querySnapshot) => {
+      this.projectList = [];
+       querySnapshot.forEach((doc) => {
+         this.projectList.push({
+           id: doc.id,
+           ...doc.data()
+         });
+         console.log(doc.id, " => ", doc.data());
+       });
+     });
+   }
+
+  addProject(project: Project) {
+    this.firebase.addProject(project.toJson());
   }
 
 }

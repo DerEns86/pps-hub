@@ -20,21 +20,25 @@ import { MatDialog } from '@angular/material/dialog';
   ],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
-  allProjects: Project[] = [];
+  // allProjects: Project[] = [];
   private projectListSubscription: Subscription | undefined;
   constructor(private projectService: ProjectsService, public dialog: MatDialog) {
-    
+    // this.allProjects = this.projectService.projectList;
   }
 
   ngOnInit(): void {
-   this.projectService.projectList$.subscribe((projects) => {
-      this.allProjects = projects;
-    });
+  //  this.projectService.projectList$.subscribe((projects) => {
+  //     this.allProjects = projects;
+  //   });
   }
 ngOnDestroy(): void {
-  if (this.projectListSubscription) {
-    this.projectListSubscription.unsubscribe();
-  }
+  // if (this.projectListSubscription) {
+  //   this.projectListSubscription.unsubscribe();
+  // }
+}
+
+getProjectList() {
+  return this.projectService.projectList;
 }
 
 formatDate(date: number) {
