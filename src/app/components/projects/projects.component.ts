@@ -1,7 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
-import { Project } from '../../models/projects.class';
+import { Project } from '../../interfaces/project';
 import { Subscription } from 'rxjs';
 
 import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
@@ -21,7 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
   // allProjects: Project[] = [];
-  private projectListSubscription: Subscription | undefined;
+  // private projectListSubscription: Subscription | undefined;
 
   
 
@@ -55,7 +55,7 @@ formatDate(date: number) {
   openEditDialog( project: Project) {
     this.projectService.editMode = true;
     let dialog = this.dialog.open(DialogAddProjectComponent);
-    dialog.componentInstance.project = project;
+    // dialog.componentInstance.project = project;
     
   }
 

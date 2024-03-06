@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
-import { Project } from '../models/projects.class';
+import { Project } from '../interfaces/project';
 
 
 @Injectable({
