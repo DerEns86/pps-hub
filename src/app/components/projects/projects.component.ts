@@ -33,6 +33,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   //  this.projectService.projectList$.subscribe((projects) => {
   //     this.allProjects = projects;
   //   });
+  this.projectService.loadStorage();
+  this.getProjectList();
+  
   }
 ngOnDestroy(): void {
   // if (this.projectListSubscription) {
@@ -40,7 +43,11 @@ ngOnDestroy(): void {
   // }
 }
 
+
+
 getProjectList() {
+  // return localStorage.getItem('project');
+  
   return this.projectService.projectList;
 }
 

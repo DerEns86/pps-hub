@@ -2,20 +2,20 @@
 
 <mat-form-field appearance="outline">
     <mat-label for="projectId">Project ID</mat-label>
-    <input matInput name="projectId" id="projectId">
+    <input matInput name="projectId" id="projectId" [(ngModel)]="project.projectId">
 </mat-form-field>
 <mat-form-field appearance="outline">
     <mat-label for="customer">Customer</mat-label>
-    <input matInput name="customer" id="customer">
+    <input matInput name="customer" id="customer" [(ngModel)]="project.customer">
 </mat-form-field>
 <mat-form-field appearance="outline">
     <mat-label for="article">Article</mat-label>
-    <input matInput name="article" id="article">
+    <input matInput name="article" id="article" [(ngModel)]="project.article">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
     <mat-label for="deliveryDate">Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" name="deliveryDate" id="deliveryDate">
+    <input matInput [matDatepicker]="picker" name="deliveryDate" id="deliveryDate" [(ngModel)]="project.deliveryDate">
     <mat-datepicker-toggle matIconSuffix [for]="picker">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
     </mat-datepicker-toggle>
@@ -24,12 +24,13 @@
 
 <mat-form-field appearance="outline">
     <mat-label for="scheduledTime">Sheduled Time</mat-label>
-    <input matInput name="scheduledTime" id="scheduledTime">
+    <input matInput name="scheduledTime" id="scheduledTime" [(ngModel)]="project.scheduledTime">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label for="usedMachine">Select</mat-label>
-    <mat-select name="usedMachine" id="usedMachine">
+    <select id="usedMachine" style="display: none;"></select>
+    <mat-select name="usedMachine" id="usedMachine" [(ngModel)]="project.usedMachines">
         <!-- @for for each machine -->
       <mat-option value="one">First option</mat-option>
       <mat-option value="two">Second option</mat-option>
@@ -38,7 +39,7 @@
 
   <mat-form-field>
     <mat-label for="notification">Notifications</mat-label>
-    <textarea matInput name="notification" id="notification"></textarea>
+    <textarea matInput name="notification" id="notification" [(ngModel)]="project.notification"></textarea>
   </mat-form-field>
 
   

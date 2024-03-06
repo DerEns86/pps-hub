@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class ProjectsService implements OnDestroy {
 
- 
+
   projectList: any[] = [];
   editMode = false;
   
@@ -43,12 +43,22 @@ export class ProjectsService implements OnDestroy {
   //  }
 
 
+  loadStorage() { //just for testing #########################
+    let storage = localStorage.getItem('projects');
+    if (storage){
+      this.projectList = JSON.parse(storage);
+      console.log(this.projectList);
+    }
+  }
+
+
    /**
     * add a project to the firebase, parsed as a json object
     * @param project // the project to be added
     */
-  addProject(project: Project) {
-    // this.firebase.addProject(project.toJson());
+   addProject(project: Project) {
+    this.projectList.push(project);
+    localStorage.setItem('projects', JSON.stringify(this.projectList));  //just for testing #########################
   }
 
   /**

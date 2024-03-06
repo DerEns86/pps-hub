@@ -32,9 +32,9 @@ export class FirebaseService implements OnDestroy {
     return collection(this.firebase, 'employees');
   }
 
-  getProjectList(): Project[] {
-    return this.projectList;
-  }
+  // getProjectList(): Project[] {
+  //   return this.projectList;
+  // }
 
   getSingleDocRef(colId: string, docId: string) {
     return doc(collection(this.firebase, colId), docId);
