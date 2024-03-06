@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,6 +66,7 @@ import { DialogAddProjectComponent } from './components/projects/dialog-add-proj
     FormsModule,
     MatDatepickerModule,
     MatSelectModule,
+    ReactiveFormsModule,
     
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
