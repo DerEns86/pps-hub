@@ -1,4 +1,4 @@
-<p>dashboard works!</p>
+<!-- <p>dashboard works!</p>
 
 <p>awaiting</p>
 
@@ -19,4 +19,25 @@
         {{ project.id }}
         {{  this.formatDate(project.deliveryDate) }}
     </li>
-</ul>
+</ul> -->
+
+<section>
+
+    <div class="projectContainer d-flex">
+
+        <div class="awaitingContainer">
+            <h3>Awaiting</h3>
+            @for (project of getActiveProjects(); track $index) {
+                <app-project-card></app-project-card>
+
+            }
+
+        </div>
+            <h3>Active</h3>
+            <h3>Paused</h3>
+            <h3>Done</h3>
+       
+
+    </div>
+
+</section>

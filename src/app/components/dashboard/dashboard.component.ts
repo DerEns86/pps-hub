@@ -2,6 +2,7 @@ import { Component , OnInit, OnDestroy} from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../interfaces/project';
 import { FirebaseService } from '../../services/firebase.service';
+import { ProjectCardComponent } from '../project-card/project-card.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,8 @@ import { FirebaseService } from '../../services/firebase.service';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit, OnDestroy{
+
+activeProjects: Project[] = [];
 
 constructor(private projectService: ProjectsService, private firebase: FirebaseService) {}
  
@@ -30,6 +33,7 @@ constructor(private projectService: ProjectsService, private firebase: FirebaseS
   }
 
   getActiveProjects() {
-    return this.projectService.filterProjects('active');
+    this.activeProjects = this.projectService.filterProjects('active');
+    return this.activeProjects;
   }
 }
