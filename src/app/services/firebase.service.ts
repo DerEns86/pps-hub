@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { Project } from '../interfaces/project';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -13,16 +14,32 @@ export class FirebaseService implements OnDestroy {
 
   projectList: Project[] = [];
 
+  projectList$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(this.projectList);
  
+  unsubProjectsSnapshot;
   firebase: Firestore = inject(Firestore);
 
   constructor() {
-  
+    this.unsubProjectsSnapshot = this.snapShotProjectsList();
   }
+  
+
+  snapShotProjectsList() {
+    return onSnapshot(this.getProjectsRef(), (querySnapshot) => {
+      this.projectList = [];
+      querySnapshot.forEach((doc) => {
+        const projectData = doc.data() as Project;
+        projectData.id = doc.id;
+        this.projectList.push(projectData);
+      });
+      this.projectList$.next(this.projectList);
+      console.log(this.projectList);
+    });
+     }
 
 
   ngOnDestroy() {
-
+    this.unsubProjectsSnapshot();
   }
   getProjectsRef() {
     return collection(this.firebase, 'projects');
@@ -32,9 +49,9 @@ export class FirebaseService implements OnDestroy {
     return collection(this.firebase, 'employees');
   }
 
-  // getProjectList(): Project[] {
-  //   return this.projectList;
-  // }
+  getProjectList(): Project[] {
+    return this.projectList;
+  }
 
   getSingleDocRef(colId: string, docId: string) {
     return doc(collection(this.firebase, colId), docId);

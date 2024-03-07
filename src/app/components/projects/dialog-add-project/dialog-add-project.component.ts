@@ -11,31 +11,28 @@ import {  MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogAddProjectComponent {
 
-  // editMode = false;
-  // projectList: Project[] = [];
+  
   projectList = this.projectService.projectList;
   project: Project = {} as Project;
-  // project: Project = new Project(0, '', '', 0, 0, [], 'awaiting', '');
+  
   constructor(public projectService: ProjectsService,
      public dialogRef: MatDialogRef<DialogAddProjectComponent>) { }
 
 
   addProject() {
-    // this.projectService.addProject(this.project);
+    
     this.project.deliveryDate = new Date(this.project.deliveryDate).getTime();
     console.log(this.project);
     this.project.status = 'awaiting';
     
     this.projectService.addProject(this.project);
 
-    console.log(this.projectList);
+    
   }
   closeDialog() {
     this.projectService.editMode = false;
     this.dialogRef.close();
   }
 
-  test() {
-    // console.log('test: ', this.project);
-  }
+ 
 }
