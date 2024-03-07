@@ -34,7 +34,13 @@ export class ProjectsService implements OnDestroy {
 
    
 
+ getProjectList() {
+    return this.projectList;
+  }
 
+  filterProjects(status: string) {
+    return this.projectList.filter(project => project.status === status);
+  }
 
 
 

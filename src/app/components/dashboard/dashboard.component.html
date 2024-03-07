@@ -1,1 +1,22 @@
 <p>dashboard works!</p>
+
+<p>awaiting</p>
+
+<ul>
+    <li *ngFor="let project of getProjectList()">
+        {{ project.projectId }}
+        {{ project.id }}
+        {{  this.formatDate(project.deliveryDate) }}
+    </li>
+</ul>
+
+
+<p>active</p>
+
+<ul>
+    <li *ngFor="let project of getActiveProjects()">
+        {{ project.projectId }}
+        {{ project.id }}
+        {{  this.formatDate(project.deliveryDate) }}
+    </li>
+</ul>
