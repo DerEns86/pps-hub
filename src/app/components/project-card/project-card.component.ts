@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Project } from '../../interfaces/project';
 import { ProjectsService } from '../../services/projects.service';
 
@@ -13,12 +13,17 @@ export class ProjectCardComponent {
 
   @Input() project: Project | undefined;
 
-constructor(private projectService: ProjectsService) {}
+  constructor(private projectService: ProjectsService) { }
 
+  changeStatusToPaused() {
+    if (this.project) {
+      this.projectService.changeStatus(this.project, 'paused');
+    }
+  }
 
-
-
-  
-      
-  
+  changeStatusToFinished() {
+    if (this.project) {
+      this.projectService.changeStatus(this.project, 'finished');
+    }
+  }
 }

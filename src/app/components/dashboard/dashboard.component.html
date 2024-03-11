@@ -26,9 +26,9 @@
 
                 }
             </div>
-            <div class="DoneContainer">
-                <h3>Done</h3>
-                @for (project of getDoneProjects(); track $index) {
+            <div class="FinishedContainer">
+                <h3>Finished</h3>
+                @for (project of getFinishedProjects(); track $index) {
                     <app-project-card [project]="project"></app-project-card>
 
                 }

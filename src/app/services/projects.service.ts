@@ -5,6 +5,7 @@ import { onSnapshot } from '@angular/fire/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,6 +42,14 @@ export class ProjectsService implements OnDestroy {
 
   filterProjects(status: string) {
     return this.projectList.filter(project => project.status === status);
+  }
+
+  changeStatus(project: Project, newStatus: 'active' | 'paused' | 'finished' | 'awaiting') 
+  { // Fix the type declaration
+    project.status = newStatus;
+    if (project.id) {
+      this.firebase.updateProject(project.id, project);
+    }
   }
 
 

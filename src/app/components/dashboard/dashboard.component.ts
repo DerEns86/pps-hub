@@ -44,7 +44,7 @@ constructor(private projectService: ProjectsService, private firebase: FirebaseS
     return this.projectService.filterProjects('paused');
   }
 
-  getDoneProjects() {
-    return this.projectService.filterProjects('done');
+  getFinishedProjects() {
+    return this.projectService.filterProjects('finished');
   }
 }
