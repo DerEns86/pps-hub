@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Project } from '../../interfaces/project';
 import { ProjectsService } from '../../services/projects.service';
 
+
 @Component({
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
@@ -15,6 +16,12 @@ export class ProjectCardComponent {
 
   constructor(private projectService: ProjectsService) { }
 
+  changeStatusToActive(){
+    if (this.project) {
+      this.projectService.changeStatus(this.project, 'active');
+    }
+  }
+
   changeStatusToPaused() {
     if (this.project) {
       this.projectService.changeStatus(this.project, 'paused');
@@ -25,5 +32,21 @@ export class ProjectCardComponent {
     if (this.project) {
       this.projectService.changeStatus(this.project, 'finished');
     }
+  }
+
+  openProjectDetails(){
+    if (this.project) {
+      // this.projectService.openProjectInfo(this.project);
+    }
+  }
+
+  openProjectEdit(){
+
+  }
+
+
+
+  formatDate(timestamp: any) {
+    return new Date(timestamp).toLocaleDateString();
   }
 }

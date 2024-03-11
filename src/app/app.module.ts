@@ -28,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import{ MatMenuModule } from '@angular/material/menu';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -69,6 +70,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
     MatDatepickerModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatMenuModule,
     
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
