@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { Project } from '../../interfaces/project';
+import { ProjectsService } from '../../services/projects.service';
 
 @Component({
   selector: 'app-project-card',
@@ -9,6 +10,10 @@ import { Project } from '../../interfaces/project';
 
 
 export class ProjectCardComponent {
+
+  @Input() project: Project | undefined;
+
+constructor(private projectService: ProjectsService) {}
 
 
 

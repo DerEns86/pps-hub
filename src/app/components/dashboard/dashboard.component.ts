@@ -11,7 +11,7 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 })
 export class DashboardComponent implements OnInit, OnDestroy{
 
-activeProjects: Project[] = [];
+// activeProjects: Project[] = [];
 
 constructor(private projectService: ProjectsService, private firebase: FirebaseService) {}
  
@@ -33,7 +33,18 @@ constructor(private projectService: ProjectsService, private firebase: FirebaseS
   }
 
   getActiveProjects() {
-    this.activeProjects = this.projectService.filterProjects('active');
-    return this.activeProjects;
+    return this.projectService.activeProjects;
+  }
+
+  getAwaitingProjects() {
+    return this.projectService.filterProjects('awaiting');
+  }
+
+  getPausedProjects() {
+    return this.projectService.filterProjects('paused');
+  }
+
+  getDoneProjects() {
+    return this.projectService.filterProjects('done');
   }
 }

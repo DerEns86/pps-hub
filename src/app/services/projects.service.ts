@@ -14,6 +14,7 @@ export class ProjectsService implements OnDestroy {
 
 
   projectList: any[] = [];
+  activeProjects: any[] = [];
   private projectListSubscription: Subscription;
 
   editMode = false;
@@ -22,7 +23,7 @@ export class ProjectsService implements OnDestroy {
     
     this.projectListSubscription = this.firebase.projectList$.subscribe((projects) => {
     this.projectList = projects;
-  
+      this.activeProjects = this.filterProjects('active');
       });
     
   }

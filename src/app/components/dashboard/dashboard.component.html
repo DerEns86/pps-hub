@@ -1,25 +1,3 @@
-<!-- <p>dashboard works!</p>
-
-<p>awaiting</p>
-
-<ul>
-    <li *ngFor="let project of getProjectList()">
-        {{ project.projectId }}
-        {{ project.id }}
-        {{  this.formatDate(project.deliveryDate) }}
-    </li>
-</ul>
-
-
-<p>active</p>
-
-<ul>
-    <li *ngFor="let project of getActiveProjects()">
-        {{ project.projectId }}
-        {{ project.id }}
-        {{  this.formatDate(project.deliveryDate) }}
-    </li>
-</ul> -->
 
 <section>
 
@@ -27,15 +5,34 @@
 
         <div class="awaitingContainer">
             <h3>Awaiting</h3>
-            @for (project of getActiveProjects(); track $index) {
-                <app-project-card></app-project-card>
+            @for (project of getAwaitingProjects(); track $index) {
+                <app-project-card [project]="project"></app-project-card>
 
             }
 
         </div>
+        <div class="activeContainer">
             <h3>Active</h3>
-            <h3>Paused</h3>
-            <h3>Done</h3>
+            @for (project of getActiveProjects(); track $index) {
+                <app-project-card [project]="project"></app-project-card>
+
+            }
+        </div>
+            
+            <div class="pausedContainer">
+                <h3>Paused</h3>
+                @for (project of getPausedProjects(); track $index) {
+                    <app-project-card [project]="project"></app-project-card>
+
+                }
+            </div>
+            <div class="DoneContainer">
+                <h3>Done</h3>
+                @for (project of getDoneProjects(); track $index) {
+                    <app-project-card [project]="project"></app-project-card>
+
+                }
+            </div>
        
 
     </div>
