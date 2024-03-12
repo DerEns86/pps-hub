@@ -12,7 +12,7 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 export class DashboardComponent implements OnInit, OnDestroy{
 
 // activeProjects: Project[] = [];
-
+currentFilter: string = '';
 constructor(private projectService: ProjectsService, private firebase: FirebaseService) {}
  
   ngOnInit(): void {
@@ -33,7 +33,7 @@ constructor(private projectService: ProjectsService, private firebase: FirebaseS
   }
 
   getActiveProjects() {
-    return this.projectService.activeProjects;
+    return this.projectService.filterProjects('active');
   }
 
   getAwaitingProjects() {
@@ -47,4 +47,16 @@ constructor(private projectService: ProjectsService, private firebase: FirebaseS
   getFinishedProjects() {
     return this.projectService.filterProjects('finished');
   }
+
+  setListFilter(status : string) {
+    if (status === 'all') {
+      this.currentFilter = status;
+      return this.projectService.projectList;
+    }else {
+    this.currentFilter = status;
+    return this.projectService.filterProjects(status);
+    }
+  }
+
+  
 }

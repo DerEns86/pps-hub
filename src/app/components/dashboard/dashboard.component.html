@@ -1,40 +1,121 @@
+<div class="projectContainer d-flex">
 
-<section>
+    <div class="awaitingContainer">
+        <h3>Awaiting</h3>
+        @for (project of getAwaitingProjects(); track $index) {
+        <app-project-card [project]="project"></app-project-card>
 
-    <div class="projectContainer d-flex">
-
-        <div class="awaitingContainer">
-            <h3>Awaiting</h3>
-            @for (project of getAwaitingProjects(); track $index) {
-                <app-project-card [project]="project"></app-project-card>
-
-            }
-
-        </div>
-        <div class="activeContainer">
-            <h3>Active</h3>
-            @for (project of getActiveProjects(); track $index) {
-                <app-project-card [project]="project"></app-project-card>
-
-            }
-        </div>
-            
-            <div class="pausedContainer">
-                <h3>Paused</h3>
-                @for (project of getPausedProjects(); track $index) {
-                    <app-project-card [project]="project"></app-project-card>
-
-                }
-            </div>
-            <div class="FinishedContainer">
-                <h3>Finished</h3>
-                @for (project of getFinishedProjects(); track $index) {
-                    <app-project-card [project]="project"></app-project-card>
-
-                }
-            </div>
-       
+        }
 
     </div>
+    <div class="activeContainer">
+        <h3>Active</h3>
+        @for (project of getActiveProjects(); track $index) {
+        <app-project-card [project]="project"></app-project-card>
+
+        }
+    </div>
+
+    <div class="pausedContainer">
+        <h3>Paused</h3>
+        @for (project of getPausedProjects(); track $index) {
+        <app-project-card [project]="project"></app-project-card>
+
+        }
+    </div>
+    <div class="FinishedContainer">
+        <h3>Finished</h3>
+        @for (project of getFinishedProjects(); track $index) {
+        <app-project-card [project]="project"></app-project-card>
+
+        }
+    </div>
+
+
+</div>
+<section>
+    <div class="cardContent">
+        <mat-card class="card" >
+            <mat-card-header (click)="setListFilter('all')">
+                <mat-card-title>
+                    <p>{{getProjectList().length}}</p>
+                    <p>Projects</p>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header  (click)="setListFilter('active')">
+                <mat-card-title>
+                    <p>{{getActiveProjects().length}}</p>
+                    <p>active Projects</p>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header  (click)="setListFilter('awaiting')">
+                <mat-card-title>
+                    <p>{{getAwaitingProjects().length}}</p>
+                    <p>awaiting Projects</p>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header  (click)="setListFilter('paused')">
+                <mat-card-title>
+                    <p>{{getPausedProjects().length}}</p>
+                    <p>paused Projects</p>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header  (click)="setListFilter('finished')">
+                <mat-card-title>
+                    <p>{{getFinishedProjects().length}}</p>
+                    <p>finished Projects</p>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+        
+
+    </div>
+
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Projects
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <table style="width: 100%; ">
+            <tr class="test">
+                <th>Project Name</th>
+                <th>Project Status</th>
+                <th>Project Start Date</th>
+                <th>Project End Date</th>
+                <th>Project Budget</th>
+                <th>Project Description</th>
+            </tr>
+
+
+            @for (project of setListFilter(currentFilter); track $index) {
+
+
+
+            <tr class="tableContent">
+                <td>{{project.projectId}}</td>
+                <td>eertert</td>
+                <td>sarsersr</td>
+                <td>vbnvbn</td>
+                <td>wserwerwr</td>
+                <td>fghfgh</td>
+            </tr>
+
+            }
+
+        </table>
+    </mat-expansion-panel>
+
 
 </section>
