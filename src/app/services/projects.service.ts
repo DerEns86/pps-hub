@@ -44,6 +44,10 @@ export class ProjectsService implements OnDestroy {
     return this.projectList.filter(project => project.status === status);
   }
 
+  filterProjectsByMachine(machineNo: string) {
+    return this.projectList.filter(project => project.usedMachines === machineNo);
+  }
+
   changeStatus(project: Project, newStatus: 'active' | 'paused' | 'finished' | 'awaiting') 
   { // Fix the type declaration
     project.status = newStatus;

@@ -121,9 +121,36 @@
 </section>
 
 <section>
-    <div>
-       @for (machine of getMachineList(); track $index) {
-        <p>{{machine.name}}</p>
-       }
+    <h2>Machine Capactiy</h2>
+    <div class="d-flex">
+        @for (machine of getMachineList(); track $index) {
+        <mat-card class="machinCard">
+            <mat-card-header>
+                <mat-card-title>
+                    {{machine.name}}
+
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Projects:</p>
+                @if (machine.name === 'Multus B300W') {
+                    @for (item of getProjectsForMachine('one'); track $index) {
+                    <p>{{item.projectId}}</p>
+                    }
+                    }@else if (machine.name === 'M400B') {
+                    @for (item of getProjectsForMachine('two'); track $index) {
+                    <p>{{item.projectId}}</p>
+                    }
+                    }@else if (machine.name === 'GTX500A') {
+                    @for (item of getProjectsForMachine('three'); track $index) {
+                    <p>{{item.projectId}}</p>
+                    }
+                    }
+            </mat-card-content>
+        </mat-card>
+
+        }
+
+
     </div>
 </section>

@@ -15,13 +15,12 @@ export class DashboardComponent implements OnInit, OnDestroy{
 // activeProjects: Project[] = [];
 currentFilter: string = 'active';
 constructor(private projectService: ProjectsService, 
-  private firebase: FirebaseService,
-private machinePark: MachineParkService
+private machineService: MachineParkService
   ) {}
  
   ngOnInit(): void {
      this.getProjectList();
-    
+     console.log(this.getProjectsForMachine('one'));
   }
 
   ngOnDestroy(): void {
@@ -33,7 +32,7 @@ private machinePark: MachineParkService
   }
 
   getMachineList() {
-    return this.machinePark.machineList;
+    return this.machineService.machineList;
   }
 
   formatDate(date: number) {
@@ -64,6 +63,11 @@ private machinePark: MachineParkService
     this.currentFilter = status;
     return this.projectService.filterProjects(status);
     }
+  }
+
+ 
+  getProjectsForMachine(machineNo: string) {
+    return this.projectService.filterProjectsByMachine(machineNo);
   }
 
   
