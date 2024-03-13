@@ -2,6 +2,7 @@ import { Injectable, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { Project } from '../interfaces/project';
 import { BehaviorSubject } from 'rxjs';
+import { Machine } from '../interfaces/machine';
 
 
 @Injectable({
@@ -13,16 +14,20 @@ import { BehaviorSubject } from 'rxjs';
 export class FirebaseService implements OnDestroy {
 
   projectList: Project[] = [];
+  machinesList: Machine[] = [];
 
   projectList$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(this.projectList);
- 
+  MachinesList$: BehaviorSubject<Machine[]> = new BehaviorSubject<Machine[]>(this.machinesList);
+
   unsubProjectsSnapshot;
+  unsubMachinesSnapshot;
   firebase: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubProjectsSnapshot = this.snapShotProjectsList();
+    this.unsubMachinesSnapshot = this.snapShotMachinesList();
   }
-  
+
 
   snapShotProjectsList() {
     return onSnapshot(this.getProjectsRef(), (querySnapshot) => {
@@ -35,11 +40,28 @@ export class FirebaseService implements OnDestroy {
       this.projectList$.next(this.projectList);
       console.log(this.projectList);
     });
-     }
+  }
+
+
+  snapShotMachinesList() {
+    return onSnapshot(this.getMachinesRef(), (querySnapshot) => {
+      this.machinesList = [];
+      querySnapshot.forEach((doc) => {
+        const machineData = doc.data() as Machine;
+        machineData.id = doc.id;
+        this.machinesList.push(machineData);
+      });
+      this.MachinesList$.next(this.machinesList);
+      console.log('machineList', this.machinesList);
+    });
+  }
+
+
 
 
   ngOnDestroy() {
     this.unsubProjectsSnapshot();
+    this.unsubMachinesSnapshot();
   }
   getProjectsRef() {
     return collection(this.firebase, 'projects');
@@ -67,5 +89,13 @@ export class FirebaseService implements OnDestroy {
 
   async updateProject(docId: string, item: {}) {
     await updateDoc(this.getSingleDocRef('projects', docId), item);
+  }
+
+  async addMachines(item: {}) {
+    await addDoc(this.getMachinesRef(), item);
+  }
+
+  getMachinesRef() {
+    return collection(this.firebase, 'machines');
   }
 }

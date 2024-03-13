@@ -3,6 +3,7 @@ import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../interfaces/project';
 import { FirebaseService } from '../../services/firebase.service';
 import { ProjectCardComponent } from '../project-card/project-card.component';
+import { MachineParkService } from '../../services/machine-park.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,11 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 export class DashboardComponent implements OnInit, OnDestroy{
 
 // activeProjects: Project[] = [];
-currentFilter: string = '';
-constructor(private projectService: ProjectsService, private firebase: FirebaseService) {}
+currentFilter: string = 'active';
+constructor(private projectService: ProjectsService, 
+  private firebase: FirebaseService,
+private machinePark: MachineParkService
+  ) {}
  
   ngOnInit(): void {
      this.getProjectList();
@@ -26,6 +30,10 @@ constructor(private projectService: ProjectsService, private firebase: FirebaseS
 
   getProjectList() {
     return this.projectService.projectList;
+  }
+
+  getMachineList() {
+    return this.machinePark.machineList;
   }
 
   formatDate(date: number) {

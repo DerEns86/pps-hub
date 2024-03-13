@@ -32,8 +32,9 @@
     <select id="usedMachine" style="display: none;"></select>
     <mat-select name="usedMachine" id="usedMachine" [(ngModel)]="project.usedMachines">
         <!-- @for for each machine -->
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
+      <mat-option value="one">{{machineList[0].name}}</mat-option>
+      <mat-option value="two">{{machineList[1].name}}</mat-option>
+      <mat-option value="three">{{machineList[2].name}}</mat-option>
     </mat-select>
   </mat-form-field>
 

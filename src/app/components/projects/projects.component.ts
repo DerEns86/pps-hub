@@ -64,5 +64,17 @@ formatDate(date: number) {
   }
 
 
+  getMachineName(machineNo: string) {
+    if (machineNo === 'one'){
+      return 'Multus B300W';
+    } else if (machineNo === 'two') {
+      return 'M400B';
+    }else if (machineNo === 'three') {
+      return 'GTX500A';
+    } else {
+      return 'not assigned yet';
+    }
+  }
+
 
 }

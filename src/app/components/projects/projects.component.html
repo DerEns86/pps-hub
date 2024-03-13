@@ -54,7 +54,7 @@
       </mat-expansion-panel-header>
       <p><b>Status: </b> {{project.status}}</p>
       <p><b>Scheduled Time: </b> {{ project.scheduledTime }}</p>
-      <p><b>Used Machines: </b> {{project.usedMachines}}</p>
+      <p><b>Used Machines: </b> {{getMachineName(project.usedMachines)}}</p>
 
       <p><b>Notifications: </b> {{project.notification}}</p>
       <div class="btnContainer">
