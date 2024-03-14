@@ -130,18 +130,25 @@
                     {{machine.name}}
 
                 </mat-card-title>
+                
             </mat-card-header>
             <mat-card-content>
-                <p>Projects:</p>
+                
                 @if (machine.name === 'Multus B300W') {
+                    <p>{{getSheduledTimePerMachine('one')}}</p>
+                    <p>Projects:</p>
                     @for (item of getProjectsForMachine('one'); track $index) {
                     <p>{{item.projectId}}</p>
                     }
                     }@else if (machine.name === 'M400B') {
+                        <p>{{getSheduledTimePerMachine('two')}}</p>
+                        <p>Projects:</p>    
                     @for (item of getProjectsForMachine('two'); track $index) {
                     <p>{{item.projectId}}</p>
                     }
                     }@else if (machine.name === 'GTX500A') {
+                        <p>{{getSheduledTimePerMachine('three')}}</p>
+                    <p>Projects:</p>
                     @for (item of getProjectsForMachine('three'); track $index) {
                     <p>{{item.projectId}}</p>
                     }

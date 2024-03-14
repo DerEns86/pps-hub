@@ -70,5 +70,8 @@ private machineService: MachineParkService
     return this.projectService.filterProjectsByMachine(machineNo);
   }
 
+  getSheduledTimePerMachine(machineNo: string) {
+    return this.projectService.calcSheduledTimePerMachine(machineNo);
+  }
   
 }

@@ -56,7 +56,14 @@ export class ProjectsService implements OnDestroy {
     }
   }
 
-
+  calcSheduledTimePerMachine(machineNo: string) {
+    const projects = this.filterProjectsByMachine(machineNo);
+    let scheduledTime = 0;
+    projects.forEach(project => {
+      scheduledTime += Number(project.scheduledTime);
+    });
+    return scheduledTime;
+  }
 
    /**
     * add a project to the firebase, parsed as a json object
