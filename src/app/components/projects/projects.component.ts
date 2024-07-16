@@ -1,7 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
-import { Project } from '../../models/projects.class';
+import { Project } from '../../interfaces/project';
 import { Subscription } from 'rxjs';
 
 import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
@@ -20,27 +20,26 @@ import { MatDialog } from '@angular/material/dialog';
   ],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
-  // allProjects: Project[] = [];
-  private projectListSubscription: Subscription | undefined;
+
 
   
 
   constructor(private projectService: ProjectsService, public dialog: MatDialog) {
-    // this.allProjects = this.projectService.projectList;
+  
   }
 
   ngOnInit(): void {
-  //  this.projectService.projectList$.subscribe((projects) => {
-  //     this.allProjects = projects;
-  //   });
+  
+  this.getProjectList();
+  
   }
 ngOnDestroy(): void {
-  // if (this.projectListSubscription) {
-  //   this.projectListSubscription.unsubscribe();
-  // }
+
 }
 
-getProjectList() {
+
+
+getProjectList() { 
   return this.projectService.projectList;
 }
 
@@ -55,17 +54,27 @@ formatDate(date: number) {
   openEditDialog( project: Project) {
     this.projectService.editMode = true;
     let dialog = this.dialog.open(DialogAddProjectComponent);
-    dialog.componentInstance.project = project;
+    // dialog.componentInstance.project = project;
     
   }
 
   deleteProject(Id: string) {
     this.projectService.deleteProject(Id);
-    // let docId = this.projectService.projectList[projectId].id;
-    // console.log('delete project with id: ' + projectId);
     console.log('delete project with docId: ' + Id);
   }
 
+
+  getMachineName(machineNo: string) {
+    if (machineNo === 'one'){
+      return 'Multus B300W';
+    } else if (machineNo === 'two') {
+      return 'M400B';
+    }else if (machineNo === 'three') {
+      return 'GTX500A';
+    } else {
+      return 'not assigned yet';
+    }
+  }
 
 
 }

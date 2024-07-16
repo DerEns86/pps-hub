@@ -1,4 +1,4 @@
-<table mat-table
+<!-- <table mat-table
        [dataSource]="dataSource" multiTemplateDataRows
        class="mat-elevation-z8">
   @for (column of columnsToDisplay; track column) {
@@ -18,10 +18,10 @@
         }
       </button>
     </td>
-  </ng-container>
+  </ng-container> -->
 
   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
+  <!-- <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
       <div class="example-element-detail"
            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
@@ -54,4 +54,31 @@
       (click)="expandedElement = expandedElement === element ? null : element">
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-</table>
+</table> -->
+
+
+<mat-accordion>
+   
+  @for (machine of getMachineList(); track $index) {
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{machine.position}}
+            {{machine.name}}
+          </mat-panel-title>
+          <mat-panel-title>
+              {{machine.maxDimension}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{machine.type}}
+          </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p><b>Manufacturer: </b> {{machine.manufacturer}}</p>
+      <p><b>Name: </b> {{machine.name}}</p>
+      <p><b>Max Dimensions: </b> {{machine.maxDimension}}</p>
+      <p><b>Type: </b> {{machine.type}}</p>
+      
+  </mat-expansion-panel>
+  }
+
+</mat-accordion>

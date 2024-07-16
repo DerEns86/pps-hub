@@ -1,5 +1,7 @@
 <p>employees works!</p>
 
+<button (click)="openAddDialog()">Add</button>
+
 <mat-accordion>
    
         @for (employee of allEmployees; track $index) {
@@ -17,7 +19,7 @@
             </mat-expansion-panel-header>
             <p><b>Skills: </b> {{employee.skills}}</p>
             <p><b>E-mail: </b> {{employee.email}}</p>
-            <p><b>E-Passwort: </b> {{employee.password}}</p>
+            
             <p><b>Current Machine: </b> {{employee.activeMachine}}</p>
         </mat-expansion-panel>
         }
