@@ -16,3 +16,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: 10px;
   }
   
+  .d-flex{
+    display: flex;
+  }
+
+  .flex-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }

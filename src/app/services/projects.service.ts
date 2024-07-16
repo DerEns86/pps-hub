@@ -1,8 +1,9 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { Project } from '../models/projects.class';
+import { Project } from '../interfaces/project';
 import { FirebaseService } from './firebase.service';
 import { onSnapshot } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
+
 
 
 @Injectable({
@@ -12,55 +13,74 @@ import { BehaviorSubject } from 'rxjs';
 
 export class ProjectsService implements OnDestroy {
 
-  // private _projectList = new BehaviorSubject<Project[]>([]);
-  // projectList$ = this._projectList.asObservable();
-  unsubProjectsList: () => void;
+
   projectList: any[] = [];
+  activeProjects: any[] = [];
+  private projectListSubscription: Subscription;
+
   editMode = false;
   
   constructor(private firebase: FirebaseService) { 
-
-    this.unsubProjectsList = this.snapShotProjectsList();
-
+    
+    this.projectListSubscription = this.firebase.projectList$.subscribe((projects) => {
+    this.projectList = projects;
+      this.activeProjects = this.filterProjects('active');
+      });
+    
   }
 
   ngOnDestroy() {
-   this.unsubProjectsList();
+
+    this.projectListSubscription.unsubscribe();
   }
 
-   /**
-   * Listens for changes in the projects collection and updates the project list accordingly.
-   * @returns A function to unsubscribe from the projects list.
-   */
-  snapShotProjectsList() {
-    return onSnapshot(this.firebase.getProjectsRef(), (querySnapshot) => {
-      this.projectList = [];
-       querySnapshot.forEach((doc) => {
-         this.projectList.push({
-           id: doc.id,
-           ...doc.data()
-         });
-         console.log(doc.id, " => ", doc.data());
-         console.log(this.projectList);
-       });
-     });
-   }
+   
 
+ getProjectList() {
+    return this.projectList;
+  }
+
+  filterProjects(status: string) {
+    return this.projectList.filter(project => project.status === status);
+  }
+
+  filterProjectsByMachine(machineNo: string) {
+    return this.projectList.filter(project => project.usedMachines === machineNo);
+  }
+
+  changeStatus(project: Project, newStatus: 'active' | 'paused' | 'finished' | 'awaiting') 
+  { // Fix the type declaration
+    project.status = newStatus;
+    if (project.id) {
+      this.firebase.updateProject(project.id, project);
+    }
+  }
+
+  calcSheduledTimePerMachine(machineNo: string) {
+    const projects = this.filterProjectsByMachine(machineNo);
+    let scheduledTime = 0;
+    projects.forEach(project => {
+      scheduledTime += Number(project.scheduledTime);
+    });
+    return scheduledTime;
+  }
 
    /**
     * add a project to the firebase, parsed as a json object
     * @param project // the project to be added
     */
-  addProject(project: Project) {
-    this.firebase.addProject(project.toJson());
+   addProject(project: Project) {
+    this.projectList.push(project);
+    this.firebase.addProject(project);
+    // localStorage.setItem('projects', JSON.stringify(this.projectList));  //just for testing #########################
   }
 
   /**
    * delete a project from the firebase
    * @param projectId // the id of the project to be deleted
    */
-  deleteProject(projectId: string) {
-    this.firebase.deleteProject(projectId);
+  deleteProject(Id: string) {
+    this.firebase.deleteProject(Id);
   }
 
   /**
@@ -69,7 +89,7 @@ export class ProjectsService implements OnDestroy {
    * @param project // the updated project
    */
   updateProject(projectId: string, project: Project) {
-    this.firebase.updateProject(projectId, project.toJson());
+    // this.firebase.updateProject(projectId, project.toJson());
   }
 
 }

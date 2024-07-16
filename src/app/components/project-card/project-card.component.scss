@@ -1,0 +1,41 @@
+section{
+    padding-bottom: 16px;
+}
+
+.projectCard{
+    width: 200px;
+   
+
+    .CardContent{
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+
+        p{
+            margin-block-start: 0;
+            margin-block-end: 0;
+            font-size: 14px;
+            color: grey;
+        }
+
+        :last-child {
+            text-align: right;
+        }
+    }
+}
+
+.projectsAction {
+    padding: 0 10px 0 !important;
+
+    mat-card-title {
+        font-size: 18px;
+    }
+
+}
+
+.statusContainer{
+    display: flex;
+    justify-content: flex-end;
+
+
+}

@@ -54,11 +54,11 @@
       </mat-expansion-panel-header>
       <p><b>Status: </b> {{project.status}}</p>
       <p><b>Scheduled Time: </b> {{ project.scheduledTime }}</p>
-      <p><b>Used Machines: </b> {{project.usedMachines}}</p>
+      <p><b>Used Machines: </b> {{getMachineName(project.usedMachines)}}</p>
 
       <p><b>Notifications: </b> {{project.notification}}</p>
       <div class="btnContainer">
-        <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+        <!-- <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button> -->
         <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
       </div>
 

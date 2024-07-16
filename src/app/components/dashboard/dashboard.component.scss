@@ -1,0 +1,43 @@
+section {
+    max-width: 1420px;
+   
+    .cardContent{
+        display: flex !important;
+        gap: 16px;
+    }
+}
+
+.card{
+    width: 20%;
+    max-width: 20%;
+    text-align: center;
+}
+
+.projectContainer {
+    justify-content: space-between;
+}
+
+table {
+
+    border-collapse: collapse;
+
+    th {
+        text-align: left;
+    }
+
+    .tableContent {
+        &:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+       &:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+    }
+}
+
+.machinCard{
+    width: 200px;
+    
+}

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import{ MatMenuModule } from '@angular/material/menu';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -34,6 +36,8 @@ import { environment } from '../environments/environment';
 
 import { ProjectsService } from './services/projects.service';
 import { DialogAddProjectComponent } from './components/projects/dialog-add-project/dialog-add-project.component';
+import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { DialogEmployeeComponent } from './components/employees/dialog-employee/dialog-employee.component';
 
 
 @NgModule({
@@ -46,6 +50,8 @@ import { DialogAddProjectComponent } from './components/projects/dialog-add-proj
     EmployeesComponent,
     ProjectsComponent,
     DialogAddProjectComponent,
+    ProjectCardComponent,
+    DialogEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +71,8 @@ import { DialogAddProjectComponent } from './components/projects/dialog-add-proj
     FormsModule,
     MatDatepickerModule,
     MatSelectModule,
+    ReactiveFormsModule,
+    MatMenuModule,
     
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
