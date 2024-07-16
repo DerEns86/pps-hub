@@ -37,6 +37,7 @@ import { environment } from '../environments/environment';
 import { ProjectsService } from './services/projects.service';
 import { DialogAddProjectComponent } from './components/projects/dialog-add-project/dialog-add-project.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { DialogEmployeeComponent } from './components/employees/dialog-employee/dialog-employee.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
     ProjectsComponent,
     DialogAddProjectComponent,
     ProjectCardComponent,
+    DialogEmployeeComponent,
   ],
   imports: [
     BrowserModule,

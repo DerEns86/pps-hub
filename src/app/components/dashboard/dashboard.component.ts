@@ -4,6 +4,7 @@ import { Project } from '../../interfaces/project';
 import { FirebaseService } from '../../services/firebase.service';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { MachineParkService } from '../../services/machine-park.service';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,12 +16,12 @@ export class DashboardComponent implements OnInit, OnDestroy{
 // activeProjects: Project[] = [];
 currentFilter: string = 'active';
 constructor(private projectService: ProjectsService, 
-private machineService: MachineParkService
+private machineService: MachineParkService,
+private employeeService: EmployeeService
   ) {}
  
   ngOnInit(): void {
      this.getProjectList();
-     console.log(this.getProjectsForMachine('one'));
   }
 
   ngOnDestroy(): void {
@@ -72,6 +73,11 @@ private machineService: MachineParkService
 
   getSheduledTimePerMachine(machineNo: string) {
     return this.projectService.calcSheduledTimePerMachine(machineNo);
+  }
+
+
+  getEmployeeList(){
+    return this.employeeService.getEmployees();
   }
   
 }

@@ -161,3 +161,12 @@
 
     </div>
 </section>
+
+<section>
+    <h2>Employees Assigned</h2>
+
+    @for (employee of getEmployeeList(); track $index) {
+        {{employee.name}}
+        {{employee.activeMachine}}
+    }
+</section>

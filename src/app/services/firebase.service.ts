@@ -67,7 +67,7 @@ export class FirebaseService implements OnDestroy {
     return collection(this.firebase, 'projects');
   }
 
-  getEmployees() {
+  getEmployeesRef() {
     return collection(this.firebase, 'employees');
   }
 
@@ -97,5 +97,9 @@ export class FirebaseService implements OnDestroy {
 
   getMachinesRef() {
     return collection(this.firebase, 'machines');
+  }
+
+  async addEmployee(item: {}) {
+    await addDoc(this.getEmployeesRef(), item);
   }
 }
