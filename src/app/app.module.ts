@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginComponent } from './components/login/login.component';
-import { MainComponent } from './components/main/main.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MachineParkComponent } from './components/machine-park/machine-park.component';
 import { EmployeesComponent } from './components/employees/employees.component';
@@ -44,7 +43,6 @@ import { DialogEmployeeComponent } from './components/employees/dialog-employee/
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent,
     DashboardComponent,
     MachineParkComponent,
     EmployeesComponent,
