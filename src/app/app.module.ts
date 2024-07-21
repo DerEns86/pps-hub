@@ -33,6 +33,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { getAuth, provideAuth } from '@angular/fire/auth';
+
 import { ProjectsService } from './services/projects.service';
 import { DialogAddProjectComponent } from './components/projects/dialog-add-project/dialog-add-project.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
@@ -75,6 +77,8 @@ import { DialogEmployeeComponent } from './components/employees/dialog-employee/
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    
 
 
   ],
