@@ -1,0 +1,13 @@
+.LoginCard{
+    display: flex;
+  
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+}
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
