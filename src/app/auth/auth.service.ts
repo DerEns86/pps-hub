@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,18 @@ auth = inject(Auth);
     })
     .catch((error) => {
       console.log(error);
+    })
+  }
+
+  async register(username: string, email: string, password: string) {
+    await createUserWithEmailAndPassword(this.auth, email, password)
+    .then((user) => {
+      console.log(user)
+      console.log(username)
+
+    })
+    .catch((error) => {
+      console.error(error);
     })
   }
 }

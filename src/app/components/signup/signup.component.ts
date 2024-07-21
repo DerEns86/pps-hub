@@ -29,7 +29,7 @@ export class SignupComponent {
         console.log(this.loginForm.value.email);
         
         // this.router.navigate(['/main']);
-        this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
+        this.auth.register(this.loginForm.value.username, this.loginForm.value.email, this.loginForm.value.password)
       }
       
     }

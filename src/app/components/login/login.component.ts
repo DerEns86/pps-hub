@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,8 +11,10 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LoginComponent implements OnInit{
 
+
 loginForm: FormGroup = new FormGroup({});
-auth= inject(AuthService)
+auth= inject(AuthService);
+router = inject(Router);
 
   constructor(private formbuilder: FormBuilder) {
     
@@ -33,5 +36,9 @@ ngOnInit(): void {
       this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
     }
     
+  }
+  
+  onNavigateToSignup(){
+    this.router.navigateByUrl('/signup');
   }
 }
