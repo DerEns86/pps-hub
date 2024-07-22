@@ -27,13 +27,12 @@ ngOnInit(): void {
     });
 }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
       console.log('Form submitted');
       console.log(this.loginForm.value.email);
-      
-      // this.router.navigate(['/main']);
-      this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
+      await this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
+      this.router.navigateByUrl('/dashboard');
     }
     
   }

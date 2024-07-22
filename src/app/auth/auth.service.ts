@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,18 @@ auth = inject(Auth);
 
     })
     .catch((error) => {
+      console.error(error);
+    })
+  }
+
+  async logout(){
+    debugger;
+    await signOut(this.auth)
+    .then(()=>{
+      console.log('Your looged out');
+      sessionStorage.removeItem('userId');
+    })
+    .catch((error)=>{
       console.error(error);
     })
   }
