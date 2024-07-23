@@ -17,23 +17,18 @@ export class DialogEmployeeComponent implements OnInit {
   employee: Employee = {} as Employee;
 
   constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
-    public machineParkService: MachineParkService,
     private projectService: ProjectsService,
     private employeeService: EmployeeService) {
-
-
 
   }
 
  ngOnInit(): void {
    
   }
-  
-  getMachineList() {
-    return this.machineParkService.machineList;
-  }
-
+ 
   saveEmployee() {
+    console.log(this.employee);
+    this.employee.activeMachine = 0;
     this.employeeService.addEmployee(this.employee);
     this.dialogRef.close();
   }

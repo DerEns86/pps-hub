@@ -1,30 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Employee } from '../interfaces/employee';
 import { FirebaseService } from './firebase.service';
+import { Subscription } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeService implements OnDestroy {
 
-  employees: Employee[] = [];
+  employeeLists: Employee[] = [];
+  private employeeListSubscription: Subscription;
 
   constructor(private firebaseService: FirebaseService) { 
-    // this.employees.push(new Employee(1, 'John', 'Doe', 'john.doe@example.com', 'pass1', ['mill'], 3));
-    // this.employees.push(new Employee(2, 'Jane', 'Smith', 'jane.smith@example.com', 'pass2', ['turn'], 5));
-    // this.employees.push(new Employee(3, 'Alice', 'Johnson', 'alice.johnson@example.com', 'pass3', ['mill', 'turn'], 7));
-    // this.employees.push(new Employee(4, 'Bob', 'Williams', 'bob.williams@example.com', 'pass4', ['saw'], 6));
-   
+    this.employeeListSubscription = this.firebaseService.employeesList$.subscribe((employees)=>{
+      this.employeeLists = employees
+    })
+  }
+
+  ngOnDestroy(): void {
+  this.employeeListSubscription.unsubscribe();
   }
 
 
   getEmployees(): Employee[] {
-    console.log('service: ',this.employees);
-    return this.employees;
+    console.log('service: ',this.employeeLists);
+    return this.employeeLists;
   }
 
   addEmployee(employee: Employee) {
+    this.employeeLists.push(employee);
     this.firebaseService.addEmployee(employee);
   }
 }

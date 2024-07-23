@@ -1,8 +1,8 @@
 export interface Employee {
-    id: number;
+    id: string;
+    employeeId: string;
     name: string;
     surname: string;
     email: string;
-    skills: string[];
     activeMachine: number;
 }
