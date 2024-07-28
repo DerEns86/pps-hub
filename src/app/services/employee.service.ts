@@ -32,4 +32,8 @@ export class EmployeeService implements OnDestroy {
     this.employeeLists.push(employee);
     this.firebaseService.addEmployee(employee);
   }
+
+  getEployeeByAssignedMachine(machineId: number): Employee [] {
+    return this.employeeLists.filter(employee => employee.activeMachine === machineId) || {} as Employee;
+  }
 }
