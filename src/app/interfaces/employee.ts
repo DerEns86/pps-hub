@@ -5,4 +5,5 @@ export interface Employee {
     surname: string;
     email: string;
     activeMachine: number;
+    skills: string[];
 }

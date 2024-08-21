@@ -3,23 +3,35 @@
 <button (click)="openAddDialog()">Add</button>
 
 <mat-accordion>
-   
-        @for (employee of getEmployeesList(); track $index) {
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    {{employee.employeeId}}
-                </mat-panel-title>
-                <mat-panel-title>
-                    {{employee.name}} {{employee.surname}}
-                </mat-panel-title>
-               
-            </mat-expansion-panel-header>
-        
-            <p><b>E-mail: </b> {{employee.email}}</p>
-            
-            <p><b>Current Machine: </b> {{employee.activeMachine}}</p>
-        </mat-expansion-panel>
-        }
-    
+
+    @for (employee of getEmployeesList(); track $index) {
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{employee.employeeId}}
+            </mat-panel-title>
+            <mat-panel-title>
+                {{employee.name}} {{employee.surname}}
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <div class="employee_details flex-between">
+            <div>
+                <p><b>E-mail: </b> {{employee.email}}</p>
+
+                <p><b>Current Machine: </b> {{employee.activeMachine}}</p>
+            </div>
+            <div class="skills">
+                <p><b>Skills: </b></p>
+                <ul>
+                    @for (skill of employee.skills; track $index) {
+                    <li>{{skill}}</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    }
+
 </mat-accordion>

@@ -39,7 +39,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { ProjectsService } from './services/projects.service';
 import { DialogAddProjectComponent } from './components/projects/dialog-add-project/dialog-add-project.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
-import { DialogEmployeeComponent } from './components/employees/dialog-employee/dialog-employee.component';
+import { DialogEmployeeComponent } from './components/employees/dialog-add-employee/dialog-employee.component';
 import { SignupComponent } from './components/signup/signup.component';
 
 

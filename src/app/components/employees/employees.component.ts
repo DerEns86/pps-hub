@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 
-import { DialogEmployeeComponent } from './dialog-employee/dialog-employee.component';
+import { DialogEmployeeComponent } from './dialog-add-employee/dialog-employee.component';
 
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../interfaces/employee';
