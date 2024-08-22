@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginComponent } from './components/login/login.component';
-import { MainComponent } from './components/main/main.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MachineParkComponent } from './components/machine-park/machine-park.component';
 import { EmployeesComponent } from './components/employees/employees.component';
@@ -29,22 +28,25 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import{ MatMenuModule } from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+import { getAuth, provideAuth } from '@angular/fire/auth';
+
 import { ProjectsService } from './services/projects.service';
 import { DialogAddProjectComponent } from './components/projects/dialog-add-project/dialog-add-project.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
-import { DialogEmployeeComponent } from './components/employees/dialog-employee/dialog-employee.component';
+import { DialogEmployeeComponent } from './components/employees/dialog-add-employee/dialog-employee.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent,
     DashboardComponent,
     MachineParkComponent,
     EmployeesComponent,
@@ -52,6 +54,7 @@ import { DialogEmployeeComponent } from './components/employees/dialog-employee/
     DialogAddProjectComponent,
     ProjectCardComponent,
     DialogEmployeeComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,10 +76,13 @@ import { DialogEmployeeComponent } from './components/employees/dialog-employee/
     MatSelectModule,
     ReactiveFormsModule,
     MatMenuModule,
+    MatTabsModule,
     
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    
 
 
   ],

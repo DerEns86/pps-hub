@@ -1,3 +1,41 @@
-<section class="d-center">
-<router-outlet></router-outlet>
-</section>
+
+<!-- sidenav -->
+
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer [opened]="true" class="sidenav" mode="side">
+        <div class="logo">Logo</div>
+        <mat-divider></mat-divider>
+        <ul>
+            <li [routerLink]="['dashboard']"><mat-icon>space_dashboard</mat-icon>Dashboard</li>
+            <li [routerLink]="['projects']"><mat-icon>assignment</mat-icon>Projects</li>
+            <li [routerLink]="['employees']"><mat-icon>account_circle</mat-icon>Employees</li>
+            <li [routerLink]="['machine-park']"><mat-icon>precision_manufacturing</mat-icon>Machine Park</li>
+        </ul>
+
+    </mat-drawer>
+
+    <!-- toolbar -->
+
+    <div class="example-sidenav-content">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>PPS Hub</span>
+            <span class="example-spacer"></span>
+            <div class="headerBtnRight">
+                <button mat-icon-button class="example-icon">
+                    <mat-icon>help</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" (click)="onLogout()">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar>
+        <div class="router-container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+
+</mat-drawer-container>

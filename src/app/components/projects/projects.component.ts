@@ -1,5 +1,5 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
 import { Project } from '../../interfaces/project';
 import { Subscription } from 'rxjs';
@@ -21,26 +21,31 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
 
-
+  private projectService = inject(ProjectsService)
   
-
-  constructor(private projectService: ProjectsService, public dialog: MatDialog) {
+  displayedColumns: string[] = ['No', 'Customer', 'Article', 'Delivery Date', 'Sheduled Time', 'Status', 'Used Machines']
+  
+  constructor(public dialog: MatDialog) {
   
   }
 
   ngOnInit(): void {
-  
-  this.getProjectList();
-  
+ 
   }
 ngOnDestroy(): void {
 
 }
 
-
+test(){
+  console.log('test');
+}
 
 getProjectList() { 
-  return this.projectService.projectList;
+  return this.projectService.getProjectList();
+}
+
+getFilteredProjects(status: string) {
+  return this.projectService.filterProjects(status);
 }
 
 formatDate(date: number) {

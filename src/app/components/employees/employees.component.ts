@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 
-import { DialogEmployeeComponent } from './dialog-employee/dialog-employee.component';
+import { DialogEmployeeComponent } from './dialog-add-employee/dialog-employee.component';
 
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../interfaces/employee';
@@ -15,13 +15,17 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class EmployeesComponent implements OnInit {
 
-  allEmployees: Employee[] = [];
+ 
 
-  constructor(private employee: EmployeeService, public Dialog: MatDialog) { }
+  constructor(private employeeService: EmployeeService, public Dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.allEmployees = this.employee.getEmployees();
-    console.log('component: ', this.allEmployees);
+    this.employeeService.getEmployees();
+    
+  }
+
+  getEmployeesList(){
+   return this.employeeService.employeeLists;
   }
 
   openAddDialog() {

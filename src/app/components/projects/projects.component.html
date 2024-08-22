@@ -1,72 +1,172 @@
-<p>projects works!</p>
-
-
+<section>
 <button mat-raised-button class="addProjectBtn" (click)="openAddDialog()">Add Project</button>
-<!-- <mat-card style="padding: 16px;"> -->
-
-  <mat-accordion>
 
 
-    <mat-expansion-panel disabled="true" class="panelHeader">
-      <mat-expansion-panel-header >
-        <mat-panel-title class="panelProjectId">
-          Project ID
-        </mat-panel-title>
-        <mat-panel-title class="panelCustomer">
-          Customer
-        </mat-panel-title>
-        <mat-panel-title class="panelArticle">
-          Article No.
-        </mat-panel-title>
-        <mat-panel-title class="panelDeliveryDdate">
-          Delivery Date/ <br>
-          Scheduled Time
-        </mat-panel-title>
-      
-        
+<mat-tab-group>
+  <mat-tab label="All">  
 
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
+    <table class="mat-elevation-z8">
+
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Customer</th>
+          <th>Article</th>
+          <th>Delivery Date/<br> Scheduled Time</th>
+          <th>Status</th>
+          <th>Used Machines</th>
+          <th>Notifications</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      @for (project of getFilteredProjects('all'); track project.projectId ) {
+        <tr>
+          <td data-label="projectId">{{project.projectId}}</td>
+          <td data-label="customer">{{project.customer}}</td>
+          <td data-label="article">{{project.article}}</td>
+          <td data-label="deliveryDate">{{formatDate(project.deliveryDate)}} /<br> {{project.scheduledTime}} h</td>
+          <td data-label="status">{{project.status}}</td>
+          <td data-label="usedMachines">{{getMachineName(project.usedMachines)}}</td>
+          <td data-label="notification">{{project.notification}}</td>
+          <td data-label="actions">
+            <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+            <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
+          </td>
+        </tr>
+      }
+      </table>
+
+  </mat-tab>
+  <mat-tab label="Awaiting">
+    <table class="mat-elevation-z8">
+
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Customer</th>
+          <th>Article</th>
+          <th>Delivery Date/<br> Scheduled Time</th>
+          <th>Status</th>
+          <th>Used Machines</th>
+          <th>Notifications</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      @for (project of getFilteredProjects('awaiting'); track project.projectId ) {
+        <tr>
+          <td data-label="projectId">{{project.projectId}}</td>
+          <td data-label="customer">{{project.customer}}</td>
+          <td data-label="article">{{project.article}}</td>
+          <td data-label="deliveryDate">{{formatDate(project.deliveryDate)}} /<br> {{project.scheduledTime}} h</td>
+          <td data-label="status">{{project.status}}</td>
+          <td data-label="usedMachines">{{getMachineName(project.usedMachines)}}</td>
+          <td data-label="notification">{{project.notification}}</td>
+          <td data-label="actions">
+            <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+            <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
+          </td>
+        </tr>
+      }
+      </table>  
+  </mat-tab>
+  <mat-tab label="Active">
+    <table class="mat-elevation-z8">
+
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Customer</th>
+          <th>Article</th>
+          <th>Delivery Date/<br> Scheduled Time</th>
+          <th>Status</th>
+          <th>Used Machines</th>
+          <th>Notifications</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      @for (project of getFilteredProjects('active'); track project.projectId ) {
+        <tr>
+          <td data-label="projectId">{{project.projectId}}</td>
+          <td data-label="customer">{{project.customer}}</td>
+          <td data-label="article">{{project.article}}</td>
+          <td data-label="deliveryDate">{{formatDate(project.deliveryDate)}} /<br> {{project.scheduledTime}} h</td>
+          <td data-label="status">{{project.status}}</td>
+          <td data-label="usedMachines">{{getMachineName(project.usedMachines)}}</td>
+          <td data-label="notification">{{project.notification}}</td>
+          <td data-label="actions">
+            <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+            <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
+          </td>
+        </tr>
+      }
+      </table>  
+  </mat-tab>
+  <mat-tab label="Paused">
+    <table class="mat-elevation-z8">
+
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Customer</th>
+          <th>Article</th>
+          <th>Delivery Date/<br> Scheduled Time</th>
+          <th>Status</th>
+          <th>Used Machines</th>
+          <th>Notifications</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      @for (project of getFilteredProjects('paused'); track project.projectId ) {
+        <tr>
+          <td data-label="projectId">{{project.projectId}}</td>
+          <td data-label="customer">{{project.customer}}</td>
+          <td data-label="article">{{project.article}}</td>
+          <td data-label="deliveryDate">{{formatDate(project.deliveryDate)}} /<br> {{project.scheduledTime}} h</td>
+          <td data-label="status">{{project.status}}</td>
+          <td data-label="usedMachines">{{getMachineName(project.usedMachines)}}</td>
+          <td data-label="notification">{{project.notification}}</td>
+          <td data-label="actions">
+            <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+            <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
+          </td>
+        </tr>
+      }
+      </table>
+  </mat-tab>
+  <mat-tab label="Finished">
+    <table class="mat-elevation-z8">
+
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Customer</th>
+          <th>Article</th>
+          <th>Delivery Date/<br> Scheduled Time</th>
+          <th>Status</th>
+          <th>Used Machines</th>
+          <th>Notifications</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      @for (project of getFilteredProjects('finished'); track project.projectId ) {
+        <tr>
+          <td data-label="projectId">{{project.projectId}}</td>
+          <td data-label="customer">{{project.customer}}</td>
+          <td data-label="article">{{project.article}}</td>
+          <td data-label="deliveryDate">{{formatDate(project.deliveryDate)}} /<br> {{project.scheduledTime}} h</td>
+          <td data-label="status">{{project.status}}</td>
+          <td data-label="usedMachines">{{getMachineName(project.usedMachines)}}</td>
+          <td data-label="notification">{{project.notification}}</td>
+          <td data-label="actions">
+            <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
+            <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
+          </td>
+        </tr>
+      }
+      </table>
+  </mat-tab>
+</mat-tab-group>
+
+</section>
 
 
-    @for (project of getProjectList(); track $index) {
-    <mat-expansion-panel>
-
-
-
-      <mat-expansion-panel-header>
-        
-        <mat-panel-title class="panelProjectId">
-          {{project.projectId}}
-        </mat-panel-title>
-        <mat-panel-title class="panelCustomer">
-          {{project.customer}}
-        </mat-panel-title>
-        <mat-panel-title class="panelArticle">
-          {{project.article}}
-        </mat-panel-title>
-        <mat-panel-description class="panelDeliveryDdate">
-          {{formatDate(project.deliveryDate)}}
-          <br>
-          {{project.scheduledTime}} h
-        </mat-panel-description>
-       
-      </mat-expansion-panel-header>
-      <p><b>Status: </b> {{project.status}}</p>
-      <p><b>Scheduled Time: </b> {{ project.scheduledTime }}</p>
-      <p><b>Used Machines: </b> {{getMachineName(project.usedMachines)}}</p>
-
-      <p><b>Notifications: </b> {{project.notification}}</p>
-      <div class="btnContainer">
-        <!-- <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button> -->
-        <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>
-      </div>
-
-    </mat-expansion-panel>
-
-    }
-
-  </mat-accordion>
-
-
-<!-- </mat-card> -->

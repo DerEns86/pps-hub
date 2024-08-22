@@ -3,6 +3,7 @@ import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot, updateDoc } 
 import { Project } from '../interfaces/project';
 import { BehaviorSubject } from 'rxjs';
 import { Machine } from '../interfaces/machine';
+import { Employee } from '../interfaces/employee';
 
 
 @Injectable({
@@ -15,17 +16,21 @@ export class FirebaseService implements OnDestroy {
 
   projectList: Project[] = [];
   machinesList: Machine[] = [];
+  employeesList: Employee[] = [];
 
   projectList$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(this.projectList);
   MachinesList$: BehaviorSubject<Machine[]> = new BehaviorSubject<Machine[]>(this.machinesList);
+  employeesList$: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>(this.employeesList);
 
   unsubProjectsSnapshot;
   unsubMachinesSnapshot;
+  unsubEmployeesSnapshot;
   firebase: Firestore = inject(Firestore);
 
   constructor() {
     this.unsubProjectsSnapshot = this.snapShotProjectsList();
     this.unsubMachinesSnapshot = this.snapShotMachinesList();
+    this.unsubEmployeesSnapshot = this.snapShotEmployeesList();
   }
 
 
@@ -39,7 +44,11 @@ export class FirebaseService implements OnDestroy {
       });
       this.projectList$.next(this.projectList);
       console.log(this.projectList);
-    });
+    },
+    (error)=>{
+      console.error("Error fetching project snapshots: ", error)
+    }
+  );
   }
 
 
@@ -53,7 +62,28 @@ export class FirebaseService implements OnDestroy {
       });
       this.MachinesList$.next(this.machinesList);
       console.log('machineList', this.machinesList);
-    });
+    },
+    (error)=>{
+      console.error("Error fetching machine snapshots: ", error)
+    }
+  );
+  }
+
+  snapShotEmployeesList() {
+    return onSnapshot(this.getEmployeesRef(), (querySnapshot) => {
+      this.employeesList = [];
+      querySnapshot.forEach((doc) => {
+        const employeeData = doc.data() as Employee;
+        employeeData.id = doc.id;
+        this.employeesList.push(employeeData);
+      });
+      this.employeesList$.next(this.employeesList);
+      console.log('machineList', this.employeesList);
+    },
+    (error)=>{
+      console.error("Error fetching machine snapshots: ", error)
+    }
+  );
   }
 
 
@@ -62,6 +92,7 @@ export class FirebaseService implements OnDestroy {
   ngOnDestroy() {
     this.unsubProjectsSnapshot();
     this.unsubMachinesSnapshot();
+    this.unsubEmployeesSnapshot();
   }
   getProjectsRef() {
     return collection(this.firebase, 'projects');
