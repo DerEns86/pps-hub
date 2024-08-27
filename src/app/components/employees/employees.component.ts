@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 
-import { DialogEmployeeComponent } from './dialog-add-employee/dialog-employee.component';
+import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-employee.component';
 
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../interfaces/employee';
@@ -29,6 +29,6 @@ export class EmployeesComponent implements OnInit {
   }
 
   openAddDialog() {
-    this.Dialog.open(DialogEmployeeComponent);
+    this.Dialog.open(DialogAddEmployeeComponent);
   }
 }

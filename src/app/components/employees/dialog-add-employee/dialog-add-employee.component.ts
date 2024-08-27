@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { MachineParkService } from '../../../services/machine-park.service';
-import { Machine } from '../../../interfaces/machine';
 import { ProjectsService } from '../../../services/projects.service';
 import { EmployeeService } from '../../../services/employee.service';
 import { Employee } from '../../../interfaces/employee';
 
 @Component({
-  selector: 'app-dialog-employee',
-  templateUrl: './dialog-employee.component.html',
-  styleUrl: './dialog-employee.component.scss'
+  selector: 'app-dialog-add-employee',
+  templateUrl: './dialog-add-employee.component.html',
+  styleUrl: './dialog-add-employee.component.scss'
 })
-export class DialogEmployeeComponent implements OnInit {
+export class DialogAddEmployeeComponent implements OnInit {
 
   employee: Employee = {} as Employee;
 
-  constructor(public dialogRef: MatDialogRef<DialogEmployeeComponent>,
+  constructor(public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
     private projectService: ProjectsService,
     private employeeService: EmployeeService) {
 
