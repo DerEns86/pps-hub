@@ -133,4 +133,9 @@ export class FirebaseService implements OnDestroy {
   async addEmployee(item: {}) {
     await addDoc(this.getEmployeesRef(), item);
   }
+
+  async updateEmployee(docId: string, item: {}) {
+    debugger;
+    await updateDoc(this.getSingleDocRef('employees', docId), item);
+  }
 }

@@ -31,4 +31,10 @@ export class EmployeesComponent implements OnInit {
   openAddDialog() {
     this.Dialog.open(DialogAddEmployeeComponent);
   }
+
+  editEmployee(employee: Employee){
+    this.employeeService.isInEditMode = true;
+    console.log(employee)
+    this.Dialog.open(DialogAddEmployeeComponent, {data: employee})
+  }
 }
