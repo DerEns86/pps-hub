@@ -17,6 +17,15 @@
     <input matInput name="email" id="email" formControlName="email">
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Skills</mat-label>
+    <mat-select formControlName="skills" multiple>
+      @for (skill of skillList; track skill; let i = $index) {
+        <mat-option [value]="skill">{{skill}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
   <mat-dialog-actions>
     <button mat-button (click)="cloeDialog()">No Thanks</button>
     <button mat-button (click)="saveEmployee()">Ok</button>

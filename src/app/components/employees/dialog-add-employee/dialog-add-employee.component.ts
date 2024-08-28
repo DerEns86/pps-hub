@@ -15,6 +15,8 @@ export class DialogAddEmployeeComponent implements OnInit {
 
   @Input() employee: any; // Assuming employee is passed as an input
   employeeForm: FormGroup;
+  skillList: string[] = ['Mill', 'Turn', 'Mill-Turn'];
+  skills: FormGroup<any> = new FormGroup([]);
 
   constructor(public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Employee,
@@ -31,9 +33,6 @@ export class DialogAddEmployeeComponent implements OnInit {
     })
   }
 
-
-
-
   ngOnInit(): void {
     console.log("Loaded Employee: ", this.employee);
 
@@ -45,11 +44,11 @@ export class DialogAddEmployeeComponent implements OnInit {
   }
 
   saveEmployee() {
-    if(!this.employeeService.isInEditMode){
-    this.employee = this.employeeForm.value;
-    this.employee.activeMachine = 0;
-    this.employeeService.addEmployee(this.employee);
-    console.log(this.employee);
+    if (!this.employeeService.isInEditMode) {
+      this.employee = this.employeeForm.value;
+      this.employee.activeMachine = 0;
+      this.employeeService.addEmployee(this.employee);
+      console.log(this.employee);
     } else {
       console.log("Update Employee");
       this.updateEmployee();
@@ -59,7 +58,7 @@ export class DialogAddEmployeeComponent implements OnInit {
   }
 
   updateEmployee() {
-    const updatedEmployee = {...this.employee, ...this.employeeForm.value};
+    const updatedEmployee = { ...this.employee, ...this.employeeForm.value };
     console.log('UpdatedUser from Dialog', updatedEmployee);
     this.employeeService.updateEmployee(updatedEmployee);
   }
