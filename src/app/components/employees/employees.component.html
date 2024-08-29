@@ -1,6 +1,10 @@
-<p>employees works!</p>
+<h2>Employees</h2>
 
-<button (click)="openAddDialog()">Add</button>
+<button 
+mat-raised-button 
+(click)="openAddDialog()"
+style="margin-bottom: 16px;"
+>Add</button>
 
 <mat-accordion>
 
@@ -11,8 +15,14 @@
                 {{employee.employeeId}}
             </mat-panel-title>
             <mat-panel-title>
-                {{employee.name}} {{employee.surname}}
+                {{employee.name}}, {{employee.surname}}
             </mat-panel-title>
+            <mat-panel-description class="email">
+                {{employee.email}}
+            </mat-panel-description>
+            <mat-panel-description class="machine">
+            Machine: {{employee.activeMachine}}
+            </mat-panel-description>
 
         </mat-expansion-panel-header>
 
@@ -31,7 +41,10 @@
                 </ul>
             </div>
         </div>
-        <button (click)="editEmployee(employee)">Edit</button>
+        <div class="flex-between">
+            <button mat-raised-button color="primary" (click)="editEmployee(employee)">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteEmployee(employee)">Delete</button>
+        </div>
     </mat-expansion-panel>
     }
 

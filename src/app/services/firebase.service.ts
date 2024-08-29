@@ -10,8 +10,6 @@ import { Employee } from '../interfaces/employee';
   providedIn: 'root'
 })
 
-
-
 export class FirebaseService implements OnDestroy {
 
   projectList: Project[] = [];
@@ -51,7 +49,6 @@ export class FirebaseService implements OnDestroy {
   );
   }
 
-
   snapShotMachinesList() {
     return onSnapshot(this.getMachinesRef(), (querySnapshot) => {
       this.machinesList = [];
@@ -85,9 +82,6 @@ export class FirebaseService implements OnDestroy {
     }
   );
   }
-
-
-
 
   ngOnDestroy() {
     this.unsubProjectsSnapshot();
@@ -135,7 +129,10 @@ export class FirebaseService implements OnDestroy {
   }
 
   async updateEmployee(docId: string, item: {}) {
-    debugger;
     await updateDoc(this.getSingleDocRef('employees', docId), item);
+  }
+
+  async deleteEmployee(docId: string) {
+    await deleteDoc(this.getSingleDocRef('employees', docId));
   }
 }

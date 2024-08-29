@@ -1,7 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-import { ProjectsService } from '../../../services/projects.service';
 import { EmployeeService } from '../../../services/employee.service';
 import { Employee } from '../../../interfaces/employee';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -13,7 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DialogAddEmployeeComponent implements OnInit {
 
-  @Input() employee: any; // Assuming employee is passed as an input
+  @Input() employee: any;
   employeeForm: FormGroup;
   skillList: string[] = ['Mill', 'Turn', 'Mill-Turn'];
   skills: FormGroup<any> = new FormGroup([]);
@@ -34,13 +33,9 @@ export class DialogAddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Loaded Employee: ", this.employee);
-
-
     if (this.employee) {
       this.employeeForm.patchValue(this.employee);
     }
-
   }
 
   saveEmployee() {
@@ -48,9 +43,7 @@ export class DialogAddEmployeeComponent implements OnInit {
       this.employee = this.employeeForm.value;
       this.employee.activeMachine = 0;
       this.employeeService.addEmployee(this.employee);
-      console.log(this.employee);
     } else {
-      console.log("Update Employee");
       this.updateEmployee();
     }
     this.dialogRef.close();
@@ -59,10 +52,8 @@ export class DialogAddEmployeeComponent implements OnInit {
 
   updateEmployee() {
     const updatedEmployee = { ...this.employee, ...this.employeeForm.value };
-    console.log('UpdatedUser from Dialog', updatedEmployee);
     this.employeeService.updateEmployee(updatedEmployee);
   }
-
 
   cloeDialog() {
     this.dialogRef.close();

@@ -1,4 +1,33 @@
-.employee_details{
-    max-width: 800px;
-    margin: 0 auto;
+.employee_details {
+    max-width: 600px;
+}
+
+ul{
+    padding-inline-start: 16px;
+    list-style-type: circle;
+}
+
+@media screen and (max-width: 900px) {
+    .email{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .skills{
+       padding-right: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .machine{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .employee_details{
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

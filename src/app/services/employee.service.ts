@@ -25,7 +25,6 @@ export class EmployeeService implements OnDestroy {
 
 
   getEmployees(): Employee[] {
-    console.log('service: ',this.employeeLists);
     return this.employeeLists;
   }
 
@@ -46,5 +45,9 @@ export class EmployeeService implements OnDestroy {
     } else {
       console.error('Employee not found');
     }
+  }
+
+  deleteEmployee(employee: Employee) {
+    this.firebaseService.deleteEmployee(employee.id);
   }
 }
