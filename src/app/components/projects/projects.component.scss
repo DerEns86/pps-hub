@@ -11,6 +11,10 @@ mat-accordion {
   }
 }
 
+.notifications{
+	text-overflow: ellipsis;
+}
+
 .panelProjectId{
   max-width: 70px;
 }

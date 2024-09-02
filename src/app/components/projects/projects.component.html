@@ -60,7 +60,7 @@
           <td data-label="deliveryDate">{{formatDate(project.deliveryDate)}} /<br> {{project.scheduledTime}} h</td>
           <td data-label="status">{{project.status}}</td>
           <td data-label="usedMachines">{{getMachineName(project.usedMachines)}}</td>
-          <td data-label="notification">{{project.notification}}</td>
+          <td  class="notifications"  data-label="notification">{{project.notification}}</td>
           <td data-label="actions">
             <button mat-raised-button color="primary" class="btn" (click)="openEditDialog( project)">Edit</button>
             <button mat-raised-button color="warn" class="btn" (click)="deleteProject(project.id)">Delete</button>

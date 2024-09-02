@@ -58,9 +58,8 @@ formatDate(date: number) {
 
   openEditDialog( project: Project) {
     this.projectService.editMode = true;
-    let dialog = this.dialog.open(DialogAddProjectComponent);
-    // dialog.componentInstance.project = project;
-    
+    const deliveryDate = new Date(project.deliveryDate);
+    this.dialog.open(DialogAddProjectComponent, { data: { ...project, deliveryDate }  });
   }
 
   deleteProject(Id: string) {

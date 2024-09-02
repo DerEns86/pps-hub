@@ -1,21 +1,21 @@
 <h2>Add new Project</h2>
-
+<form [formGroup]="projectForm">
 <mat-form-field appearance="outline">
     <mat-label for="projectId">Project ID</mat-label>
-    <input matInput name="projectId" id="projectId" [(ngModel)]="project.projectId">
+    <input matInput name="projectId" id="projectId" formControlName="projectId">
 </mat-form-field>
 <mat-form-field appearance="outline">
     <mat-label for="customer">Customer</mat-label>
-    <input matInput name="customer" id="customer" [(ngModel)]="project.customer">
+    <input matInput name="customer" id="customer" formControlName="customer">
 </mat-form-field>
 <mat-form-field appearance="outline">
     <mat-label for="article">Article</mat-label>
-    <input matInput name="article" id="article" [(ngModel)]="project.article">
+    <input matInput name="article" id="article" formControlName="article">
 </mat-form-field>
 
 <mat-form-field appearance="outline">
     <mat-label for="deliveryDate">Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" name="deliveryDate" id="deliveryDate" [(ngModel)]="project.deliveryDate">
+    <input matInput [matDatepicker]="picker" name="deliveryDate" id="deliveryDate" formControlName="deliveryDate">
     <mat-datepicker-toggle matIconSuffix [for]="picker">
       <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
     </mat-datepicker-toggle>
@@ -24,13 +24,13 @@
 
 <mat-form-field appearance="outline">
     <mat-label for="scheduledTime">Sheduled Time</mat-label>
-    <input matInput name="scheduledTime" id="scheduledTime" [(ngModel)]="project.scheduledTime">
+    <input matInput name="scheduledTime" id="scheduledTime" formControlName="scheduledTime">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label for="usedMachine">Select</mat-label>
     <select id="usedMachine" style="display: none;"></select>
-    <mat-select name="usedMachine" id="usedMachine" [(ngModel)]="project.usedMachines">
+    <mat-select name="usedMachine" id="usedMachine" formControlName="usedMachine">
         <!-- @for for each machine -->
       <mat-option value="one">{{machineList[0].name}}</mat-option>
       <mat-option value="two">{{machineList[1].name}}</mat-option>
@@ -40,7 +40,7 @@
 
   <mat-form-field>
     <mat-label for="notification">Notifications</mat-label>
-    <textarea matInput name="notification" id="notification" [(ngModel)]="project.notification"></textarea>
+    <textarea matInput name="notification" id="notification" formControlName="notification"></textarea>
   </mat-form-field>
 
   
@@ -49,3 +49,5 @@
     
   
     <button mat-raised-button (click)="closeDialog()">Close</button>
+
+  </form>

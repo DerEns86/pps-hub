@@ -68,31 +68,17 @@ export class ProjectsService implements OnDestroy {
     return scheduledTime;
   }
 
-   /**
-    * add a project to the firebase, parsed as a json object
-    * @param project // the project to be added
-    */
    addProject(project: Project) {
     this.projectList.push(project);
     this.firebase.addProject(project);
-    // localStorage.setItem('projects', JSON.stringify(this.projectList));  //just for testing #########################
   }
 
-  /**
-   * delete a project from the firebase
-   * @param projectId // the id of the project to be deleted
-   */
   deleteProject(Id: string) {
     this.firebase.deleteProject(Id);
   }
 
-  /**
-   * update a project in the firebase
-   * @param projectId // the id of the project to be updated
-   * @param project // the updated project
-   */
   updateProject(projectId: string, project: Project) {
-    // this.firebase.updateProject(projectId, project.toJson());
+    this.firebase.updateProject(projectId, project);
   }
 
 }
