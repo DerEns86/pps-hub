@@ -58,8 +58,7 @@ export class DialogAddProjectComponent implements OnInit {
       console.log("projectId: ", this.project.id)
       if (this.project.id) {
         this.project.deliveryDate = this.project.deliveryDate.valueOf();
-        console.log(this.project.deliveryDate);
-        debugger;
+     
         const updatedProject = {
           ...this.project,
           ...this.projectForm.value,
