@@ -4,7 +4,7 @@
 
   <mat-accordion>
 
-    @for (machine of getMachineList(); track $index) {
+    @for (machine of getMachineList(); track machine.position) {
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -28,7 +28,7 @@
       <p><b>Max Dimensions: </b> {{machine.maxDimension}}</p>
       <p><b>Type: </b> {{machine.type}}</p>
       
-      <button mat-raised-button color="warn" (click)="deleteMachine(machine.id)">Delete</button>
+      <button mat-raised-button color="warn" (click)="deleteMachine(machine?.id ?? '')">Delete</button>
     </mat-expansion-panel>
     }
 

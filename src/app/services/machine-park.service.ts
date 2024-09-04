@@ -30,10 +30,13 @@ export class MachineParkService implements OnDestroy{
   }
 
   addMachine(machine: Machine) {
+    this.machineList.push(machine)
     this.firebase.addMachines(machine);
   }
 
   deleteMachine(docId: string) {
+    console.log(docId);
+    
     this.firebase.deleteMachine(docId);
   }
 

@@ -54,7 +54,7 @@ export class FirebaseService implements OnDestroy {
       this.machinesList = [];
       querySnapshot.forEach((doc) => {
         const machineData = doc.data() as Machine;
-        // machineData.id = doc.id;
+        machineData.id = doc.id;
         this.machinesList.push(machineData);
       });
       this.MachinesList$.next(this.machinesList);

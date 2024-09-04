@@ -1,5 +1,5 @@
 export interface Machine {
-    id: string;
+    id?: string;
     manufacturer: string;
     name: string;
     position: number;
