@@ -1,6 +1,9 @@
 <section>
+  <h2>Machine Park</h2>
 
-  <button (click)="openDialog()">Add Machine</button>
+  <button (click)="openDialog()" mat-raised-button style="margin-bottom: 16px;">
+    Add Machine
+  </button>
 
   <mat-accordion>
 
@@ -18,16 +21,16 @@
           {{machine.maxDimension}}
         </mat-panel-description>
         <mat-panel-description>
-        Assigned to: <br>
-        {{getEmployeeAssignedToMachine(machine.position).length == 0 ? 'No one' :
-        getEmployeeAssignedToMachine(machine.position)[0].name}}
+          Assigned to: <br>
+          {{getEmployeeAssignedToMachine(machine.position).length == 0 ? 'No one' :
+          getEmployeeAssignedToMachine(machine.position)[0].name}}
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p><b>Manufacturer: </b> {{machine.manufacturer}}</p>
       <p><b>Name: </b> {{machine.name}}</p>
       <p><b>Max Dimensions: </b> {{machine.maxDimension}}</p>
       <p><b>Type: </b> {{machine.type}}</p>
-      
+
       <button mat-raised-button color="warn" (click)="deleteMachine(machine?.id ?? '')">Delete</button>
     </mat-expansion-panel>
     }

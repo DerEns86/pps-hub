@@ -30,6 +30,7 @@ onSubmit(form: any){
   console.log('Machine Data:', this.machine);
 this.machine.position = this.machineParkService.setPosition();
 this.machineParkService.addMachine(this.machine);
+this.dialogRef.close();
 }
 
 }

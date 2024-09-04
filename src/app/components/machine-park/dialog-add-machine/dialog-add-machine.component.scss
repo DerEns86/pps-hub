@@ -1,0 +1,23 @@
+section {
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    mat-form-field {
+        margin-inline: 16px;
+    }
+}
+
+.actions{
+    margin-bottom: 16px;
+}
+
+@media screen and (max-width: 400px) {
+    .form {
+        width: unset;
+    }
+}

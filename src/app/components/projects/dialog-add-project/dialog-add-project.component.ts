@@ -69,6 +69,7 @@ export class DialogAddProjectComponent implements OnInit {
         console.error('No projectId found')
       }
     }
+    this.dialogRef.close();
 
   }
   closeDialog() {
