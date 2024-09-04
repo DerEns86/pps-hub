@@ -11,15 +11,10 @@ export class MachineParkService implements OnDestroy{
   machineList: any[] = [];
 
   private machineListSubscription: Subscription;
-  
+  public machineTypes: string[] = ['mill', 'turn', 'millturn']
 
   constructor(private firebase: FirebaseService) { 
-    // this.addMachine(this.machineList[0]);
-    // this.addMachine(this.machineList[1]);
-    // this.addMachine(this.machineList[2]);
     
-   
-
     this.machineListSubscription = this.firebase.MachinesList$.subscribe((machines) => {
       this.machineList = machines;
         });
@@ -36,5 +31,13 @@ export class MachineParkService implements OnDestroy{
 
   addMachine(machine: Machine) {
     this.firebase.addMachines(machine);
+  }
+
+  deleteMachine(docId: string) {
+    this.firebase.deleteMachine(docId);
+  }
+
+  setPosition(){
+    return (this.machineList.length + 1);
   }
 }

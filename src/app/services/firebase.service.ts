@@ -54,7 +54,7 @@ export class FirebaseService implements OnDestroy {
       this.machinesList = [];
       querySnapshot.forEach((doc) => {
         const machineData = doc.data() as Machine;
-        machineData.id = doc.id;
+        // machineData.id = doc.id;
         this.machinesList.push(machineData);
       });
       this.MachinesList$.next(this.machinesList);
@@ -118,6 +118,10 @@ export class FirebaseService implements OnDestroy {
 
   async addMachines(item: {}) {
     await addDoc(this.getMachinesRef(), item);
+  }
+
+  async deleteMachine(docId: string) {
+    await deleteDoc(this.getSingleDocRef('machines', docId));
   }
 
   getMachinesRef() {

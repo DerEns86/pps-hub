@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MachineParkService } from '../../services/machine-park.service';
-import { Machine} from '../../interfaces/machine';
 import { EmployeeService } from '../../services/employee.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddMachineComponent } from './dialog-add-machine/dialog-add-machine.component';
 
 @Component({
   selector: 'app-machine-park',
@@ -14,7 +14,7 @@ export class MachineParkComponent {
 
   employeeService = inject(EmployeeService);
 
-  constructor(public machineParkService : MachineParkService) { }
+  constructor(public machineParkService : MachineParkService, public Dialog: MatDialog) { }
 
 
 getMachineList(){
@@ -23,6 +23,16 @@ getMachineList(){
 
 getEmployeeAssignedToMachine(machineId: number){
   return this.employeeService.getEployeeByAssignedMachine(machineId);
+}
+
+deleteMachine(id: string){
+ this.machineParkService.deleteMachine(id);
+}
+
+openDialog(){
+  this.Dialog.open(DialogAddMachineComponent)
+  console.log("Dialog openend");
+  
 }
 }
 

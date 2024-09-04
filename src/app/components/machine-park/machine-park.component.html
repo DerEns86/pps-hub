@@ -1,4 +1,7 @@
 <section>
+
+  <button (click)="openDialog()">Add Machine</button>
+
   <mat-accordion>
 
     @for (machine of getMachineList(); track $index) {
@@ -24,7 +27,8 @@
       <p><b>Name: </b> {{machine.name}}</p>
       <p><b>Max Dimensions: </b> {{machine.maxDimension}}</p>
       <p><b>Type: </b> {{machine.type}}</p>
-
+      
+      <button mat-raised-button color="warn" (click)="deleteMachine(machine.id)">Delete</button>
     </mat-expansion-panel>
     }
 

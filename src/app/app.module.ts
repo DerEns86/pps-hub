@@ -41,6 +41,7 @@ import { DialogAddProjectComponent } from './components/projects/dialog-add-proj
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { DialogAddEmployeeComponent } from './components/employees/dialog-add-employee/dialog-add-employee.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { DialogAddMachineComponent } from './components/machine-park/dialog-add-machine/dialog-add-machine.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { SignupComponent } from './components/signup/signup.component';
     ProjectCardComponent,
     DialogAddEmployeeComponent,
     SignupComponent,
+    DialogAddMachineComponent,
   ],
   imports: [
     BrowserModule,
