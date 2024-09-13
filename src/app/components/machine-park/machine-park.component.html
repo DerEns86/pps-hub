@@ -7,11 +7,10 @@
 
   <mat-accordion>
 
-    @for (machine of getMachineList(); track machine.position) {
+    @for (machine of getMachineList(); track machine) {
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{machine.position}} -
           {{machine.name}}
         </mat-panel-title>
         <mat-panel-title>
@@ -22,8 +21,8 @@
         </mat-panel-description>
         <mat-panel-description>
           Assigned to: <br>
-          {{getEmployeeAssignedToMachine(machine.position).length == 0 ? 'No one' :
-          getEmployeeAssignedToMachine(machine.position)[0].name}}
+          <!-- {{getEmployeeAssignedToMachine(machine.position).length == 0 ? 'No one' :
+          getEmployeeAssignedToMachine(machine.position)[0].name}} -->
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p><b>Manufacturer: </b> {{machine.manufacturer}}</p>

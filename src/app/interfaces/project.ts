@@ -5,7 +5,7 @@ export interface Project {
         article: string;
         deliveryDate: number;
         scheduledTime: number;
-        usedMachines: string[];
+        usedMachine: string;
         status: 'active' | 'paused' | 'finished' | 'awaiting';
         notification: string;
     

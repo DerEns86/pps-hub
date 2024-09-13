@@ -13,10 +13,8 @@ export class DialogAddMachineComponent {
   machineParkService: MachineParkService = inject(MachineParkService);
 
 machine: Machine = {
-  id: '',
   manufacturer: '',
   name: '',
-  position: 0,
   type: '',
   maxDimension: ''
 }
@@ -27,8 +25,6 @@ constructor(public dialogRef: MatDialogRef<DialogAddMachineComponent>) {}
 
 onSubmit(form: any){
   if(form.valid)
-  console.log('Machine Data:', this.machine);
-this.machine.position = this.machineParkService.setPosition();
 this.machineParkService.addMachine(this.machine);
 this.dialogRef.close();
 }

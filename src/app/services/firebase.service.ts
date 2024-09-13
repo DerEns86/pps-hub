@@ -117,7 +117,7 @@ export class FirebaseService implements OnDestroy {
   }
 
   async addMachines(item: {}) {
-    await addDoc(this.getMachinesRef(), item);
+   return await addDoc(this.getMachinesRef(), item);
   }
 
   async deleteMachine(docId: string) {

@@ -33,10 +33,9 @@
         <mat-label for="usedMachine">Select</mat-label>
         <select id="usedMachine" style="display: none;"></select>
         <mat-select name="usedMachine" id="usedMachine" formControlName="usedMachine">
-          <!-- @for for each machine -->
-          <mat-option value="one">{{machineList[0].name}}</mat-option>
-          <mat-option value="two">{{machineList[1].name}}</mat-option>
-          <mat-option value="three">{{machineList[2].name}}</mat-option>
+          @for(machine of machineList; track $index){
+          <mat-option value="{{machine.id}}">{{machine.name}}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
 
@@ -47,9 +46,9 @@
 
     </div>
 
-      <mat-dialog-actions class="flex-between actions">
-        <button mat-raised-button (click)="addProject()">Add Project</button>
-        <button mat-raised-button color="warn" (click)="closeDialog()">Close</button>
-      </mat-dialog-actions>
+    <mat-dialog-actions class="flex-between actions">
+      <button mat-raised-button (click)="addProject()">Add Project</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Close</button>
+    </mat-dialog-actions>
   </form>
 </section>
