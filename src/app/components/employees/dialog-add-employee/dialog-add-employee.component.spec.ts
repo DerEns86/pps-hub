@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogEmployeeComponent } from './dialog-employee.component';
+import { DialogEmployeeComponent } from './dialog-add-employee.component';
 
 describe('DialogEmployeeComponent', () => {
   let component: DialogEmployeeComponent;

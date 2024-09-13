@@ -10,8 +10,6 @@ import { Employee } from '../interfaces/employee';
   providedIn: 'root'
 })
 
-
-
 export class FirebaseService implements OnDestroy {
 
   projectList: Project[] = [];
@@ -51,7 +49,6 @@ export class FirebaseService implements OnDestroy {
   );
   }
 
-
   snapShotMachinesList() {
     return onSnapshot(this.getMachinesRef(), (querySnapshot) => {
       this.machinesList = [];
@@ -85,9 +82,6 @@ export class FirebaseService implements OnDestroy {
     }
   );
   }
-
-
-
 
   ngOnDestroy() {
     this.unsubProjectsSnapshot();
@@ -126,11 +120,23 @@ export class FirebaseService implements OnDestroy {
     await addDoc(this.getMachinesRef(), item);
   }
 
+  async deleteMachine(docId: string) {
+    await deleteDoc(this.getSingleDocRef('machines', docId));
+  }
+
   getMachinesRef() {
     return collection(this.firebase, 'machines');
   }
 
   async addEmployee(item: {}) {
     await addDoc(this.getEmployeesRef(), item);
+  }
+
+  async updateEmployee(docId: string, item: {}) {
+    await updateDoc(this.getSingleDocRef('employees', docId), item);
+  }
+
+  async deleteEmployee(docId: string) {
+    await deleteDoc(this.getSingleDocRef('employees', docId));
   }
 }

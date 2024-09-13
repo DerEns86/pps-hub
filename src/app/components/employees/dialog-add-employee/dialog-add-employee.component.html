@@ -1,0 +1,37 @@
+<section>
+  <h2>Employee</h2>
+  <form [formGroup]="employeeForm">
+    <div class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Personal-Id</mat-label>
+        <input matInput name="employeeId" id="employeeId" formControlName="employeeId">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" id="name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput name="firstName" id="firstName" formControlName="surname">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput name="email" id="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Skills</mat-label>
+        <mat-select formControlName="skills" multiple>
+          @for (skill of skillList; track skill; let i = $index) {
+          <mat-option [value]="skill">{{skill}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-dialog-actions class="flex-between">
+      <button mat-button (click)="saveEmployee()">Ok</button>
+      <button mat-button color="warn" (click)="cloeDialog()">No Thanks</button>
+    </mat-dialog-actions>
+  </form>
+</section>

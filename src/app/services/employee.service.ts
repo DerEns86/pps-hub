@@ -11,6 +11,7 @@ export class EmployeeService implements OnDestroy {
 
   employeeLists: Employee[] = [];
   private employeeListSubscription: Subscription;
+  isInEditMode: boolean = false;
 
   constructor(private firebaseService: FirebaseService) { 
     this.employeeListSubscription = this.firebaseService.employeesList$.subscribe((employees)=>{
@@ -24,7 +25,6 @@ export class EmployeeService implements OnDestroy {
 
 
   getEmployees(): Employee[] {
-    console.log('service: ',this.employeeLists);
     return this.employeeLists;
   }
 
@@ -35,5 +35,19 @@ export class EmployeeService implements OnDestroy {
 
   getEployeeByAssignedMachine(machineId: number): Employee [] {
     return this.employeeLists.filter(employee => employee.activeMachine === machineId) || {} as Employee;
+  }
+
+  updateEmployee(employee: Employee) {
+    const index = this.employeeLists.findIndex(emp => emp.id === employee.id);
+    if (index !== -1) {
+      this.employeeLists[index] = employee;
+      this.firebaseService.updateEmployee(employee.id, employee);
+    } else {
+      console.error('Employee not found');
+    }
+  }
+
+  deleteEmployee(employee: Employee) {
+    this.firebaseService.deleteEmployee(employee.id);
   }
 }
