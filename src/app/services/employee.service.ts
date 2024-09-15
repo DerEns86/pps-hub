@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Employee } from '../interfaces/employee';
 import { FirebaseService } from './firebase.service';
 import { Subscription } from 'rxjs';
+import { MachineParkService } from './machine-park.service';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class EmployeeService implements OnDestroy {
   private employeeListSubscription: Subscription;
   isInEditMode: boolean = false;
 
-  constructor(private firebaseService: FirebaseService) { 
+  constructor(private firebaseService: FirebaseService, private machineService: MachineParkService) { 
     this.employeeListSubscription = this.firebaseService.employeesList$.subscribe((employees)=>{
       this.employeeLists = employees
     })
@@ -33,9 +34,17 @@ export class EmployeeService implements OnDestroy {
     this.firebaseService.addEmployee(employee);
   }
 
-  getEployeeByAssignedMachine(machineId: number): Employee [] {
+  getEployeeByAssignedMachine(machineId: string): Employee [] {
     return this.employeeLists.filter(employee => employee.activeMachine === machineId) || {} as Employee;
   }
+
+  getMachineName(machineId: string) {
+    if(machineId === 'none') {
+      return 'none';
+    } else {
+    return this.machineService.machineList.find((machine) => machine.id === machineId)?.name;
+    }
+   }
 
   updateEmployee(employee: Employee) {
     const index = this.employeeLists.findIndex(emp => emp.id === employee.id);

@@ -41,7 +41,7 @@ export class DialogAddEmployeeComponent implements OnInit {
   saveEmployee() {
     if (!this.employeeService.isInEditMode) {
       this.employee = this.employeeForm.value;
-      this.employee.activeMachine = 0;
+      this.employee.activeMachine = "none";
       this.employeeService.addEmployee(this.employee);
     } else {
       this.updateEmployee();
