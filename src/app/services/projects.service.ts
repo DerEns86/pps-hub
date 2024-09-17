@@ -47,12 +47,18 @@ export class ProjectsService implements OnDestroy {
     return this.projectList.filter(project => project.status === status);
   }
 
-  filterProjectsByMachine(machineNo: string) {
-    return this.projectList.filter(project => project.usedMachines === machineNo);
+   filterProjectsByMachine(machineNo: string): Project[] {
+    const sortedList = this.sortProjectsByDate();
+    return sortedList
+      .filter(project => project.usedMachine === machineNo)
+      .map(project => project.projectId);
   }
 
-  changeStatus(project: Project, newStatus: 'active' | 'paused' | 'finished' | 'awaiting') 
-  { // Fix the type declaration
+  sortProjectsByDate() {
+    return this.projectList.sort((a, b) => a.deliveryDate - b.deliveryDate);
+  }
+
+  changeStatus(project: Project, newStatus: 'active' | 'paused' | 'finished' | 'awaiting') {
     project.status = newStatus;
     if (project.id) {
       this.firebase.updateProject(project.id, project);
@@ -60,7 +66,7 @@ export class ProjectsService implements OnDestroy {
   }
 
   calcSheduledTimePerMachine(machineNo: string) {
-    const projects = this.filterProjectsByMachine(machineNo);
+    const projects = this.projectList.filter(project => project.usedMachine === machineNo);
     let scheduledTime = 0;
     projects.forEach(project => {
       scheduledTime += Number(project.scheduledTime);

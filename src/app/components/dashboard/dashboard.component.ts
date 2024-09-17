@@ -65,7 +65,6 @@ private employeeService: EmployeeService
     return this.projectService.filterProjects(status);
     }
   }
-
  
   getProjectsForMachine(machineNo: string) {
     return this.projectService.filterProjectsByMachine(machineNo);

@@ -1,4 +1,4 @@
-<!-- <div class="projectContainer d-flex">
+<div class="projectContainer d-flex">
 
     <div class="awaitingContainer">
         <h3>Awaiting</h3>
@@ -32,8 +32,8 @@
     </div>
 
 
-</div> -->
-<section>
+</div>
+<!-- <section>
     <div class="cardContent">
         <mat-card class="card">
             <mat-card-header (click)="setListFilter('all')">
@@ -118,7 +118,7 @@
     </mat-expansion-panel>
 
 
-</section>
+</section> -->
 
 <section>
     <h2>Machine Capactiy</h2>
@@ -130,29 +130,14 @@
                     {{machine.name}}
 
                 </mat-card-title>
-                
+
             </mat-card-header>
             <mat-card-content>
-                
-                @if (machine.name === 'Multus B300W') {
-                    <p>{{getSheduledTimePerMachine('one')}}</p>
-                    <p>Projects:</p>
-                    @for (item of getProjectsForMachine('one'); track $index) {
-                    <p>{{item.projectId}}</p>
-                    }
-                    }@else if (machine.name === 'M400B') {
-                        <p>{{getSheduledTimePerMachine('two')}}</p>
-                        <p>Projects:</p>    
-                    @for (item of getProjectsForMachine('two'); track $index) {
-                    <p>{{item.projectId}}</p>
-                    }
-                    }@else if (machine.name === 'GTX500A') {
-                        <p>{{getSheduledTimePerMachine('three')}}</p>
-                    <p>Projects:</p>
-                    @for (item of getProjectsForMachine('three'); track $index) {
-                    <p>{{item.projectId}}</p>
-                    }
-                    }
+                @for (projectId of getProjectsForMachine(machine.id); track $index) {
+                <p>{{projectId}}</p>
+
+                }
+                <p>Utilization: {{getSheduledTimePerMachine(machine.id)}}</p>
             </mat-card-content>
         </mat-card>
 
@@ -166,7 +151,7 @@
     <h2>Employees Assigned</h2>
 
     @for (employee of getEmployeeList(); track $index) {
-        {{employee.name}}
-        {{employee.activeMachine}}
+    {{employee.name}}
+    {{employee.activeMachine}}
     }
 </section>
