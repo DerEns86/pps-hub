@@ -16,7 +16,8 @@ machine: Machine = {
   manufacturer: '',
   name: '',
   type: '',
-  maxDimension: ''
+  maxDimension: '',
+  assignedEmployee: 'none'
 }
 
 machineTypes: string[] = this.machineParkService.machineTypes;

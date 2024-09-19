@@ -38,6 +38,16 @@ export class EmployeeService implements OnDestroy {
     return this.employeeLists.filter(employee => employee.activeMachine === machineId) || {} as Employee;
   }
 
+  getUnassignedEmployees(): Employee[] {
+    const assignedEmployeeIds = this.firebaseService.machinesList
+  .filter(machine => machine.assignedEmployee)
+  .map(machine => machine.assignedEmployee);
+
+  const unassignedEmployees = this.firebaseService.employeesList.filter(employee => !assignedEmployeeIds.includes(employee.id));
+
+  return unassignedEmployees;
+  }
+
   getMachineName(machineId: string) {
     if(machineId === 'none') {
       return 'none';

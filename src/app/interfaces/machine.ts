@@ -4,4 +4,5 @@ export interface Machine {
     name: string;
     type: string;
     maxDimension: string;
+    assignedEmployee: string;
   }

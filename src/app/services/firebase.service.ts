@@ -75,7 +75,7 @@ export class FirebaseService implements OnDestroy {
         this.employeesList.push(employeeData);
       });
       this.employeesList$.next(this.employeesList);
-      console.log('machineList', this.employeesList);
+      console.log('employeeList', this.employeesList);
     },
     (error)=>{
       console.error("Error fetching machine snapshots: ", error)
@@ -118,6 +118,10 @@ export class FirebaseService implements OnDestroy {
 
   async addMachines(item: {}) {
    return await addDoc(this.getMachinesRef(), item);
+  }
+
+  async updateMachine(docId: string, item: {}) {
+    await updateDoc(this.getSingleDocRef('machines', docId), item);
   }
 
   async deleteMachine(docId: string) {

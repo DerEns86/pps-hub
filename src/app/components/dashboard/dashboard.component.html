@@ -138,6 +138,16 @@
 
                 }
                 <p>Utilization: {{getSheduledTimePerMachine(machine.id)}}</p>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Assigned to</mat-label>
+                    <mat-select [(ngModel)]="machine.assignedEmployee" name="assignedEmployee" id="assignedEmployee" (selectionChange)="onSelectionChange($event, machine.id, machine)">
+                        <mat-option [value]="'none'">none</mat-option>
+                        @for (employee of getEmployeeList(); track employee; let i = $index) {
+                      <mat-option [value]="employee.id">{{employee.name}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
             </mat-card-content>
         </mat-card>
 
@@ -150,8 +160,8 @@
 <section>
     <h2>Employees Assigned</h2>
 
-    @for (employee of getEmployeeList(); track $index) {
+    @for (employee of getUnassignedEmployees(); track $index) {
     {{employee.name}}
-    {{employee.activeMachine}}
+    {{employee.skills}}
     }
 </section>

@@ -40,6 +40,10 @@ export class MachineParkService implements OnDestroy{
     this.firebase.deleteMachine(docId);
   }
 
+  updateMachine(machineId: string, machine: Machine) {
+    this.firebase.updateMachine(machineId, machine);
+  }
+
   findMachineById(docId: string) {
     return this.firebase.getSingleDocRef('machines', docId);
   }
