@@ -122,32 +122,38 @@
 
 <section>
     <h2>Machine Capactiy</h2>
-    <div class="d-flex">
+    <div class="d-flex g-16 flex-wrap">
         @for (machine of getMachineList(); track $index) {
         <mat-card class="machinCard">
-            <mat-card-header>
+            <mat-card-header class="flex-center">
                 <mat-card-title>
-                    {{machine.name}}
-
+                    <h3>{{machine.name}}</h3>
                 </mat-card-title>
 
             </mat-card-header>
             <mat-card-content>
-                @for (projectId of getProjectsForMachine(machine.id); track $index) {
-                <p>{{projectId}}</p>
-
-                }
-                <p>Utilization: {{getSheduledTimePerMachine(machine.id)}}</p>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Assigned to</mat-label>
-                    <mat-select [(ngModel)]="machine.assignedEmployee" name="assignedEmployee" id="assignedEmployee" (selectionChange)="onSelectionChange($event, machine.id, machine)">
+                    <mat-select [(ngModel)]="machine.assignedEmployee" name="assignedEmployee" id="assignedEmployee"
+                        (selectionChange)="onSelectionChange($event, machine.id, machine)">
                         <mat-option [value]="'none'">none</mat-option>
                         @for (employee of getEmployeeList(); track employee; let i = $index) {
-                      <mat-option [value]="employee.id">{{employee.name}}</mat-option>
-                      }
+                        <mat-option [value]="employee.id">{{employee.name}}, {{employee.surname}}</mat-option>
+                        }
                     </mat-select>
-                  </mat-form-field>
+                </mat-form-field>
+
+                <h4 style="text-align: center;">Projects:</h4>
+                @for (project of getProjectsForMachine(machine.id); track $index) {
+                <div class="flex-between">
+                    <p>{{project.projectId}}</p> <span>{{project.scheduledTime}} h</span>
+                </div>
+                }
+                <h4 style="text-align: center;">Total Scheduled Time:</h4>
+                <p style="text-align: center;">{{getSheduledTimePerMachine(machine.id)}} h</p>
+
+
             </mat-card-content>
         </mat-card>
 

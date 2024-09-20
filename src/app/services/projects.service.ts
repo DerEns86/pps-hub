@@ -51,7 +51,7 @@ export class ProjectsService implements OnDestroy {
     const sortedList = this.sortProjectsByDate();
     return sortedList
       .filter(project => project.usedMachine === machineNo)
-      .map(project => project.projectId);
+      .map(project => project);
   }
 
   sortProjectsByDate() {
