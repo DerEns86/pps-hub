@@ -134,7 +134,7 @@
             <mat-card-content>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Assigned to</mat-label>
+                    <mat-label>Assign to</mat-label>
                     <mat-select [(ngModel)]="machine.assignedEmployee" name="assignedEmployee" id="assignedEmployee"
                         (selectionChange)="onSelectionChange($event, machine.id, machine)">
                         <mat-option [value]="'none'">none</mat-option>
@@ -163,11 +163,20 @@
     </div>
 </section>
 
-<section>
-    <h2>Employees Assigned</h2>
+<section class="unassignedContainer" >
+    <h2>Unassigned Employees</h2>
+    <mat-card>
 
-    @for (employee of getUnassignedEmployees(); track $index) {
-    {{employee.name}}
-    {{employee.skills}}
-    }
+        
+        @for (employee of getUnassignedEmployees(); track $index) {
+            <mat-card-header>
+           <h4> {{employee.name}}, {{employee.surname}} </h4>
+        </mat-card-header>
+        <mat-card-content>
+            @for (skill of employee.skills; track $index){
+           <li> {{skill}} </li>
+            }
+        </mat-card-content>
+        }
+    </mat-card>
 </section>
