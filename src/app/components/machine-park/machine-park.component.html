@@ -11,7 +11,7 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{machine.name}}
+         {{machine.manufacturer}} {{machine.name}}
         </mat-panel-title>
         <mat-panel-title>
           {{machine.type}}
@@ -19,15 +19,10 @@
         <mat-panel-description>
           {{machine.maxDimension}}
         </mat-panel-description>
-        <mat-panel-description>
-          Assigned to: <br>
-          <!-- {{getEmployeeAssignedToMachine(machine.position).length == 0 ? 'No one' :
-          getEmployeeAssignedToMachine(machine.position)[0].name}} -->
-        </mat-panel-description>
       </mat-expansion-panel-header>
       <p><b>Manufacturer: </b> {{machine.manufacturer}}</p>
       <p><b>Name: </b> {{machine.name}}</p>
-      <p><b>Max Dimensions: </b> {{machine.maxDimension}}</p>
+      <p><b>Max Dimensions: </b> {{machine.maxDimension}} mm</p>
       <p><b>Type: </b> {{machine.type}}</p>
 
       <button mat-raised-button color="warn" (click)="deleteMachine(machine?.id ?? '')">Delete</button>

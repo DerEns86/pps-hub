@@ -20,17 +20,12 @@ style="margin-bottom: 16px;"
             <mat-panel-description class="email">
                 {{employee.email}}
             </mat-panel-description>
-            <mat-panel-description class="machine">
-            Machine: {{getAssignedMachineById(employee.activeMachine)}}
-            </mat-panel-description>
-
+           
         </mat-expansion-panel-header>
 
         <div class="employee_details flex-between">
             <div>
                 <p><b>E-mail: </b> {{employee.email}}</p>
-
-                <p><b>Current Machine: </b> {{getAssignedMachineById(employee.activeMachine)}}</p>
             </div>
             <div class="skills">
                 <p><b>Skills: </b></p>
