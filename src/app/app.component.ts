@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.breakpointObserver.observe([ Breakpoints.Small]).subscribe(result => {
+      this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.XSmall]).subscribe(result => {
         if (result.matches){
           this.drawerMode = 'over';
         } else {
