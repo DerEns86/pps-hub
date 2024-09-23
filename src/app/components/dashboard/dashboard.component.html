@@ -5,9 +5,7 @@
             <div class="awaitingContainer">
                 @for (project of getAwaitingProjects(); track $index) {
                 <app-project-card [project]="project" />
-
                 }
-
             </div>
         </article>
         <article>
@@ -15,7 +13,6 @@
             <div class="activeContainer">
                 @for (project of getActiveProjects(); track $index) {
                 <app-project-card [project]="project" />
-
                 }
             </div>
         </article>
@@ -24,7 +21,6 @@
             <div class="pausedContainer">
                 @for (project of getPausedProjects(); track $index) {
                 <app-project-card [project]="project" />
-
                 }
             </div>
         </article>
@@ -33,11 +29,9 @@
             <div class="FinishedContainer">
                 @for (project of getFinishedProjects(); track $index) {
                 <app-project-card [project]="project" />
-
                 }
             </div>
         </article>
-
     </div>
 </section>
 
@@ -50,10 +44,8 @@
                 <mat-card-title>
                     <h3>{{machine.name}}</h3>
                 </mat-card-title>
-
             </mat-card-header>
             <mat-card-content>
-
                 <mat-form-field appearance="outline">
                     <mat-label>Assign to</mat-label>
                     <mat-select [(ngModel)]="machine.assignedEmployee" name="assignedEmployee" id="assignedEmployee"
@@ -64,7 +56,6 @@
                         }
                     </mat-select>
                 </mat-form-field>
-
                 <h4 style="text-align: center;">Projects:</h4>
                 @for (project of getProjectsForMachine(machine.id); track $index) {
                 <div class="flex-between">
@@ -73,14 +64,9 @@
                 }
                 <h4 style="text-align: center;">Total Scheduled Time:</h4>
                 <p style="text-align: center;">{{getSheduledTimePerMachine(machine.id)}} h</p>
-
-
             </mat-card-content>
         </mat-card>
-
         }
-
-
     </div>
 </section>
 
@@ -88,8 +74,6 @@
     <h2>Unassigned Employees</h2>
     <div class="unassignedContainer">
         <mat-card>
-
-
             @for (employee of getUnassignedEmployees(); track $index) {
             <mat-card-header>
                 <h4> {{employee.name}}, {{employee.surname}} </h4>
