@@ -14,12 +14,12 @@
         <mat-card-content class="CardContent">
             <div>
                 <p>{{project?.customer}}</p>
-                <p>{{project?.article}}</p>
+                <p><i>{{project?.article}}</i></p>
             </div>
 
             <div>
                 <p>{{formatDate(project?.deliveryDate)}}</p>
-                <p>{{project?.scheduledTime}} h</p>
+                <p class="sheduledTime">{{project?.scheduledTime}} h</p>
             </div>
 
         </mat-card-content>

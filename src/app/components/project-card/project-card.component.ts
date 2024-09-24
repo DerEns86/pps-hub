@@ -47,6 +47,7 @@ export class ProjectCardComponent {
 
 
   formatDate(timestamp: any) {
-    return new Date(timestamp).toLocaleDateString();
+    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit' };
+    return new Date(timestamp).toLocaleDateString('de-DE', options);
   }
 }
