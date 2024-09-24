@@ -46,6 +46,7 @@ export class DialogAddEmployeeComponent implements OnInit {
     } else {
       this.updateEmployee();
     }
+    this.employeeService.isInEditMode = false;
     this.dialogRef.close();
 
   }
