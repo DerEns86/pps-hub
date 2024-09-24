@@ -1,172 +1,89 @@
-<!-- <div class="projectContainer d-flex">
-
-    <div class="awaitingContainer">
-        <h3>Awaiting</h3>
-        @for (project of getAwaitingProjects(); track $index) {
-        <app-project-card [project]="project"></app-project-card>
-
-        }
-
-    </div>
-    <div class="activeContainer">
-        <h3>Active</h3>
-        @for (project of getActiveProjects(); track $index) {
-        <app-project-card [project]="project"></app-project-card>
-
-        }
-    </div>
-
-    <div class="pausedContainer">
-        <h3>Paused</h3>
-        @for (project of getPausedProjects(); track $index) {
-        <app-project-card [project]="project"></app-project-card>
-
-        }
-    </div>
-    <div class="FinishedContainer">
-        <h3>Finished</h3>
-        @for (project of getFinishedProjects(); track $index) {
-        <app-project-card [project]="project"></app-project-card>
-
-        }
-    </div>
-
-
-</div> -->
 <section>
-    <div class="cardContent">
-        <mat-card class="card">
-            <mat-card-header (click)="setListFilter('all')">
-                <mat-card-title>
-                    <p>{{getProjectList().length}}</p>
-                    <p>Projects</p>
-                </mat-card-title>
-            </mat-card-header>
-        </mat-card>
-        <mat-card class="card">
-            <mat-card-header (click)="setListFilter('active')">
-                <mat-card-title>
-                    <p>{{getActiveProjects().length}}</p>
-                    <p>active Projects</p>
-                </mat-card-title>
-            </mat-card-header>
-        </mat-card>
-        <mat-card class="card">
-            <mat-card-header (click)="setListFilter('awaiting')">
-                <mat-card-title>
-                    <p>{{getAwaitingProjects().length}}</p>
-                    <p>awaiting Projects</p>
-                </mat-card-title>
-            </mat-card-header>
-        </mat-card>
-        <mat-card class="card">
-            <mat-card-header (click)="setListFilter('paused')">
-                <mat-card-title>
-                    <p>{{getPausedProjects().length}}</p>
-                    <p>paused Projects</p>
-                </mat-card-title>
-            </mat-card-header>
-        </mat-card>
-        <mat-card class="card">
-            <mat-card-header (click)="setListFilter('finished')">
-                <mat-card-title>
-                    <p>{{getFinishedProjects().length}}</p>
-                    <p>finished Projects</p>
-                </mat-card-title>
-            </mat-card-header>
-        </mat-card>
-
-
+    <div class="projectContainer d-flex">
+        <article>
+            <h3>Awaiting</h3>
+            <div class="awaitingContainer">
+                @for (project of getAwaitingProjects(); track $index) {
+                <app-project-card [project]="project" />
+                }
+            </div>
+        </article>
+        <article>
+            <h3>Active</h3>
+            <div class="activeContainer">
+                @for (project of getActiveProjects(); track $index) {
+                <app-project-card [project]="project" />
+                }
+            </div>
+        </article>
+        <article>
+            <h3>Paused</h3>
+            <div class="pausedContainer">
+                @for (project of getPausedProjects(); track $index) {
+                <app-project-card [project]="project" />
+                }
+            </div>
+        </article>
+        <article>
+            <h3>Finished</h3>
+            <div class="FinishedContainer">
+                @for (project of getFinishedProjects(); track $index) {
+                <app-project-card [project]="project" />
+                }
+            </div>
+        </article>
     </div>
-
-
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Projects
-            </mat-panel-title>
-
-        </mat-expansion-panel-header>
-
-        <table style="width: 100%; ">
-            <tr class="test">
-                <th>Project Name</th>
-                <th>Project Status</th>
-                <th>Project Start Date</th>
-                <th>Project End Date</th>
-                <th>Project Budget</th>
-                <th>Project Description</th>
-            </tr>
-
-            @if (setListFilter(currentFilter).length >= 1) {
-            @for (project of setListFilter(currentFilter); track $index) {
-
-            <tr class="tableContent">
-                <td>{{project.projectId}}</td>
-                <td>eertert</td>
-                <td>sarsersr</td>
-                <td>vbnvbn</td>
-                <td>wserwerwr</td>
-                <td>fghfgh</td>
-            </tr>
-            }
-            } @else
-            {
-            <p>You have no items in this List</p>
-            }
-        </table>
-    </mat-expansion-panel>
-
-
 </section>
 
 <section>
     <h2>Machine Capactiy</h2>
-    <div class="d-flex">
+    <div class="d-flex g-16 flex-wrap capacityContainer">
         @for (machine of getMachineList(); track $index) {
         <mat-card class="machinCard">
-            <mat-card-header>
+            <mat-card-header class="flex-center">
                 <mat-card-title>
-                    {{machine.name}}
-
+                    <h3>{{machine.name}}</h3>
                 </mat-card-title>
-                
             </mat-card-header>
             <mat-card-content>
-                
-                @if (machine.name === 'Multus B300W') {
-                    <p>{{getSheduledTimePerMachine('one')}}</p>
-                    <p>Projects:</p>
-                    @for (item of getProjectsForMachine('one'); track $index) {
-                    <p>{{item.projectId}}</p>
-                    }
-                    }@else if (machine.name === 'M400B') {
-                        <p>{{getSheduledTimePerMachine('two')}}</p>
-                        <p>Projects:</p>    
-                    @for (item of getProjectsForMachine('two'); track $index) {
-                    <p>{{item.projectId}}</p>
-                    }
-                    }@else if (machine.name === 'GTX500A') {
-                        <p>{{getSheduledTimePerMachine('three')}}</p>
-                    <p>Projects:</p>
-                    @for (item of getProjectsForMachine('three'); track $index) {
-                    <p>{{item.projectId}}</p>
-                    }
-                    }
+                <mat-form-field appearance="outline">
+                    <mat-label>Assign to</mat-label>
+                    <mat-select [(ngModel)]="machine.assignedEmployee" name="assignedEmployee" id="assignedEmployee"
+                        (selectionChange)="onSelectionChange($event, machine.id, machine)">
+                        <mat-option [value]="'none'">none</mat-option>
+                        @for (employee of getEmployeeList(); track employee; let i = $index) {
+                        <mat-option [value]="employee.id">{{employee.name}}, {{employee.surname}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <h4 style="text-align: center;">Projects:</h4>
+                @for (project of getProjectsForMachine(machine.id); track $index) {
+                <div class="flex-between">
+                    <p>{{project.projectId}}</p> <span>{{project.scheduledTime}} h</span>
+                </div>
+                }
+                <h4 style="text-align: center;">Total Scheduled Time:</h4>
+                <p style="text-align: center;">{{getSheduledTimePerMachine(machine.id)}} h</p>
             </mat-card-content>
         </mat-card>
-
         }
-
-
     </div>
 </section>
 
 <section>
-    <h2>Employees Assigned</h2>
-
-    @for (employee of getEmployeeList(); track $index) {
-        {{employee.name}}
-        {{employee.activeMachine}}
-    }
+    <h2>Unassigned Employees</h2>
+    <div class="unassignedContainer">
+        <mat-card>
+            @for (employee of getUnassignedEmployees(); track $index) {
+            <mat-card-header>
+                <h4> {{employee.name}}, {{employee.surname}} </h4>
+            </mat-card-header>
+            <mat-card-content>
+                @for (skill of employee.skills; track $index){
+                <li> {{skill}} </li>
+                }
+            </mat-card-content>
+            }
+        </mat-card>
+    </div>
 </section>

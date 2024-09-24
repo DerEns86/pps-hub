@@ -1,36 +1,39 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-card class="LoginCard">
-        <mat-card-header>
-            <h2>Signup</h2>
-        </mat-card-header>
-        <mat-card-content>
+<section>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-card class="LoginCard">
+            <mat-card-header>
+                <h2>Signup</h2>
+            </mat-card-header>
+            <mat-card-content>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Username</mat-label>
-                <input matInput type="text" placeholder="Your name" formControlName="username">
-                <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">Name ist
-                    required</mat-error>
-            </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" placeholder="Your name" formControlName="username">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">Name ist
+                        required</mat-error>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>E-mail</mat-label>
-                <input matInput type="email" placeholder="example@ex.com" formControlName="email">
-                <mat-icon matSuffix>mail</mat-icon>
-                <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">Email ist
-                    required</mat-error>
-            </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput type="email" placeholder="example@ex.com" formControlName="email">
+                    <mat-icon matSuffix>mail</mat-icon>
+                    <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">Email ist
+                        required</mat-error>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" placeholder="******" formControlName="password">
-                <mat-icon matSuffix>lock</mat-icon>
-                <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">Password ist
-                    required</mat-error>
-            </mat-form-field>
-        </mat-card-content>
-       
-        <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Signup</button>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="******" formControlName="password">
+                    <mat-icon matSuffix>lock</mat-icon>
+                    <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">Password
+                        ist
+                        required</mat-error>
+                </mat-form-field>
+            </mat-card-content>
 
-    </mat-card>
-</form>
+            <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Signup</button>
+
+        </mat-card>
+    </form>
+</section>

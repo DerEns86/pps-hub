@@ -6,44 +6,46 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 })
 export class AuthService {
 
-auth = inject(Auth);
-
+  auth = inject(Auth);
+  isLoggedIn: boolean = false;
   constructor() { }
 
   async login(email: string, password: string) {
     await signInWithEmailAndPassword(this.auth, email, password)
-    .then((user) =>{
-      // const token = user.user.idToken;
-      console.log(user.user.uid);
-      sessionStorage.setItem('userId', user.user.uid);
-
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      .then((user) => {
+        console.log(user.user.uid);
+        sessionStorage.setItem('userId', user.user.uid);
+        this.isLoggedIn = true;
+        console.log('loggedIn',this.isLoggedIn);
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   async register(username: string, email: string, password: string) {
     await createUserWithEmailAndPassword(this.auth, email, password)
-    .then((user) => {
-      console.log(user)
-      console.log(username)
+      .then((user) => {
+        console.log(user)
+        console.log(username)
 
-    })
-    .catch((error) => {
-      console.error(error);
-    })
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 
-  async logout(){
-    debugger;
+  async logout() {
     await signOut(this.auth)
-    .then(()=>{
-      console.log('Your looged out');
-      sessionStorage.removeItem('userId');
-    })
-    .catch((error)=>{
-      console.error(error);
-    })
+      .then(() => {
+        console.log('Your looged out');
+        sessionStorage.removeItem('userId');
+        this.isLoggedIn = false;
+        console.log('loggedIn',this.isLoggedIn);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 }

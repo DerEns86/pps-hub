@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MachineParkService } from '../../services/machine-park.service';
 
 @Component({
   selector: 'app-projects',
@@ -22,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProjectsComponent implements OnInit, OnDestroy {
 
   private projectService = inject(ProjectsService)
+  private machineService = inject(MachineParkService)
   
   displayedColumns: string[] = ['No', 'Customer', 'Article', 'Delivery Date', 'Sheduled Time', 'Status', 'Used Machines']
   
@@ -68,16 +70,8 @@ formatDate(date: number) {
   }
 
 
-  getMachineName(machineNo: string) {
-    if (machineNo === 'one'){
-      return 'Multus B300W';
-    } else if (machineNo === 'two') {
-      return 'M400B';
-    }else if (machineNo === 'three') {
-      return 'GTX500A';
-    } else {
-      return 'not assigned yet';
-    }
+  getMachineName(machineId: string) {
+   return this.machineService.machineList.find((machine) => machine.id === machineId)?.name;
   }
 
 

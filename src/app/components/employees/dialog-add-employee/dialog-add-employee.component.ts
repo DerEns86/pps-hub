@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { EmployeeService } from '../../../services/employee.service';
 import { Employee } from '../../../interfaces/employee';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-add-employee',
@@ -27,7 +27,7 @@ export class DialogAddEmployeeComponent implements OnInit {
       employeeId: [this.employee.employeeId ?? ''],
       name: [this.employee.name ?? ''],
       surname: [this.employee.surname ?? ''],
-      email: [this.employee.skills ?? ''],
+      email: [this.employee.skills ?? '', Validators.email],
       skills: [this.employee.skills ?? []],
     })
   }
@@ -41,11 +41,12 @@ export class DialogAddEmployeeComponent implements OnInit {
   saveEmployee() {
     if (!this.employeeService.isInEditMode) {
       this.employee = this.employeeForm.value;
-      this.employee.activeMachine = 0;
+      this.employee.activeMachine = "none";
       this.employeeService.addEmployee(this.employee);
     } else {
       this.updateEmployee();
     }
+    this.employeeService.isInEditMode = false;
     this.dialogRef.close();
 
   }

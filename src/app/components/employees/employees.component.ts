@@ -38,4 +38,8 @@ export class EmployeesComponent implements OnInit {
   deleteEmployee(employee: Employee) {
     this.employeeService.deleteEmployee(employee);
   }
+
+  getAssignedMachineById(machineId: string) {
+    return this.employeeService.getMachineName(machineId);
+  }
 }

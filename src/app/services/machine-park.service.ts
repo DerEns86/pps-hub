@@ -30,8 +30,8 @@ export class MachineParkService implements OnDestroy{
   }
 
   addMachine(machine: Machine) {
-    this.machineList.push(machine)
     this.firebase.addMachines(machine);
+    this.machineList.push(machine)
   }
 
   deleteMachine(docId: string) {
@@ -40,7 +40,11 @@ export class MachineParkService implements OnDestroy{
     this.firebase.deleteMachine(docId);
   }
 
-  setPosition(){
-    return (this.machineList.length + 1);
+  updateMachine(machineId: string, machine: Machine) {
+    this.firebase.updateMachine(machineId, machine);
+  }
+
+  findMachineById(docId: string) {
+    return this.firebase.getSingleDocRef('machines', docId);
   }
 }

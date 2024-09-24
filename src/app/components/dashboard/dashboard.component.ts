@@ -5,6 +5,8 @@ import { FirebaseService } from '../../services/firebase.service';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { MachineParkService } from '../../services/machine-park.service';
 import { EmployeeService } from '../../services/employee.service';
+import { MatSelectChange } from '@angular/material/select';
+import { Machine } from '../../interfaces/machine';
 
 @Component({
   selector: 'app-dashboard',
@@ -65,7 +67,6 @@ private employeeService: EmployeeService
     return this.projectService.filterProjects(status);
     }
   }
-
  
   getProjectsForMachine(machineNo: string) {
     return this.projectService.filterProjectsByMachine(machineNo);
@@ -77,7 +78,14 @@ private employeeService: EmployeeService
 
 
   getEmployeeList(){
-    return this.employeeService.getEmployees();
+    return this.employeeService.employeeLists;
+  }
+
+  onSelectionChange(event: MatSelectChange, machineId: string ,machine: Machine) {
+      this.machineService.updateMachine(machineId, {...machine, assignedEmployee: event.value});
   }
   
+  getUnassignedEmployees() {
+    return this.employeeService.getUnassignedEmployees();
+  }
 }

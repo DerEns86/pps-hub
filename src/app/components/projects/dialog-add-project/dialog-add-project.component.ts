@@ -33,7 +33,7 @@ export class DialogAddProjectComponent implements OnInit {
       article: [this.project.article ?? ''],
       deliveryDate: [this.project.deliveryDate ?? ''],
       scheduledTime: [this.project.scheduledTime ?? ''],
-      usedMachine: [this.project.usedMachines ?? ''],
+      usedMachine: [this.project.usedMachine ?? ''],
       notification: [this.project.notification ?? ''],
     })
   }

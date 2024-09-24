@@ -4,6 +4,6 @@ export interface Employee {
     name: string;
     surname: string;
     email: string;
-    activeMachine: number;
+    activeMachine: string;
     skills: string[];
 }

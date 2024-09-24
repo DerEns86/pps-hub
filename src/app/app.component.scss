@@ -1,13 +1,17 @@
-.container{
-    height: 100vh;
+.container {
+    height: calc(100vh - 64px);
 }
-.sidenav{
+
+.sidenav {
     width: 200px;
-    ul{
+
+    ul {
         list-style-type: none;
         padding-inline: 0;
         margin: 0;
-        li{
+        padding-top: 8px;
+
+        li {
             height: 32px;
             display: flex;
             align-items: center;
@@ -16,26 +20,25 @@
             margin-bottom: 16px;
             gap: 16px;
 
-            &:hover{
-                background-color: rgba(0,0,0,0.05);
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.05);
             }
-           
         }
-        
     }
 }
 
-.mat-toolbar{
+.mat-toolbar {
     justify-content: space-between;
 }
-.logo{
+
+.logo {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 64px;
 }
 
-.router-container{
+.router-container {
     padding-top: 16px;
     padding-inline: 56px;
 }

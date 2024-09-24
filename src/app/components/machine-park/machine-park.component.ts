@@ -21,7 +21,7 @@ getMachineList(){
   return this.machineParkService.getMachineList();
 }
 
-getEmployeeAssignedToMachine(machineId: number){
+getEmployeeAssignedToMachine(machineId: string){
   return this.employeeService.getEployeeByAssignedMachine(machineId);
 }
 
