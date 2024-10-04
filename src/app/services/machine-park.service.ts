@@ -15,7 +15,7 @@ export class MachineParkService implements OnDestroy{
 
   constructor(private firebase: FirebaseService) { 
     
-    this.machineListSubscription = this.firebase.MachinesList$.subscribe((machines) => {
+    this.machineListSubscription = this.firebase.machinesList$.subscribe((machines) => {
       this.machineList = machines;
         });
   
