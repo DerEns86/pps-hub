@@ -33,3 +33,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .flex-wrap {
     flex-wrap: wrap;
   }
+
+.error-snackbar .mdc-snackbar__surface{
+    color: white ;
+    background-color: rgba(255, 0, 0, 0.8) !important;
+  .mdc-button__label{
+    color: black;
+  }
+  }
+
+  .success-snackbar .mdc-snackbar__surface{
+    color: black ;
+    background-color: rgba(1, 155, 60, 0.8) !important;
+  .mdc-button__label{
+    color: black;
+  }
+  }
+
+  .custom-snackbar .mdc-snackbar__surface{
+    color: black ;
+    background-color: rgba(0, 0, 0, 0.589) !important;
+  .mdc-button__label{
+    color: black;
+  }
+  }
