@@ -1,53 +1,50 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Project } from '../interfaces/project';
 import { FirebaseService } from './firebase.service';
-import { onSnapshot } from '@angular/fire/firestore';
-import { BehaviorSubject, Subscription } from 'rxjs';
-
+import { Subscription } from 'rxjs';
+import { SnackbarService } from './snackbar.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class ProjectsService implements OnDestroy {
 
+  private firebase = inject(FirebaseService);
+  private snackbarService = inject(SnackbarService);
 
-  projectList: any[] = [];
-  activeProjects: any[] = [];
+  public projectList: any[] = [];
+  public activeProjects: any[] = [];
   private projectListSubscription: Subscription;
+  public editMode = false;
 
-  editMode = false;
-  
-  constructor(private firebase: FirebaseService) { 
-    
+  constructor() {
+
     this.projectListSubscription = this.firebase.projectList$.subscribe((projects) => {
-    this.projectList = projects;
+      this.projectList = projects;
       this.activeProjects = this.filterProjects('active');
-      });
-    
+    });
   }
 
   ngOnDestroy() {
-
     this.projectListSubscription.unsubscribe();
   }
 
-   
 
- getProjectList() {
+
+  getProjectList() {
     return this.projectList;
   }
 
   filterProjects(status: string) {
-    if(status === 'all') {
+    if (status === 'all') {
       return this.projectList;
     }
     return this.projectList.filter(project => project.status === status);
   }
 
-   filterProjectsByMachine(machineNo: string): Project[] {
+  filterProjectsByMachine(machineNo: string): Project[] {
     const sortedList = this.sortProjectsByDate();
     return sortedList
       .filter(project => project.usedMachine === machineNo)
@@ -61,7 +58,13 @@ export class ProjectsService implements OnDestroy {
   changeStatus(project: Project, newStatus: 'active' | 'paused' | 'finished' | 'awaiting') {
     project.status = newStatus;
     if (project.id) {
-      this.firebase.updateProject(project.id, project);
+      try {
+        this.firebase.updateProject(project.id, project);
+        this.snackbarService.openSnackBar('Status changed', 'custom-snackbar');
+      } catch (error) {
+        console.error(error);
+        this.snackbarService.openSnackBar('Something went wrong. Please try again later', 'error-snackbar')
+      }
     }
   }
 
@@ -74,17 +77,34 @@ export class ProjectsService implements OnDestroy {
     return scheduledTime;
   }
 
-   addProject(project: Project) {
-    this.projectList.push(project);
-    this.firebase.addProject(project);
+  addProject(project: Project) {
+    try {
+      this.projectList.push(project);
+      this.firebase.addProject(project);
+      this.snackbarService.openSnackBar('Product added', 'success-snackabr');
+    } catch (error) {
+      console.error(error);
+      this.snackbarService.openSnackBar('Something went wrong. Please try again later', 'error-snackbar')
+    }
   }
 
   deleteProject(Id: string) {
-    this.firebase.deleteProject(Id);
+    try {
+      this.firebase.deleteProject(Id);
+      this.snackbarService.openSnackBar('Project deleted', 'success-snackbar');
+    } catch (error) {
+      console.error(error);
+      this.snackbarService.openSnackBar('Something went wrong. Please try again later', 'error-snackbar')
+    }
   }
 
   updateProject(projectId: string, project: Project) {
-    this.firebase.updateProject(projectId, project);
+    try {
+      this.firebase.updateProject(projectId, project);
+      this.snackbarService.openSnackBar('Project updated', 'custom-snackbar');
+    } catch (error) {
+      console.error(error);
+      this.snackbarService.openSnackBar('Something went wrong. Please try again later', 'error-snackbar')
+    }
   }
-
 }
