@@ -31,8 +31,6 @@ export class ProjectsService implements OnDestroy {
     this.projectListSubscription.unsubscribe();
   }
 
-
-
   getProjectList() {
     return this.projectList;
   }

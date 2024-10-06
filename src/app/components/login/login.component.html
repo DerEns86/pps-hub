@@ -27,7 +27,9 @@
             <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Login</button>
             <p>or</p>
             <button mat-raised-button type="button" (click)="onNavigateToSignup()">Signup</button>
-
+            @if (isLoading){
+            <mat-progress-bar mode="indeterminate" style="margin-top: 16px;"></mat-progress-bar>
+            }
         </mat-card>
     </form>
 </section>
