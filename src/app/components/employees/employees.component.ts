@@ -15,11 +15,12 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class EmployeesComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, public Dialog: MatDialog) { }
+  private employeeService = inject(EmployeeService);
+
+  constructor(public Dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.employeeService.getEmployees();
-
   }
 
   getEmployeesList() {

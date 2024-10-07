@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { Project } from '../interfaces/project';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Machine } from '../interfaces/machine';
 import { Employee } from '../interfaces/employee';
 
@@ -17,12 +17,13 @@ export class FirebaseService implements OnDestroy {
   employeesList: Employee[] = [];
 
   projectList$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(this.projectList);
-  MachinesList$: BehaviorSubject<Machine[]> = new BehaviorSubject<Machine[]>(this.machinesList);
+  machinesList$: BehaviorSubject<Machine[]> = new BehaviorSubject<Machine[]>(this.machinesList);
   employeesList$: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>(this.employeesList);
 
-  unsubProjectsSnapshot;
-  unsubMachinesSnapshot;
-  unsubEmployeesSnapshot;
+  unsubProjectsSnapshot: () => void;
+  unsubMachinesSnapshot: () => void;
+  unsubEmployeesSnapshot: () => void;
+
   firebase: Firestore = inject(Firestore);
 
   constructor() {
@@ -31,69 +32,50 @@ export class FirebaseService implements OnDestroy {
     this.unsubEmployeesSnapshot = this.snapShotEmployeesList();
   }
 
-
-  snapShotProjectsList() {
-    return onSnapshot(this.getProjectsRef(), (querySnapshot) => {
-      this.projectList = [];
-      querySnapshot.forEach((doc) => {
-        const projectData = doc.data() as Project;
-        projectData.id = doc.id;
-        this.projectList.push(projectData);
-      });
-      this.projectList$.next(this.projectList);
-      console.log(this.projectList);
-    },
-    (error)=>{
-      console.error("Error fetching project snapshots: ", error)
-    }
-  );
-  }
-
-  snapShotMachinesList() {
-    return onSnapshot(this.getMachinesRef(), (querySnapshot) => {
-      this.machinesList = [];
-      querySnapshot.forEach((doc) => {
-        const machineData = doc.data() as Machine;
-        machineData.id = doc.id;
-        this.machinesList.push(machineData);
-      });
-      this.MachinesList$.next(this.machinesList);
-      console.log('machineList', this.machinesList);
-    },
-    (error)=>{
-      console.error("Error fetching machine snapshots: ", error)
-    }
-  );
-  }
-
-  snapShotEmployeesList() {
-    return onSnapshot(this.getEmployeesRef(), (querySnapshot) => {
-      this.employeesList = [];
-      querySnapshot.forEach((doc) => {
-        const employeeData = doc.data() as Employee;
-        employeeData.id = doc.id;
-        this.employeesList.push(employeeData);
-      });
-      this.employeesList$.next(this.employeesList);
-      console.log('employeeList', this.employeesList);
-    },
-    (error)=>{
-      console.error("Error fetching machine snapshots: ", error)
-    }
-  );
-  }
-
   ngOnDestroy() {
+    this.unsubAllSnapshots();
+  }
+
+  unsubAllSnapshots() {
     this.unsubProjectsSnapshot();
     this.unsubMachinesSnapshot();
     this.unsubEmployeesSnapshot();
   }
-  getProjectsRef() {
-    return collection(this.firebase, 'projects');
+
+  private handleSnapshot<T extends { id?: string }>(querySnapshot: any, list: T[], subject: Subject<T[]>, logMessage: string) {
+    list.length = 0;
+    querySnapshot.forEach((doc: any) => {
+      const data = doc.data() as T;
+      data.id = doc.id;
+      list.push(data);
+    });
+    subject.next(list);
+    console.log(logMessage, list);
+  }
+  
+  snapShotProjectsList() {
+    return onSnapshot(this.getCollectionRef('projects'), 
+      (querySnapshot) => this.handleSnapshot(querySnapshot, this.projectList, this.projectList$, 'projectList'),
+      (error) => console.error("Error fetching project snapshots: ", error)
+    );
+  }
+  
+  snapShotMachinesList() {
+    return onSnapshot(this.getCollectionRef('machines'), 
+      (querySnapshot) => this.handleSnapshot(querySnapshot, this.machinesList, this.machinesList$, 'machineList'),
+      (error) => console.error("Error fetching machine snapshots: ", error)
+    );
+  }
+  
+  snapShotEmployeesList() {
+    return onSnapshot(this.getCollectionRef('employees'), 
+      (querySnapshot) => this.handleSnapshot(querySnapshot, this.employeesList, this.employeesList$, 'employeesList'),
+      (error) => console.error("Error fetching employee snapshots: ", error)
+    );
   }
 
-  getEmployeesRef() {
-    return collection(this.firebase, 'employees');
+  getCollectionRef(collectionName: string) {
+    return collection(this.firebase, collectionName);
   }
 
   getProjectList(): Project[] {
@@ -104,39 +86,35 @@ export class FirebaseService implements OnDestroy {
     return doc(collection(this.firebase, colId), docId);
   }
 
-  async addProject(item: {}) {
-    await addDoc(this.getProjectsRef(), item);
+  async addProject(project: Project) {
+    await addDoc(this.getCollectionRef('projects'), project);
   }
 
   async deleteProject(docId: string) {
     await deleteDoc(this.getSingleDocRef('projects', docId));
   }
 
-  async updateProject(docId: string, item: {}) {
+  async updateProject(docId: string, item: Partial<Project>) {
     await updateDoc(this.getSingleDocRef('projects', docId), item);
   }
 
-  async addMachines(item: {}) {
-   return await addDoc(this.getMachinesRef(), item);
+  async addMachines(machine: Machine) {
+   return addDoc(this.getCollectionRef('machines'), machine);
   }
 
-  async updateMachine(docId: string, item: {}) {
-    await updateDoc(this.getSingleDocRef('machines', docId), item);
+  async updateMachine(docId: string, machine: Partial<Machine>) {
+    await updateDoc(this.getSingleDocRef('machines', docId), machine);
   }
 
   async deleteMachine(docId: string) {
     await deleteDoc(this.getSingleDocRef('machines', docId));
   }
 
-  getMachinesRef() {
-    return collection(this.firebase, 'machines');
+  async addEmployee(employee: Employee) {
+    await addDoc(this.getCollectionRef('employees'), employee);
   }
 
-  async addEmployee(item: {}) {
-    await addDoc(this.getEmployeesRef(), item);
-  }
-
-  async updateEmployee(docId: string, item: {}) {
+  async updateEmployee(docId: string, item: Partial<Employee>) {
     await updateDoc(this.getSingleDocRef('employees', docId), item);
   }
 

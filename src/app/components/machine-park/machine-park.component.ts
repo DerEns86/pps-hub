@@ -8,31 +8,29 @@ import { DialogAddMachineComponent } from './dialog-add-machine/dialog-add-machi
   selector: 'app-machine-park',
   templateUrl: './machine-park.component.html',
   styleUrl: './machine-park.component.scss',
- 
+
 })
 export class MachineParkComponent {
 
-  employeeService = inject(EmployeeService);
+  private employeeService = inject(EmployeeService);
+  private machineParkService = inject(MachineParkService)
 
-  constructor(public machineParkService : MachineParkService, public Dialog: MatDialog) { }
+  constructor(public Dialog: MatDialog) { }
 
+  getMachineList() {
+    return this.machineParkService.getMachineList();
+  }
 
-getMachineList(){
-  return this.machineParkService.getMachineList();
-}
+  getEmployeeAssignedToMachine(machineId: string) {
+    return this.employeeService.getEployeeByAssignedMachine(machineId);
+  }
 
-getEmployeeAssignedToMachine(machineId: string){
-  return this.employeeService.getEployeeByAssignedMachine(machineId);
-}
+  deleteMachine(id: string) {
+    this.machineParkService.deleteMachine(id);
+  }
 
-deleteMachine(id: string){
- this.machineParkService.deleteMachine(id);
-}
-
-openDialog(){
-  this.Dialog.open(DialogAddMachineComponent)
-  console.log("Dialog openend");
-  
-}
+  openDialog() {
+    this.Dialog.open(DialogAddMachineComponent)
+  }
 }
 

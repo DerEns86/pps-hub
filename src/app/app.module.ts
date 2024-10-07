@@ -29,6 +29,8 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import{ MatMenuModule } from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -79,6 +81,8 @@ import { DialogAddMachineComponent } from './components/machine-park/dialog-add-
     ReactiveFormsModule,
     MatMenuModule,
     MatTabsModule,
+    MatSnackBarModule,
+    MatProgressBarModule,
     
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

@@ -10,24 +10,24 @@ import { MachineParkService } from '../../../services/machine-park.service';
 })
 export class DialogAddMachineComponent {
 
-  machineParkService: MachineParkService = inject(MachineParkService);
+  private machineParkService: MachineParkService = inject(MachineParkService);
 
-machine: Machine = {
-  manufacturer: '',
-  name: '',
-  type: '',
-  maxDimension: '',
-  assignedEmployee: 'none'
-}
+  machine: Machine = {
+    manufacturer: '',
+    name: '',
+    type: '',
+    maxDimension: '',
+    assignedEmployee: 'none'
+  }
 
-machineTypes: string[] = this.machineParkService.machineTypes;
+  machineTypes: string[] = this.machineParkService.machineTypes;
 
-constructor(public dialogRef: MatDialogRef<DialogAddMachineComponent>) {}
+  constructor(public dialogRef: MatDialogRef<DialogAddMachineComponent>) { }
 
-onSubmit(form: any){
-  if(form.valid)
-this.machineParkService.addMachine(this.machine);
-this.dialogRef.close();
-}
+  onSubmit(form: any) {
+    if (form.valid)
+      this.machineParkService.addMachine(this.machine);
+    this.dialogRef.close();
+  }
 
 }

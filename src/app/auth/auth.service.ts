@@ -6,21 +6,18 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 })
 export class AuthService {
 
-  auth = inject(Auth);
+  private auth = inject(Auth);
   isLoggedIn: boolean = false;
   constructor() { }
 
   async login(email: string, password: string) {
     await signInWithEmailAndPassword(this.auth, email, password)
       .then((user) => {
-        console.log(user.user.uid);
         sessionStorage.setItem('userId', user.user.uid);
         this.isLoggedIn = true;
-        console.log('loggedIn',this.isLoggedIn);
-        
       })
       .catch((error) => {
-        console.log(error);
+        throw error;
       })
   }
 
@@ -29,20 +26,18 @@ export class AuthService {
       .then((user) => {
         console.log(user)
         console.log(username)
-
       })
       .catch((error) => {
         console.error(error);
+        throw error;
       })
   }
 
   async logout() {
     await signOut(this.auth)
       .then(() => {
-        console.log('Your looged out');
         sessionStorage.removeItem('userId');
         this.isLoggedIn = false;
-        console.log('loggedIn',this.isLoggedIn);
       })
       .catch((error) => {
         console.error(error);

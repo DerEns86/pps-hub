@@ -24,44 +24,35 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   private projectService = inject(ProjectsService)
   private machineService = inject(MachineParkService)
-  
+
   displayedColumns: string[] = ['No', 'Customer', 'Article', 'Delivery Date', 'Sheduled Time', 'Status', 'Used Machines']
-  
-  constructor(public dialog: MatDialog) {
-  
+
+  constructor(public dialog: MatDialog) { }
+
+  ngOnInit(): void { }
+
+  ngOnDestroy(): void { }
+
+  getProjectList() {
+    return this.projectService.getProjectList();
   }
 
-  ngOnInit(): void {
- 
+  getFilteredProjects(status: string) {
+    return this.projectService.filterProjects(status);
   }
-ngOnDestroy(): void {
 
-}
-
-test(){
-  console.log('test');
-}
-
-getProjectList() { 
-  return this.projectService.getProjectList();
-}
-
-getFilteredProjects(status: string) {
-  return this.projectService.filterProjects(status);
-}
-
-formatDate(date: number) {
-  return new Date(date).toLocaleDateString('de-DE');
-}
+  formatDate(date: number) {
+    return new Date(date).toLocaleDateString('de-DE');
+  }
 
   openAddDialog() {
     this.dialog.open(DialogAddProjectComponent);
   }
 
-  openEditDialog( project: Project) {
+  openEditDialog(project: Project) {
     this.projectService.editMode = true;
     const deliveryDate = new Date(project.deliveryDate);
-    this.dialog.open(DialogAddProjectComponent, { data: { ...project, deliveryDate }  });
+    this.dialog.open(DialogAddProjectComponent, { data: { ...project, deliveryDate } });
   }
 
   deleteProject(Id: string) {
@@ -69,10 +60,8 @@ formatDate(date: number) {
     console.log('delete project with docId: ' + Id);
   }
 
-
   getMachineName(machineId: string) {
-   return this.machineService.machineList.find((machine) => machine.id === machineId)?.name;
+    return this.machineService.machineList.find((machine) => machine.id === machineId)?.name;
   }
-
 
 }
