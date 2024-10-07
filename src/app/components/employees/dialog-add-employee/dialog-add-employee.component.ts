@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { EmployeeService } from '../../../services/employee.service';
@@ -12,15 +12,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DialogAddEmployeeComponent implements OnInit {
 
+  private fb = inject(FormBuilder);
+  private employeeService = inject(EmployeeService);
+
   @Input() employee: any;
   employeeForm: FormGroup;
   skillList: string[] = ['Mill', 'Turn', 'Mill-Turn'];
   skills: FormGroup<any> = new FormGroup([]);
 
   constructor(public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Employee,
-    private fb: FormBuilder,
-    private employeeService: EmployeeService) {
+    @Inject(MAT_DIALOG_DATA) public data: Employee) {
 
     this.employee = data || {} as Employee;
     this.employeeForm = this.fb.group({
@@ -48,7 +49,6 @@ export class DialogAddEmployeeComponent implements OnInit {
     }
     this.employeeService.isInEditMode = false;
     this.dialogRef.close();
-
   }
 
   updateEmployee() {

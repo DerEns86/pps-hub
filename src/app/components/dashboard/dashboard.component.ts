@@ -1,8 +1,5 @@
-import { Component , OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
-import { Project } from '../../interfaces/project';
-import { FirebaseService } from '../../services/firebase.service';
-import { ProjectCardComponent } from '../project-card/project-card.component';
 import { MachineParkService } from '../../services/machine-park.service';
 import { EmployeeService } from '../../services/employee.service';
 import { MatSelectChange } from '@angular/material/select';
@@ -13,22 +10,20 @@ import { Machine } from '../../interfaces/machine';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent implements OnInit, OnDestroy{
+export class DashboardComponent implements OnInit, OnDestroy {
 
-// activeProjects: Project[] = [];
-currentFilter: string = 'active';
-constructor(private projectService: ProjectsService, 
-private machineService: MachineParkService,
-private employeeService: EmployeeService
-  ) {}
- 
+  private projectService = inject(ProjectsService)
+  private machineService = inject(MachineParkService)
+  private employeeService = inject(EmployeeService)
+
+  currentFilter: string = 'active';
+  constructor() {}
+
   ngOnInit(): void {
-     this.getProjectList();
+    this.getProjectList();
   }
 
-  ngOnDestroy(): void {
-   
-  }
+  ngOnDestroy(): void { }
 
   getProjectList() {
     return this.projectService.projectList;
@@ -58,16 +53,16 @@ private employeeService: EmployeeService
     return this.projectService.filterProjects('finished');
   }
 
-  setListFilter(status : string) {
+  setListFilter(status: string) {
     if (status === 'all') {
       this.currentFilter = status;
       return this.projectService.projectList;
-    }else {
-    this.currentFilter = status;
-    return this.projectService.filterProjects(status);
+    } else {
+      this.currentFilter = status;
+      return this.projectService.filterProjects(status);
     }
   }
- 
+
   getProjectsForMachine(machineNo: string) {
     return this.projectService.filterProjectsByMachine(machineNo);
   }
@@ -76,15 +71,14 @@ private employeeService: EmployeeService
     return this.projectService.calcSheduledTimePerMachine(machineNo);
   }
 
-
-  getEmployeeList(){
+  getEmployeeList() {
     return this.employeeService.employeeLists;
   }
 
-  onSelectionChange(event: MatSelectChange, machineId: string ,machine: Machine) {
-      this.machineService.updateMachine(machineId, {...machine, assignedEmployee: event.value});
+  onSelectionChange(event: MatSelectChange, machineId: string, machine: Machine) {
+    this.machineService.updateMachine(machineId, { ...machine, assignedEmployee: event.value });
   }
-  
+
   getUnassignedEmployees() {
     return this.employeeService.getUnassignedEmployees();
   }

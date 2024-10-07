@@ -9,30 +9,25 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class SignupComponent {
   loginForm: FormGroup = new FormGroup({});
-  auth= inject(AuthService)
-  
-    constructor(private formbuilder: FormBuilder) {
-      
-     }
-  
-  ngOnInit(): void {
-      this.loginForm = this.formbuilder.group({
-        username: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required]
-      });
+  private auth = inject(AuthService);
+  private formbuilder = inject(FormBuilder);
+  constructor() {
+
   }
-  
-    onSubmit() {
-      if (this.loginForm.valid) {
-        console.log('Form submitted');
-        console.log(this.loginForm.value.email);
-        
-        // this.router.navigate(['/main']);
-        this.auth.register(this.loginForm.value.username, this.loginForm.value.email, this.loginForm.value.password)
-      }
-      
+
+  ngOnInit(): void {
+    this.loginForm = this.formbuilder.group({
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.auth.register(this.loginForm.value.username, this.loginForm.value.email, this.loginForm.value.password)
     }
   }
-  
+}
+
 

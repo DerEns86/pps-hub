@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Project } from '../../interfaces/project';
 import { ProjectsService } from '../../services/projects.service';
 
@@ -12,11 +12,13 @@ import { ProjectsService } from '../../services/projects.service';
 
 export class ProjectCardComponent {
 
+  private projectService = inject(ProjectsService);
+
   @Input() project: Project | undefined;
 
-  constructor(private projectService: ProjectsService) { }
+  constructor() { }
 
-  changeStatusToActive(){
+  changeStatusToActive() {
     if (this.project) {
       this.projectService.changeStatus(this.project, 'active');
     }
@@ -34,17 +36,15 @@ export class ProjectCardComponent {
     }
   }
 
-  openProjectDetails(){
+  openProjectDetails() {
     if (this.project) {
       // this.projectService.openProjectInfo(this.project);
     }
   }
 
-  openProjectEdit(){
+  openProjectEdit() {
 
   }
-
-
 
   formatDate(timestamp: any) {
     const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit' };
