@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,11 +10,12 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class SignupComponent {
   loginForm: FormGroup = new FormGroup({});
+
   private auth = inject(AuthService);
   private formbuilder = inject(FormBuilder);
-  constructor() {
+  private router = inject(Router);
 
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
@@ -26,6 +28,7 @@ export class SignupComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.auth.register(this.loginForm.value.username, this.loginForm.value.email, this.loginForm.value.password)
+      this.router.navigateByUrl('/login');
     }
   }
 }
