@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
           this.drawerMode = 'side';
         }
       })
-      if (sessionStorage.getItem('userId') !== null){
-        this.authService.isLoggedIn = true;
-      }
+      // if (sessionStorage.getItem('userId') !== null){
+      //   this.authService.isLoggedIn = true;
+      // }
   }
 
   closeDrawer(): void {
