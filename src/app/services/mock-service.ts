@@ -1,7 +1,15 @@
 // mock-service.ts
 
+import { initializeApp } from "@angular/fire/app";
 import { filter, of } from "rxjs";
-import { Machine } from "../interfaces/machine";
+import { environment } from "../../environments/environment";
+import { getFirestore } from "@angular/fire/firestore";
+
+//Mock firestore
+export const mockFirestore = {
+  provideFirebaseApp: () => initializeApp(environment.firebaseConfig),
+  provideFirestore: () => getFirestore(),
+};
 
 // Mock für den AuthService
 export const mockAuthService = {
@@ -31,7 +39,8 @@ export const mockSnackbarService = {
 export const mockFirestoreService = {
 
   projectList$: of([]),
-  machinesList$: of([]), 
+  machinesList$: of([]),
+  employeeList$: of([]), 
   machinesList: [],
 
   setUserData: jest.fn((userId: string, data: any) =>
@@ -105,4 +114,5 @@ export const mockMachineParkService = {
   machineList: [],
 
   addMachine: jest.fn(),
+  getMachineList: jest.fn(),
 };
