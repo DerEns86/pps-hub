@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -19,7 +20,7 @@ describe('SignupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignupComponent],
-      providers: [{ provide: AuthService, useValue: mockAuthService },],
+      providers: [{ provide: AuthService, useValue: mockAuthService }],
       imports: [ReactiveFormsModule,
         FormsModule,
         MatCardModule,
@@ -28,7 +29,8 @@ describe('SignupComponent', () => {
         MatButtonModule,
         MatProgressBarModule,
         MatSnackBarModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatIconModule
       ],
     })
     .compileComponents();
