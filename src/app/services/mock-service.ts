@@ -1,6 +1,7 @@
 // mock-service.ts
 
 import { filter, of } from "rxjs";
+import { Machine } from "../interfaces/machine";
 
 // Mock für den AuthService
 export const mockAuthService = {
@@ -13,6 +14,12 @@ export const mockAuthService = {
   register: jest.fn((username: string, email: string, password: string) =>
     Promise.resolve({ user: { uid: '456' } }) // Simulierte Antwort bei Registrierung
   )
+};
+
+// Mock MatDialogRef
+export const mockMatDialogRef = {
+  close: jest.fn(), // simuliert die close() Methode
+  afterClosed: jest.fn().mockReturnValue(of(true)), // simuliert die Rückgabe eines Observables nach dem Schließen
 };
 
 // Mock für den SnackbarService
@@ -49,6 +56,9 @@ export const mockFirestoreService = {
 
 // Mock für den EmployeeService
 export const mockEmployeeService = {
+
+  isInEditMode: false,
+
   getEmployees: jest.fn(() =>
     Promise.resolve([
       { id: '1', employeeId: '123', name: 'Doe', surname: 'John', email: 'test@MatLine.de', activeMachine: '1', skills: ['Java', 'Angular'] },
@@ -63,7 +73,8 @@ export const mockEmployeeService = {
   ),
   deleteEmployee: jest.fn((id: string) =>
     Promise.resolve()
-  )
+  ),
+  getUnassignedEmployees: jest.fn(),
 };
 
 // Mock für den ProjectService
@@ -86,9 +97,12 @@ export const mockProjectService = {
 
   changeStatus: jest.fn(),
   filterProjects: jest.fn(),
+  projectList: [],
 };
 
 // Mock für den MachineParkService
 export const mockMachineParkService = {
   machineList: [],
+
+  addMachine: jest.fn(),
 };
