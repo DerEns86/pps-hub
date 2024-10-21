@@ -16,14 +16,14 @@ describe('EmployeesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EmployeesComponent],
-      providers: [{ provide: EmployeeService, useValue: mockEmployeeService },],
-      imports: [
+    providers: [{ provide: EmployeeService, useValue: mockEmployeeService },],
+    imports: [
         MatExpansionModule,
-        BrowserAnimationsModule
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
+        BrowserAnimationsModule,
+        EmployeesComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
     .compileComponents();
     
     employeeService = TestBed.inject(EmployeeService);

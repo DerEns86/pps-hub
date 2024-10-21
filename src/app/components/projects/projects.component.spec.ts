@@ -16,17 +16,17 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [
+    providers: [
         { provide: FirebaseService, useValue: mockFirestoreService },
         { provide: ProjectsService, useValue: mockProjectService },
         { provide: MachineParkService, useValue: mockMachineParkService }
-      ],
-      imports: [
+    ],
+    imports: [
         MatTabsModule,
-        BrowserAnimationsModule
-      ],
-      declarations: [ProjectsComponent]
-    })
+        BrowserAnimationsModule,
+        ProjectsComponent
+    ]
+})
       .compileComponents();
 
     fixture = TestBed.createComponent(ProjectsComponent);

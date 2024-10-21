@@ -22,8 +22,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent],
-      imports: [ReactiveFormsModule,
+    imports: [ReactiveFormsModule,
         FormsModule,
         MatCardModule,
         MatFormFieldModule,
@@ -31,14 +30,13 @@ describe('LoginComponent', () => {
         MatButtonModule,
         MatProgressBarModule,
         MatSnackBarModule,
-        BrowserAnimationsModule
-      ],
-      providers: [
-        { provide: AuthService, useValue: mockAuthService }, // Mock AuthService bereitstellen
-        { provide: Router, useValue: mockRouter }, // Router mocken
+        BrowserAnimationsModule, LoginComponent],
+    providers: [
+        { provide: AuthService, useValue: mockAuthService },
+        { provide: Router, useValue: mockRouter },
         { provide: SnackbarService, useValue: mockSnackbarService } // Snackbar mocken
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance; 

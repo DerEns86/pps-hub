@@ -17,17 +17,15 @@ describe('ProjectCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectCardComponent],
-      imports: [MatCardModule,
+    imports: [MatCardModule,
         MatIconModule,
         MatMenuModule,
-        BrowserAnimationsModule
-      ],
-      providers: [ProjectsService,
-        { provide: ProjectsService, useValue: mockProjectService},
-        { provide: FirebaseService, useValue: mockFirestoreService}
-      ]
-    })
+        BrowserAnimationsModule, ProjectCardComponent],
+    providers: [ProjectsService,
+        { provide: ProjectsService, useValue: mockProjectService },
+        { provide: FirebaseService, useValue: mockFirestoreService }
+    ]
+})
     .compileComponents();
 
     projectService = TestBed.inject(ProjectsService);

@@ -21,14 +21,13 @@ describe('DialogEmployeeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddEmployeeComponent],
-      providers: [
+    providers: [
         { provide: EmployeeService, useValue: mockEmployeeService },
         { provide: FirebaseService, useValue: mockFirestoreService },
         { provide: MatDialogRef, useValue: mockMatDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: {} },
-      ],
-      imports: [
+    ],
+    imports: [
         ReactiveFormsModule,
         MatOptionModule,
         MatFormFieldModule,
@@ -37,9 +36,9 @@ describe('DialogEmployeeComponent', () => {
         MatInputModule,
         FormsModule,
         BrowserAnimationsModule,
-
-      ]
-    })
+        DialogAddEmployeeComponent,
+    ]
+})
       .compileComponents();
 
     employeeService = TestBed.inject(EmployeeService);

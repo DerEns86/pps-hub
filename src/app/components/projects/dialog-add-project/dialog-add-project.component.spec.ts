@@ -17,19 +17,19 @@ describe('DialogAddProjectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddProjectComponent],
-      providers: [
-        {provide: MachineParkService, useValue: mockMachineParkService},
-        {provide: ProjectsService, useValue: mockProjectService},
-        {provide: FirebaseService, useValue: mockFirestoreService},
+    providers: [
+        { provide: MachineParkService, useValue: mockMachineParkService },
+        { provide: ProjectsService, useValue: mockProjectService },
+        { provide: FirebaseService, useValue: mockFirestoreService },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: mockMatDialogRef },
-      ],
-      imports: [
+    ],
+    imports: [
         BrowserAnimationsModule,
         MatDialogModule,
-      ]
-    })
+        DialogAddProjectComponent,
+    ]
+})
     .compileComponents();
 
     machineParkService = TestBed.inject(MachineParkService);

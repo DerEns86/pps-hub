@@ -16,22 +16,20 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         BrowserModule,
         BrowserAnimationsModule,
         MatSidenavModule,
         MatIconModule,
         MatDividerModule,
-        MatToolbarModule
-      ],
-      providers: [
-        { provide: AuthService, useValue: mockAuthService }
-      ],
-      declarations: [
+        MatToolbarModule,
         AppComponent
-      ],
-    }).compileComponents();
+    ],
+    providers: [
+        { provide: AuthService, useValue: mockAuthService }
+    ],
+}).compileComponents();
 
     authService = TestBed.inject(AuthService);
   });

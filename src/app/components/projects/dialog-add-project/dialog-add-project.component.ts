@@ -1,15 +1,24 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Project } from '../../../interfaces/project';
 import { ProjectsService } from '../../../services/projects.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogActions } from '@angular/material/dialog';
 import { Machine } from '../../../interfaces/machine';
 import { MachineParkService } from '../../../services/machine-park.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
+import { MatDatepickerInput, MatDatepickerToggle, MatDatepickerToggleIcon, MatDatepicker } from '@angular/material/datepicker';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-dialog-add-project',
-  templateUrl: './dialog-add-project.component.html',
-  styleUrl: './dialog-add-project.component.scss'
+    selector: 'app-dialog-add-project',
+    templateUrl: './dialog-add-project.component.html',
+    styleUrl: './dialog-add-project.component.scss',
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatIcon, MatDatepickerToggleIcon, MatDatepicker, MatSelect, MatOption, MatDialogActions, MatButton]
 })
 export class DialogAddProjectComponent implements OnInit {
 

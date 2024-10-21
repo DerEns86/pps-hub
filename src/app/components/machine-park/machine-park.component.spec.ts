@@ -18,19 +18,19 @@ describe('MachineParkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MachineParkComponent],
-      providers: [
+    providers: [
         { provide: MachineParkService, useValue: mockMachineParkService },
         { provide: EmployeeService, useValue: mockEmployeeService },
         { provide: FirebaseService, useValue: mockFirestoreService },
         { provide: MAT_DIALOG_DATA, useValue: {} },
-      ],
-      imports: [
+    ],
+    imports: [
         BrowserAnimationsModule,
         MatExpansionModule,
-        MatDialogModule
-      ]
-    })
+        MatDialogModule,
+        MachineParkComponent
+    ]
+})
       .compileComponents();
 
     machineParkService = TestBed.inject(MachineParkService);

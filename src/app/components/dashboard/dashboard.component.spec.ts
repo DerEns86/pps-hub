@@ -18,18 +18,17 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
-      providers: [
-        {provide: ProjectsService, useValue: mockProjectService},
-        {provide: MachineParkService, useValue: mockMachineParkService},
-        {provide: EmployeeService, useValue: mockEmployeeService},
-        {provide: FirebaseService, useValue: mockFirestoreService},
-      ],
-      imports: [
+    providers: [
+        { provide: ProjectsService, useValue: mockProjectService },
+        { provide: MachineParkService, useValue: mockMachineParkService },
+        { provide: EmployeeService, useValue: mockEmployeeService },
+        { provide: FirebaseService, useValue: mockFirestoreService },
+    ],
+    imports: [
         MatCardModule,
-        
-      ]
-    })
+        DashboardComponent,
+    ]
+})
     .compileComponents();
 
     projectService = TestBed.inject(ProjectsService);

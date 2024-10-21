@@ -19,9 +19,8 @@ describe('SignupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SignupComponent],
-      providers: [{ provide: AuthService, useValue: mockAuthService }],
-      imports: [ReactiveFormsModule,
+    providers: [{ provide: AuthService, useValue: mockAuthService }],
+    imports: [ReactiveFormsModule,
         FormsModule,
         MatCardModule,
         MatFormFieldModule,
@@ -30,9 +29,8 @@ describe('SignupComponent', () => {
         MatProgressBarModule,
         MatSnackBarModule,
         BrowserAnimationsModule,
-        MatIconModule
-      ],
-    })
+        MatIconModule, SignupComponent],
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(SignupComponent);

@@ -19,20 +19,20 @@ describe('DialogAddMachineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddMachineComponent],
-      providers: [
+    providers: [
         { provide: MachineParkService, useValue: mockMachineParkService },
         { provide: MatDialogRef, useValue: mockMatDialogRef },
-      ],
-      imports: [
+    ],
+    imports: [
         MatFormFieldModule,
         MatSelectModule,
         MatInputModule,
         FormsModule,
         MatDialogModule,
         BrowserAnimationsModule,
-      ]
-    })
+        DialogAddMachineComponent,
+    ]
+})
       .compileComponents();
 
     machineParkService = TestBed.inject(MachineParkService);
