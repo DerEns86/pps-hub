@@ -35,7 +35,7 @@ export const appConfig: ApplicationConfig = {
   providers:  [
     importProvidersFrom(BrowserModule, AppRoutingModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatCardModule, MatDividerModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatTableModule, MatExpansionModule, MatDialogModule, FormsModule, MatDatepickerModule, MatSelectModule, ReactiveFormsModule, MatMenuModule, MatTabsModule, MatSnackBarModule, MatProgressBarModule, ),
     provideAnimationsAsync(),
-    ProjectsService,
+    // ProjectsService,
     provideNativeDateAdapter(),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
     provideFirestore(() => getFirestore()), 

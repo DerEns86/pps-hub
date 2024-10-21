@@ -7,13 +7,14 @@ import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     standalone: true,
-    imports: [MatToolbar, MatIconButton, MatIcon, MatDrawerContainer, MatDrawer, MatDivider, RouterLink, RouterOutlet]
+    imports: [MatToolbar, MatIconButton, MatIcon, MatDrawerContainer, MatDrawer, MatDivider, RouterLink, RouterOutlet,  CommonModule]
 })
 export class AppComponent implements OnInit {
   title = 'pps-hub';
