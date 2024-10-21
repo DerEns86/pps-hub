@@ -33,9 +33,12 @@ import { ProjectsService } from './services/projects.service';
 
 export const appConfig: ApplicationConfig = {
   providers:  [
-    importProvidersFrom(BrowserModule, AppRoutingModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatCardModule, MatDividerModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatTableModule, MatExpansionModule, MatDialogModule, FormsModule, MatDatepickerModule, MatSelectModule, ReactiveFormsModule, MatMenuModule, MatTabsModule, MatSnackBarModule, MatProgressBarModule, provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), provideFirestore(() => getFirestore()), provideAuth(() => getAuth())),
+    importProvidersFrom(BrowserModule, AppRoutingModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatCardModule, MatDividerModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatTableModule, MatExpansionModule, MatDialogModule, FormsModule, MatDatepickerModule, MatSelectModule, ReactiveFormsModule, MatMenuModule, MatTabsModule, MatSnackBarModule, MatProgressBarModule, ),
     provideAnimationsAsync(),
     ProjectsService,
-    provideNativeDateAdapter()
+    provideNativeDateAdapter(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    provideFirestore(() => getFirestore()), 
+    provideAuth(() => getAuth())
 ]
 };
