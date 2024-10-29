@@ -2,13 +2,20 @@ import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { ProjectsService } from '../../services/projects.service';
 import { MachineParkService } from '../../services/machine-park.service';
 import { EmployeeService } from '../../services/employee.service';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelectChange, MatSelect } from '@angular/material/select';
 import { Machine } from '../../interfaces/machine';
+import { MatOption } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { ProjectCardComponent } from '../project-card/project-card.component';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
+    standalone: true,
+    imports: [ProjectCardComponent, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatFormField, MatLabel, MatSelect, FormsModule, MatOption]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 

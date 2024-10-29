@@ -7,18 +7,26 @@ import { Subscription } from 'rxjs';
 import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-project.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MachineParkService } from '../../services/machine-park.service';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss',
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.scss',
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+            state('expanded', style({ height: '*' })),
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
+    standalone: true,
+    imports: [
+        MatButton,
+        MatTabGroup,
+        MatTab,
+    ],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
 

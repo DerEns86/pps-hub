@@ -3,12 +3,22 @@ import { MachineParkService } from '../../services/machine-park.service';
 import { EmployeeService } from '../../services/employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddMachineComponent } from './dialog-add-machine/dialog-add-machine.component';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-machine-park',
-  templateUrl: './machine-park.component.html',
-  styleUrl: './machine-park.component.scss',
-
+    selector: 'app-machine-park',
+    templateUrl: './machine-park.component.html',
+    styleUrl: './machine-park.component.scss',
+    standalone: true,
+    imports: [
+        MatButton,
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        MatExpansionPanelDescription,
+    ],
 })
 export class MachineParkComponent {
 

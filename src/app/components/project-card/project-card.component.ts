@@ -1,12 +1,18 @@
 import { Component, Input, inject } from '@angular/core';
 import { Project } from '../../interfaces/project';
 import { ProjectsService } from '../../services/projects.service';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIconButton } from '@angular/material/button';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/material/card';
 
 
 @Component({
-  selector: 'app-project-card',
-  templateUrl: './project-card.component.html',
-  styleUrl: './project-card.component.scss'
+    selector: 'app-project-card',
+    templateUrl: './project-card.component.html',
+    styleUrl: './project-card.component.scss',
+    standalone: true,
+    imports: [MatCard, MatCardHeader, MatCardTitle, MatIconButton, MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, MatCardContent]
 })
 
 

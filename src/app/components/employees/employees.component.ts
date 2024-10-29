@@ -5,11 +5,15 @@ import { DialogAddEmployeeComponent } from './dialog-add-employee/dialog-add-emp
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../interfaces/employee';
 import { MatDialog } from '@angular/material/dialog';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-employees',
-  templateUrl: './employees.component.html',
-  styleUrl: './employees.component.scss'
+    selector: 'app-employees',
+    templateUrl: './employees.component.html',
+    styleUrl: './employees.component.scss',
+    standalone: true,
+    imports: [MatButton, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription]
 })
 
 
